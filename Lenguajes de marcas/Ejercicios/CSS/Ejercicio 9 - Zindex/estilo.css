@@ -1,0 +1,45 @@
+.estiloDiv1 {
+    background-color:cadetblue;
+    width: 200px;
+    padding: 20px;
+    margin: 10px;
+
+  }
+
+  .estiloDiv2{
+    background-color:rgb(99, 100, 100);
+    width: 200px;
+    padding: 20px;
+    margin: 10px;
+
+
+    position: absolute;
+    left: 50px;
+    top: 50px;
+    z-index: 1;
+  }
+
+
+  .estiloDiv3 {
+    background-color:cadetblue;
+    width: 200px;
+    padding: 20px;
+    margin: 10px;
+
+    position: relative;
+    left: 50px;
+    top: 50px;
+    z-index: 2;
+
+  }
+
+  .estiloDiv4{
+    background-color:rgb(99, 100, 100);
+    width: 200px;
+    padding: 20px;
+    margin: 10px;
+
+
+
+  }
+

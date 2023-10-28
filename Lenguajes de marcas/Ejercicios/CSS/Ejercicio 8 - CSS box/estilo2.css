@@ -1,0 +1,42 @@
+
+
+.estiloDiv1{
+    width: 200px;
+    border: 1px solid red;
+    padding: 20px;
+    background-color: rgba(163, 160, 160, 0.26);
+  
+}
+
+.estiloP1{ 
+    
+    width: 300px;
+    border: 4px dashed #fa5858;
+    background-color: rgb(115, 228, 125);
+    margin-right: 1500px;
+    margin-left: 30px;
+  
+}
+
+.estiloDiv2{
+    width: 350px;
+    border: 4px dotted #000000;
+    background-color: rgb(248, 28, 76);
+    padding-left: 30px;
+    padding-right: 30px;
+
+    margin:auto;
+
+    /* margin-right: 1000px;
+    margin-left: 700px; */
+
+}
+
+.estiloSpam1{
+    border: 1px solid #000000;
+    background-color: rgb(145, 141, 142);
+    color: white;
+    margin-right: 40px;
+    
+}
+

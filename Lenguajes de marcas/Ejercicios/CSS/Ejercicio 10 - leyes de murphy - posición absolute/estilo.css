@@ -1,0 +1,120 @@
+
+body{background-color: darkgray;}
+
+h1{
+    color: black;
+    text-align: center;
+}
+
+div{font-size: 20px;}
+
+div:hover{
+    z-index: 2;
+}
+
+.caja-naranja{ 
+    
+    width: 60%;
+    border: 1px solid #000000;
+    background-color: rgb(230, 164, 88);
+    text-align: center;
+
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-bottom: 5%;
+
+    padding-bottom: 4%;
+    padding-right: 5%;
+    padding-left: 5%;
+    padding-top: 1%;
+
+  
+}
+
+.caja-amarilla{ 
+    
+    width: 800px;
+    border: 3px solid #d3b615;
+    background-color: rgb(183, 185, 71);
+    padding-bottom: 80px;
+
+
+    margin-left: 5%;
+    margin-right: 60%;
+    position: absolute;
+
+    
+
+  
+}
+
+.caja-azul{ 
+    
+    width: 800px;
+    border: 3px solid #15d3ba;
+    background-color: rgb(157, 208, 218);
+    text-align: right;
+    padding-bottom: 80px;
+
+
+    margin-left: 50%;
+    margin-right: 5%;
+    position: relative;
+
+
+    position: absolute;
+    bottom: 55%;
+  
+}
+
+.caja-rosa{ 
+    
+    width: 800px;
+    border: 3px solid #771891;
+    background-color: rgb(242, 193, 252);
+
+    padding-bottom: 80px;
+
+    margin-left: 5%;
+    margin-right: 60%;
+    position: absolute;
+
+    bottom: 40%;
+
+}
+
+.caja-roja{ 
+    
+    width: 800px;
+    border: 3px solid #550f0c;
+    background-color: rgb(238, 137, 137);
+    text-align: right;
+    padding-bottom: 80px;
+
+    margin-left: 50%;
+    margin-right: 5%;
+
+    position: absolute;
+    bottom: 40%;
+  
+}
+
+.caja-verde{ 
+    
+    width: 800px;
+    border: 3px solid #123d07;
+    background-color: rgb(126, 168, 127);
+    
+    padding-bottom: 80px;
+
+
+    margin-left: 30%;
+
+
+
+    z-index: 1;
+
+    position: absolute;
+    top: 41%;
+  
+}

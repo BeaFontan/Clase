@@ -1,0 +1,16 @@
+
+.imagenIzda img{
+	float: left;
+}
+
+
+.imagendcha img{
+	float: right;
+}
+
+
+.imagenCentro img{
+	clear: both;
+}
+
+

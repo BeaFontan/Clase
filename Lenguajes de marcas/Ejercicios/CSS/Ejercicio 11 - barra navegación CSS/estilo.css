@@ -1,0 +1,10 @@
+ul{
+    list-style: none;
+
+}
+
+li{
+    background-color:seagreen ;
+    padding: 2px;
+    display: inline;
+}

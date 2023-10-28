@@ -1,0 +1,109 @@
+
+/* Formato cabeceras */
+	h1,h2,h3{
+		color: cadetblue;
+		text-align: center;
+		color: darkslategrey;
+	}
+
+/* Formato listas */
+	ul, li{
+		list-style: none;
+		font-size: 30px;
+	}
+
+/* Formato links */
+
+	a:link{
+		color:darkslategrey;
+		text-decoration: none;
+		}
+
+	a:visited{
+		color:rgba(54, 136, 74, 0.308);
+		text-decoration: none;
+		}
+
+	a:hover{
+		color:rgb(39, 190, 90);
+		text-decoration: none;
+		}
+
+	a:active{
+		color:rgba(28, 110, 35, 0.87);
+		text-decoration: none;
+		}
+
+
+
+/* Formato imágenes */
+
+	.imagenIzda{
+		float: left;
+		margin-right: 15px;
+	}
+
+
+	.imagendcha{
+		float: right;
+		margin-left: 15px;
+	}
+
+
+	.imagenCentro{
+		clear: both;
+		margin-right: 15px;
+	}
+
+
+/* Estructura */
+
+	#cabecera{
+		background-color: cadetblue;
+		background-image: url("imagenes/fondoCabecera.jpeg");
+		width: 100%;
+		height: 10vh;
+		padding:10px;
+		text-align: center;
+		font-size: 80px;
+		color: white;
+	}
+
+
+	#menu{
+		background-color: rgb(204, 211, 207);
+		float: left;
+		width: 20%;
+		height: 150vh;
+		color: white;
+		font-size: 40px;
+		
+	}
+
+	#contenido{
+		background-color: rgba(226, 223, 226, 0.021);
+		float: right;
+		width: 79%;
+		height: 150vh;
+		text-align: justify;
+		
+	}
+
+	#pie{
+		clear: both;
+		background-color: rgb(92, 114, 100);
+		clear: both;
+		width: 100%;
+		height: 10vh;
+		padding:5px;
+		text-align: center;
+		font-size: 20px;
+		color: white;
+
+	}
+
+
+
+
+
+
