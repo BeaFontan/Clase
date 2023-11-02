@@ -1,0 +1,61 @@
+/* Formato general */
+*{margin:0;
+padding:0;
+
+
+/* Recalcula los paddings dentro de cajas para que no desborde */
+box-sizing: border-box; 
+}
+
+
+li{
+    list-style-type: none;
+    position: relative;
+    width: 120px;
+
+}
+
+/* Estilo para los links */
+li a{
+    text-decoration: none;
+    color: white;
+    display: inline-block;
+    background-color: black;
+    padding: 5px 10px;
+    width: 120px;
+    height: 30px;
+    border: 1px solid #000;
+
+}
+
+li a:hover{
+    color:#000;
+    background-color: #fff;
+}
+
+nav li ul{
+    /* con este display ocultas */
+    display: none; 
+    position: absolute;
+        left: 142px;
+        top: 0px;
+
+
+}
+
+nav li:hover ul {
+    /* con este display muestras en bloque cuando pases el ratón por encima  */
+    display: block;
+}
+
+
+
+
+
+
+
+
+
+
+
+
