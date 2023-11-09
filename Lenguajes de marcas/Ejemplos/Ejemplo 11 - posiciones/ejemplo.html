@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>Posicionamiento </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    p.desplazado {
+      background-color: white;
+      border: black 1px solid;
+      /* posición relativa, es decir, desde donde está, baja 20 px y así con top, bottom, left, rigth */
+      position: relative;
+      top: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <p>Este párrafo no tiene posicionamiento absoluto relativo.</p>
+
+  <p class="desplazado">Este párrafo sí tiene posicionamiento absoluto relativo.</p>
+
+  <p>Este párrafo no tiene posicionamiento absoluto relativo.</p>
+</body>
+</html>
