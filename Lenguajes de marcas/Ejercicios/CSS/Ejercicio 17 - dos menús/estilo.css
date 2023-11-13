@@ -60,6 +60,7 @@ nav li {
 	float: left;
 	padding: 10px;
 	background-color: mediumpurple;
+	z-index: 1;
 
 
 }
@@ -68,9 +69,10 @@ nav li {
 nav li ul {
 	/* permanece oculto */
 	display: none;
-	position: absolute;
+	position: relative;
 	left: 0px;
-	top: 150px;
+	top: 20px;
+	z-index: 2;
 }
 
 
@@ -90,6 +92,7 @@ aside li{
 	height: 50px;
 	padding: 10px;
 	background-color: rgb(200, 204, 243);
+	z-index: 1;
 
 }
 
@@ -97,9 +100,9 @@ aside li{
 aside li ul{
 	/* permanece oculto */
 	display: none;
-	position: absolute;
-	left: 300px;
-	top: 150px;
+	position: relative;
+	left: 280px;
+	z-index: 2;
 }
 
 
@@ -107,6 +110,12 @@ aside li ul{
 aside li:hover ul{
 	display: block;
 	position: relative;
+	background-color: rgb(209, 175, 240);
 
+
+}
+
+aside li:hover{
+	background-color: rgb(209, 175, 240);
 
 }
