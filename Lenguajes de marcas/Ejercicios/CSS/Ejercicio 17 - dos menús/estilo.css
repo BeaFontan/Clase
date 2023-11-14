@@ -70,8 +70,8 @@ nav li ul {
 	/* permanece oculto */
 	display: none;
 	position: relative;
-	left: 0px;
-	top: 20px;
+		left: 0px;
+		top: 20px;
 	z-index: 2;
 }
 
@@ -92,7 +92,7 @@ aside li{
 	height: 50px;
 	padding: 10px;
 	background-color: rgb(200, 204, 243);
-	z-index: 1;
+
 
 }
 
@@ -100,16 +100,15 @@ aside li{
 aside li ul{
 	/* permanece oculto */
 	display: none;
-	position: relative;
-	left: 280px;
-	z-index: 2;
-}
 
+}
 
 
 aside li:hover ul{
 	display: block;
 	position: relative;
+	 left: 291px;
+
 	background-color: rgb(209, 175, 240);
 
 

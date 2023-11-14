@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<head>
+    <title> profundidade z-index 1</title>
+    <meta charset="UTF-8">
+    <style>
+        p.p1 {
+        background-color: lightblue;
+        height: 100px;
+        width: 100px;
+                }
+
+        p.p2 {
+        background-color: #DDDDDD;
+        height: 100px;
+        width: 100px;
+       /*desprazamos o segundo parágrafo respecto da posicion que lle tocaba ocupar*/ 
+        position: relative;
+        top: -50px;
+        left: 50px;
+        /* facemos que este parágrafo pase para detrás.*/
+        /* Lembra que debe estar posicionado para aplicar z-index*/
+        z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <p class="p1">Este é o primeiro parágrafo.</p>
+    <p class="p2">Este é o segundo parágrafo.</p>
+</body>
