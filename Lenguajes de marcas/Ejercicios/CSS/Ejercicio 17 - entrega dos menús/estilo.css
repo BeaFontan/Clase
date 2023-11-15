@@ -1,0 +1,160 @@
+*{margin: 0px; box-sizing: border-box;}
+
+header{
+    background-color: darkslategray;
+    width: 100%;
+    height: 100px;
+    color: white;
+    text-align: center;
+    padding-top: 20px;
+}
+
+nav{
+    background-color: darkseagreen;
+    width: 100%;
+    height: 30px;
+}
+
+aside{
+    background-color: darkgrey;
+    width: 120px;
+    height: 700px;
+    float: left;
+
+}
+
+section{
+    background-color: rgba(88, 86, 86, 0.671);
+    width: 2100px;
+    height: 700px;
+    padding-left: 150px;
+    padding-top: 20px;
+}
+
+footer{
+    background-color: rgb(5, 49, 49);
+    width: 100%;
+    height: 100px;
+    color: white;
+    text-align: center;
+    padding-top: 20px; 
+}
+
+
+/* ESTILO PARA EL MENÚ HORIZONTAL */
+
+/*Todos los ul que están dentro de nav*/
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+ /*Todos los li que están dentro de nav*/ 
+nav li{
+    position: relative;
+    width: 120px;
+    float: left;
+
+}
+
+/*Todos los links que están dentro de un li que están dentro del nav*/
+nav li a{
+    text-decoration: none;
+    color: rgb(255, 255, 255);
+    float: left;
+    background-color:rgb(6, 124, 85);
+    padding: 5px 10px;
+    width: 120px;
+    height: 30px;
+    border: 1px solid cadetblue;
+    text-align: center;
+
+}
+
+/*Todos los links con movimiento hover, dentro de un li y a su vez dento de nav*/
+nav li a:hover{
+    color:#000;
+    background-color: #fff;
+}
+
+/* Todos los ul que estén dentro de un li y que estén dentro de nav */
+nav li ul{
+    /* con este display ocultas */
+    display: none; 
+
+    /* Con esta posición, le dices que es desde la posición absoluta, por la izquierda 0 px y por la derecha 30 px */
+    position: absolute;
+        left: 0px;
+        top: 30px;
+}
+
+/*Todos los ul que estén dentro del moviento hover de un li y que estén dentro de nav*/
+nav li:hover ul {
+    /* con este display muestras en bloque cuando pases el ratón por encima  */
+    display: block;
+}
+
+/*estilo para el menú blog*/
+#flotarParteMenu{
+    float: right;
+}
+
+
+
+
+/*ESTILO PARA EL MENÚ VERTICAL*/
+
+/*Todos los ul que estén dentro del aside*/
+aside ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+
+    position: relative;
+    top: -30px;
+  }
+
+  /*todos los li que estén dentro del aside*/
+aside li{
+    position: relative;
+    width: 120px;
+
+}
+
+/* Todo los links que estén dentro de un li dentro del aside */
+aside li a{
+    text-decoration: none;
+    color: white;
+    display: inline-block;
+    background-color:rgb(17, 85, 40);
+    padding: 5px 10px;
+    width: 120px;
+    height: 30px;
+    border: 1px solid rgb(5, 49, 49);
+
+}
+
+/*Todos los links con movimiento hover dentro de un li dentro del aside */
+aside li a:hover{
+    color:#000;
+    background-color: #fff;
+}
+
+
+/*todos los ul que estén dentro de un li y dentro del aside*/
+aside li ul{
+    /* con este display ocultas */
+    display: none; 
+    position: absolute;
+        left: 120px;
+        top: 0px;
+
+
+}
+
+/*Todos los ul que estén dentro del li que se despliegan cuando pasas por encima y dentro del aside*/
+aside  li:hover ul {
+    /* con este display muestras en bloque cuando pases el ratón por encima  */
+    display: block;
+}
