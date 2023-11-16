@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="css.css">
+    <title>Document</title>
+</head>
+<body>
+
+    <form action="/action_page.php" id="formularioPractica">
+
+        <!-- Texto -->
+        <label for="nombre">Nombre *:</label><br/>
+        <input type="text" id="nombre" name="nombre" placeholder="Nombre" required><br/>
+
+        <br/>
+
+
+        <!-- Contraseña -->
+        <label for="pass">Contraseña: *</label><br/>
+        <input type="password" id="pass" name="pass" placeholder="Contraseña" maxlength="4" required><br/>
+
+        <br/>
+
+
+        <!-- Radio -->
+
+        <input type="radio" id="opcionesRadio" name="opcionesRadio" value="Opción 1">
+        <label for="Opción 1">Opción 1</label><br/>
+        <input type="radio" id="opcionesRadio" name="opcionesRadio" value="Opción 2">
+        <label for="Opción 1">Opción 2</label><br/>
+        <input type="radio" id="opcionesRadio" name="opcionesRadio" value="Opción 3">
+        <label for="Opción 1">Opción 3</label><br/>
+
+        <br/>
+
+
+        <!-- Checkbox -->
+
+        <input type="checkbox" id="opcionesCheckbox" name="opcionesCheckbox" value="Opción 4">
+        <label for="Opción 4">Opción 4</label><br/>
+        <input type="checkbox" id="opcionesCheckbox" name="opcionesCheckbox" value="Opción 5">
+        <label for="Opción 5">Opción 5</label><br/>
+        <input type="checkbox" id="opcionesCheckbox" name="opcionesCheckbox" value="Opción 6">
+        <label for="Opción 6">Opción 6</label><br/>
+
+        <br/>
+
+
+        <!-- Color -->
+
+        <label for="eligeColor"> Elige un color:</label></br>
+        <input type="color" id="eligeColor" name="eligeColor" value="#914B84">
+
+        <br/><br/>
+
+
+        <!-- Fecha -->
+
+        <label for="fechaNac">Selecciona tu fecha de nacimiento</label>
+        <input type="date" id="fechaNac" name="fechaNac">
+
+
+        <br/><br/>
+
+
+        <!-- Fecha hora local-->
+
+        <label for="fechaNac">Selecciona tu fecha de nacimiento</label>
+        <input type="datetime-local" id="fechaNac" name="fechaNac">
+
+
+        <br/><br/>
+
+        
+        <!-- Mes -->
+
+        <label for="fechaNac">Selecciona tu mes de nacimiento</label>
+        <input type="month" id="fechaNac" name="fechaNac">
+
+        <br/><br/>
+
+
+        <!-- Email -->
+
+        <label for="email">Introduce tu email</label><br/>
+        <input type="email" id="email" name="email" placeholder="Email">
+
+        <br/><br/>
+
+
+        <!-- Seleccionar un archivo -->
+
+        <label for="seleccionarArchivo">Selecciona el archivo:</label><br/>
+        <input type="file" id="seleccionarArchivo" name="seleccionarArchivo" multiple>
+
+        <br/><br/>
+
+
+        <!-- Dato oculto -->
+
+        <input type="hidden" id="oculto" name="oculto">
+
+        <br/>
+
+
+        <!-- Número -->
+
+        <label for="eligeNumero">Elige un número del 1 al 10</label><br/>
+        <input type="number" id="eligeNumero" name="eligeNumero" min="1" max="10" disabled>
+
+        <br/><br/>
+
+
+        <!-- Rango -->
+
+        <label for="rango">Elige de 1 a 20</label>
+        <input type="range" id="rango" name="rango" max="20" min="1">
+
+        <br/><br/>
+
+
+        <!-- Buscar en google-->
+
+        <label for="busqueda">Busqueda en google</label><br/>
+        <input type="search" id="busqueda" name="busqueda">
+
+        <br/><br/>
+
+
+        <!-- Teléfono con patrón -->
+
+        <label for="telf">Introduce tu teléfono</label><br/>
+        <input type="tel" id="telf" name="telf" placeholder="000-000-000" pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}">
+
+        <br/><br/>
+
+
+        <!-- Hora -->
+
+        <label for="hora">Selecciona la hora</label>
+        <input type="time" id="hora" name="hora">
+
+        <br/><br/>
+
+
+        <!-- Url -->
+
+        <label for="url">Introduce la url</label><br/>
+        <input type="url" id="url" name="url">
+
+        <br/><br/>
+
+
+        <!-- Semana -->
+
+        <label for="semana">Selecciona la fecha</label>
+        <input type="week" id="semana" name="semana">
+
+        <br/><br/>
+
+
+        <!-- Submit -->
+        <input type="submit" value="Enviar">
+
+
+        <!-- Reset -->
+        <input type="reset" value="Refrescar">
+
+
+
+        <!-- botón -->
+        <button type="button" onclick="alert('Adiós')">Adiós</button>
+
+        <br/>
+
+
+        <!-- Imagen de botón -->
+
+        <input type="image" src="imagenBoton.png" alt="enviar" width="40" height="40">
+
+
+    </form>
+
+    <p>Holiiii</p>
+
+    <label for="url">Introduce la url</label><br/>
+    <input type="url" id="url" name="url" id="formularioPractica">
+
+
+    
+    
+</body>
+</html>
