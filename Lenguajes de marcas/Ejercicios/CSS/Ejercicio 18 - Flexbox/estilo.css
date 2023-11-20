@@ -1,0 +1,227 @@
+body{
+  background-color: bisque;
+}
+
+.contenedores {
+    display: flex;
+    flex-direction: column;
+
+  }
+  
+  .contenedores > div {
+
+
+    width: 100px;
+    line-height: 75px;
+
+    border: 1px solid black;
+    background-color: white;
+
+    margin: 5px;
+
+    text-align: center;
+    font-size: 10px;
+  }
+
+
+
+  /* ____________________________________________________________________________________________ */
+
+
+  .contenedores2 {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .contenedores2 > div {
+
+    width: 100px;
+    line-height: 75px;
+
+    border: 1px solid black;
+    background-color: white;
+
+    margin: 5px;
+
+    text-align: center;
+    font-size: 10px;
+  }
+
+
+  /* ____________________________________________________________________________________________ */
+
+
+  .contenedores3 {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  
+  .contenedores3 > div {
+
+    width: 100px;
+    line-height: 75px;
+
+    border: 1px solid black;
+    background-color: white;
+
+    margin: 5px;
+
+    text-align: center;
+    font-size: 10px;
+  }
+
+
+    /* ____________________________________________________________________________________________ */
+
+
+    .contenedores3 {
+      display: flex;
+      flex-direction: column-reverse;
+    }
+    
+    .contenedores3 > div {
+  
+      width: 100px;
+      line-height: 75px;
+  
+      border: 1px solid black;
+      background-color: white;
+  
+      margin: 5px;
+  
+      text-align: center;
+      font-size: 10px;
+    }
+
+
+      /* ____________________________________________________________________________________________ */
+
+
+    .contenedores5 {
+      display: flex;
+
+      /* Con esto pongo las cajas al revés: */
+      flex-direction: row-reverse;
+
+      /* Con esto sítuo las cajas a la izquierda */
+      justify-content: flex-left; 
+
+      /* Con esto le doy color al fondo del contenedor de las cajas */
+      background-color: darkgray;
+      
+    }
+    
+    .contenedores5 > div {
+  
+      width: 100px;
+      line-height: 75px;
+  
+      border: 1px solid black;
+      background-color: white;
+  
+      margin: 5px;
+  
+      text-align: center;
+      font-size: 10px;
+    }
+
+
+      /* ____________________________________________________________________________________________ */
+
+
+    .contenedores6 {
+      display: flex;
+
+      /* Con esto pongo las cajas al revés: */
+      flex-direction: row-reverse;
+
+      /* Con esto sítuo las cajas a la izquierda */
+      justify-content: flex-left; 
+
+      /* Con esto le doy color al fondo del contenedor de las cajas */
+      background-color: darkgray;
+      
+    }
+    
+    .contenedores6 > div {
+  
+      width: 100px;
+      line-height: 75px;
+  
+      border: 1px solid black;
+      background-color: white;
+  
+      margin: 5px;
+  
+      text-align: center;
+      font-size: 10px;
+    }
+
+
+
+      /* ____________________________________________________________________________________________ */
+
+
+      .contenedores7 {
+        display: flex;
+  
+        /* Con esto le digo que no redimensione al mover la ventana, se quedan igual */
+        flex-wrap: wrap;
+ 
+  
+        /* Con esto le doy color al fondo del contenedor de las cajas */
+        background-color: darkgray;
+        
+      }
+      
+      .contenedores7 > div {
+    
+        width: 100px;
+        line-height: 75px;
+    
+        border: 1px solid black;
+        background-color: white;
+    
+        margin: 5px;
+    
+        text-align: center;
+        font-size: 10px;
+      }
+
+
+      /* ____________________________________________________________________________________________ */
+
+
+      .contenedores8 {
+        display: flex;
+  
+        /* Con esto le digo que no redimensione al mover la ventana, se quedan igual */
+        flex-wrap: wrap;
+
+        /* Con esto le digo que justique al centro el contenido */
+        justify-content: center;
+  
+        /* Con esto le doy color al fondo del contenedor de las cajas */
+        background-color: darkgray;
+        
+      }
+      
+      .contenedores8 > div {
+    
+        width: 100px;
+        line-height: 75px;
+    
+        border: 1px solid black;
+        background-color: white;
+    
+        margin: 5px;
+    
+        text-align: center;
+        font-size: 10px;
+      }
+
+  
+
+
+
+    
