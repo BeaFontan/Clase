@@ -1,0 +1,26 @@
+a{
+    text-decoration: none;
+    color: black;
+}
+
+body{
+    background-color: rgba(240, 248, 255, 0.637);
+}
+
+.cajas{
+    background-color: rgb(198, 231, 220);
+    display: flex;
+    justify-content: space-around;
+    
+
+}
+
+
+.cajas> div{
+    height: 25px;
+    width: 180px;
+    background-color: rgb(81, 146, 123);
+    color: black;
+    padding-top: 2px;
+ 
+}
