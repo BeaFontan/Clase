@@ -1,0 +1,33 @@
+
+.cajas{
+
+background-color: aquamarine;
+
+display: flex;
+/* En este caso no le pongo ni alto ni ancho al contenedor de items para que pueda crecer libremente. */
+
+/* Con esto hago que el contenido sea flexible, es decir, que a medida que escribes, crece. */
+justify-content: space-around;
+
+
+/* Con esto alineo el ancho */
+justify-content: center;
+
+align-content: stretch;
+
+}
+
+.cajas > div{
+
+/* Le pongo un mínimo de alto, para luego dejarlo crecer, si no le pongo el mínimo, no me deja */
+min-height: 40px;
+width: 180px;
+background-color: rgb(56, 143, 112);
+font-size: 20px;
+padding-left: 10px;
+padding-top: 5px;
+
+margin: 5px;
+
+
+}

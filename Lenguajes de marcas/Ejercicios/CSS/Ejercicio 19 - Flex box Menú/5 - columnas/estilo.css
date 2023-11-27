@@ -1,0 +1,38 @@
+.fondoColumnas{
+
+background-color: antiquewhite;
+
+display: flex;
+
+flex-direction: row;
+
+
+align-content: space-between;
+
+}
+
+
+#idLateral{
+    
+    height: 1000px;
+    width: 200px;
+    background-color: aqua;
+    padding-top: 10px;
+    
+    display: flex;
+    justify-content: center;
+
+    margin: 3px;
+}
+
+#idContenido{
+
+    height: 1000px;
+    width:600px; 
+    background-color:aquamarine ;
+    padding-top: 10px;
+
+    display: flex;
+    justify-content: center; 
+    margin: 3px;
+}
