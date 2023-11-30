@@ -1,10 +1,13 @@
 .estiloContenedor {
-    width: 1100px;
-    height: 1000px;
-    
     display: flex;
     flex-wrap: wrap;
+    flex-direction: column;
     justify-content: space-between;
+
+
+
+    max-width: 700px; /* Evita que el contenedor sea más ancho que 1000px */
+    max-height: 2800px;
 
 
 
@@ -47,11 +50,4 @@
     margin: 10px auto; /* Centra el puto botón horizontalmente */
 }
 
-
-
-
-/* Ajusta la altura de los contenedores del medio, dentro de la clase, hago una nueva clase que se aplicará a los div del medio */
-.estiloContenedor > div.estiloprimero {
-   width: 600px;
-}
 
