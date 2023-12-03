@@ -1,0 +1,71 @@
+body{
+    background-color: powderblue;
+}
+
+header{
+    border-bottom: 1px solid blue;
+
+    font-weight: bold;
+    font-size: 30px;
+
+    height: 100px;
+    width: 95%;
+
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    margin:auto;
+
+}
+
+a{
+    text-decoration: none;
+    color: rgb(0, 0, 248);
+}
+
+/* Lista general */
+
+nav ul{
+    list-style: none;
+
+    display: flex;
+    flex-direction: row;
+
+    width: 80%;
+    height: 30px;
+
+
+}
+
+nav li{
+    background-color: rgb(255, 255, 255);
+
+    margin-right: 5px;
+    margin-top: 3px;
+    text-align: center;
+    padding-top: 2px;
+
+    border: 1px solid white;
+    border-radius: 5px;
+
+    width: 100px;
+
+}
+
+nav li:hover{
+    background-color: greenyellow; 
+}
+
+
+/* Primer desplegable */
+
+
+nav ul li ul{
+    display: none;
+}
+
+nav ul li:hover{
+    display: inline;
+}
+
+

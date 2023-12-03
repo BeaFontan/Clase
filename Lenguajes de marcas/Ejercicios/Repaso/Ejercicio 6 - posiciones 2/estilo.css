@@ -1,0 +1,31 @@
+
+div{
+    background-color: lightgray;
+
+    width: 300px;
+
+    padding-left: 10px;
+    padding-top: 10px;
+
+}
+
+.primero{
+    position: static;
+    background-color: lightblue;
+}
+
+.segundo{
+    background-color: lightblue;
+    position: relative;
+        top: 50px;
+        left: 10px;
+
+}
+
+.tercero{
+    background-color: lightblue;
+    position: absolute;
+        top: 455px;
+        left: 50px;
+
+}

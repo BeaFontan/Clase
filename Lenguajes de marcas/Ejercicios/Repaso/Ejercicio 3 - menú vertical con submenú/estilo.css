@@ -1,0 +1,36 @@
+ul{list-style: none;}
+
+a{text-decoration: none;
+color: aliceblue;
+font-weight: bold;}
+
+.listaGeneral li{
+    background-color: darkred;
+
+    width: 150px;
+    height: 30px;
+
+    margin: 2px;
+    
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+
+}
+
+.listaGeneral li:hover{
+    background-color: lightpink;
+}
+
+.listaGeneral ul{
+    display: none;
+}
+
+.listaGeneral li:hover .lista{
+    display: block;
+    position: absolute;
+    top: 46px;
+    left: 160px;
+}
+
