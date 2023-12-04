@@ -26,10 +26,16 @@ div{
     width: 250px;
 }
 
-.telefono{
+.numberUnico{
     margin-left: 70px;
-    width: 250px;
+    width: 30px;
+
 }
+
+.numberVarios{
+    width: 30px;
+
+} 
 
 select{
     margin-left: 55px;
