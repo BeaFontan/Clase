@@ -1,5 +1,8 @@
 USE SOCIEDADE_CULTURAL_BEA;
 
+--HOJA 27-------------------------------------------------------------------------
+
+
 --– Proposta 1. Nome e apelidos (cada un nunha columna) de todos os empregados.
 
 select e.nome, e.ape1, e.ape2 

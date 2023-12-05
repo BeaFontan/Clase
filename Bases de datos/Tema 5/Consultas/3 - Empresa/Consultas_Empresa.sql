@@ -1,5 +1,7 @@
 use EMPRESA_BEA;
 
+--HOJA 27------------------------------------------------------------------------------
+
 --– Proposta 15. Nome de todos os clientes por orde alfabética. 
 
 select c.nome
@@ -46,8 +48,6 @@ where p.data_pedido BETWEEN '01-08-2014' AND '31-12-2014';
 
 SELECT * from PEDIDO;
 
-
-
 --– Proposta 21. Código e nome dos fabricantes cuxo nome ten por segunda letra O.
 
 select f.codigo, f.nome
@@ -79,3 +79,67 @@ from PRODUTO p
 where p.existencias BETWEEN 11 AND 99;
 
 		--Le pongo 11 y 99 porque pone mayores que, no igual o mayor.
+
+
+
+--HOJA 35---------------------------------------------------------------------------
+
+--– Proposta 1. Media de unidades vendidas de cada vendedor. O resultado terá dúas 
+--columnas, na primeira o número identificador do empregado (vendedor) e nunha 
+--segunda columna a media de unidades vendidas (campo cantidade) nos seus 
+--pedidos.
+
+select p.num_empregado, avg(p.cantidade) as mediaCantiadad
+from PEDIDO p
+group by p.num_empregado;
+
+
+--– Proposta 2. Prezo máis barato de produto, prezo máis caro, prezo medio, suma total 
+--dos prezos de produto, e número de produtos distintos existentes.
+
+select min(p.prezo) as mais_barato,
+	   max(p.prezo) as mais_caro,
+	   avg(p.prezo) as prezo_medio,
+	   sum(p.prezo) as suma_total,
+	   count(p.prezo) as conta_total
+from PRODUTO p;
+
+--– Proposta 3. Número de pedidos realizados polo cliente 1103.
+
+select count(p.numero)
+from PEDIDO p
+where p.num_cliente = 1103;
+
+select * from PEDIDO;
+
+--– Proposta 4. Número de pedidos realizados por cada cliente. No resultado aparecerá 
+--o identificador do cliente e na segunda columna o número de pedidos que leva 
+--feitos cada cliente ata o de agora. 
+
+select p.num_cliente, count(p.numero) as total_pedidos_realizados
+from PEDIDO p
+group by p.num_cliente;
+
+
+--– Proposta 5. Repite a consulta anterior, pero agora no resultado só poderán aparecer 
+--os clientes que fixeron máis de 2 pedidos. 
+
+select p.num_cliente, count(p.numero) as total_pedidos_realizados
+from PEDIDO p
+group by p.num_cliente
+having count(p.numero)>2;
+
+
+--– Proposta 6. Repite a consulta anterior, pero agora no resultado só poderán aparecer 
+--os clientes que fixeron máis de 2 pedidos e que ademais teñen unha media de 
+--unidades mercadas (cantidade) inferior a 10.
+
+select p.num_cliente, count(p.numero) as total_pedidos_realizados
+from PEDIDO p
+group by p.num_cliente
+having count(p.numero) > 2 & avg(p.cantidade) < 10;
+
+
+--– Proposta 7. Cantidade total de sucursais que hai por rexión. Aparecerá o nome da 
+--rexión e na mesma columna separado por un guión, a cantidade de sucursais 
+--situadas nesa rexión.
