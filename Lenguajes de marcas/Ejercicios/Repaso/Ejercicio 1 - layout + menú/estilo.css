@@ -1,6 +1,7 @@
 *{
 margin: 0;
- box-sizing: border-box;
+padding: 0;
+box-sizing: border-box;
 }
 
 
@@ -30,7 +31,7 @@ nav{
 }
 
 
-ul {list-style-type: none;
+ul {
 
     display: flex;
     flex-direction: row;
@@ -38,6 +39,18 @@ ul {list-style-type: none;
 
 
 }
+
+
+li{
+    list-style-type: none;
+    display: flex;
+    height: 30px;
+
+    background-color: blueviolet;
+
+
+}
+
 
 
 li a{    
@@ -56,15 +69,6 @@ li a{
 
 }
 
-li{
-    
-    display: flex;
-    height: 30px;
-
-    background-color: blueviolet;
-
-
-}
 
 
 li a:hover{

@@ -52,10 +52,11 @@ header{
 
 }
 
-.general li:hover{
+.general li a:hover{
     background-color: greenyellow; 
 
 }
+
 
 
 /* Primer desplegable */
@@ -63,11 +64,14 @@ header{
 
 .desplegable{
     display: none;
+
+    position: relative;
+   
     background-color: aquamarine;
 }
 
-.desplegable li:hover {
-
+.desplegable li:hover ul{
+    position: relative;
     display: flex;
     background-color: rgb(255, 255, 255);
 
