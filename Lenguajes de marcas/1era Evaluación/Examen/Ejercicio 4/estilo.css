@@ -1,0 +1,10 @@
+body{
+    background-image: url(foto.jpg);
+    background-repeat: no-repeat;
+    background-size: 100%;
+}
+
+table, td, tr{
+    border: 1px solid black;
+    border-collapse: collapse;
+}
