@@ -1,0 +1,69 @@
+
+.container{
+    margin: 20px auto;
+    width: 90%;
+}
+
+header{
+    background-color: orange;
+}
+
+.red{
+    background-color: red;
+    width: 80%;
+    height: 500px;
+}
+
+.blue{background-color: blue;
+    width: 80%;
+    height: 500px;
+
+}
+
+.green{background-color: green;
+
+    width: 80%;
+    height: 500px;
+}
+
+
+/* Estilo para pantallas medias */
+@media screen and (min-width: 576px){
+    .red,
+    .blue{
+        float: left;
+        width: 50%;
+    }
+
+    .green{
+        float: left;
+        width: 100%;
+    }
+    
+}
+
+/* Estilo para pantallas grandes */
+@media screen and (min-width: 993px){
+    .red,
+    .blue,
+    .green{
+        float: left;
+        width: 33.33%;
+    }
+    
+}
+
+/* Estilo para orientación horizontal*/
+@media screen and (orientation: landscape){
+    header{
+        background-color: rgb(4, 0, 255);
+        color: aqua;
+    }
+    
+}
+
+
+
+
+
+
