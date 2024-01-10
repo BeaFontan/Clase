@@ -143,3 +143,142 @@ having count(p.numero) > 2 & avg(p.cantidade) < 10;
 --– Proposta 7. Cantidade total de sucursais que hai por rexión. Aparecerá o nome da 
 --rexión e na mesma columna separado por un guión, a cantidade de sucursais 
 --situadas nesa rexión.
+
+
+
+--HOJA 51---------------------------------------------------------------------------
+
+--– Proposta 1. Nome de todos os fabricantes dos que se fixeron pedidos. Debes 
+--propoñer dúas solucións, unha coa sintaxe coa condición de combinación no 
+--WHERE, e outra coa sintaxe coa condición de combinación no FROM.
+
+--uso distinct para que elimine los resultados repetidos.
+select distinct f.nome
+from FABRICANTE f JOIN PEDIDO p
+on f.codigo = p.cod_fabricante;
+
+
+--Solución1
+SELECT DISTINCT f.nome
+FROM FABRICANTE f, PEDIDO p
+WHERE f.codigo=p.cod_fabricante;
+--aquí le indicamos donde coincidan los códigos en el where
+
+--Solución2
+SELECT DISTINCT f.nome
+FROM FABRICANTE f INNER JOIN PEDIDO p
+ ON f.codigo=p.cod_fabricante; --aquí hacemos un join o inner join, que arroja el mismo resultado.
+
+
+--– Proposta 2. Nome de todos os fabricantes, fixéranse ou non pedidos. Se tiveron 
+--pedidos aparecerá o nome e nunha segunda columna o número de pedido. Se dun 
+--fabricante se fixeron máis dun pedido, aparecerá tantas veces como pedidos se lle 
+--fixeron. No caso de non ter pedido, como número de pedido deberá aparecer o 
+--valor 99.
+
+select f.nome, ISNULL(p.numero, 99) as num_pedido
+from FABRICANTE f left JOIN PEDIDO p
+on f.codigo = p.cod_fabricante;
+
+
+--– Proposta 3. Nome de todos os fabricantes, fixéranse ou non pedidos. Se tiveron 
+--pedidos aparecerá o nome e nunha segunda columna o número de pedido. Se dun 
+--fabricante se fixeron máis dun pedido, aparecerá tantas veces como pedidos se lle 
+--fixeron. No caso de non ter pedido, como número de pedido deberá aparecer a 
+--frase 'Sen pedidos.'.
+
+select f.nome, ISNULL(cast(p.numero as varchar(12)), 'Sen pedidos.') as num_pedido
+from FABRICANTE f left JOIN PEDIDO p
+on f.codigo = p.cod_fabricante;
+
+
+--– Proposta 4. Código dos produtos (co formato cod_fabricante-id_produto) e 
+--descrición, dos produtos que non foron pedidos nunca.
+select p.identificador, p.descricion
+from PRODUTO p left join PEDIDO pe
+on p.identificador = pe.id_produto
+where pe.id_produto is null;
+
+--solución mónica
+SELECT pr.cod_fabricante+'-'+pr.identificador as id_produto,
+ pr.descricion
+FROM PRODUTO pr LEFT JOIN PEDIDO pe
+ ON pr.cod_fabricante= pe.cod_fabricante AND
+ pr.identificador =pe. id_produto
+WHERE pe.numero is NULL;
+
+
+--– Proposta 5. Produto cartesiano entre a táboa de sucursais e a de empregados. 
+--Nunha primeira columna aparecerá a cidade da sucursal e na segunda o nome 
+--completo do empregado (co formato nome ape1 ape2). Débense propoñer dúas 
+--solucións, segundo a sintaxe empregada para o produto cartesiano.
+
+--cross join para producto cartesiano
+select s.cidade, e.nome + ' ' + e.ape1 + ' ' + isnull(e.ape2, ' ')
+from SUCURSAL s cross join EMPREGADO e;
+
+select s.cidade, e.nome + ' ' + e.ape1 + ' ' + isnull(e.ape2, ' ')
+from SUCURSAL s, EMPREGADO e;
+
+
+--Solución1
+SELECT s.cidade, 
+ e.nome+' '+e.ape1+' '+isnull(e.ape2,'') as empregado
+FROM SUCURSAL s, EMPREGADO e;
+
+--Solución2
+SELECT s.cidade, 
+ e.nome+' '+e.ape1+' '+isnull(e.ape2,'') as empregado
+FROM SUCURSAL s CROSS JOIN EMPREGADO e;
+
+--– Proposta 6. Número e nome completo (co formato nome ape1 ape2) de todos os 
+--empregados, así como a cidade da sucursal que dirixen, se é que dirixen algunha. Na 
+--terceira columna, de nome sucursal_que_dirixe, nas filas dos empregados que non 
+--son directores de sucursais, deberá aparecer a frase 'Non é director.'.
+
+select e.numero, e.nome + ' ' + e.ape1 + ' '+ isnull(e.ape2, '') as datos, isnull(cast(s.identificador as varchar (14)), 'Non e director') as sucursal
+from EMPREGADO e full join SUCURSAL s
+on e.numero = s.num_empregado_director;
+
+--– Proposta 7. Número e nome completo dos empregados que teñen xefe, co número 
+--e o nome completo do seu xefe nunha segunda columna. (Revisa o concepto 
+--– Autocombinación ou self join). Nas columnas aparecerán o número separado do 
+--nome completo por un guión.
+select e.numero, e.nome, e.ape1, e.ape2, em.nome, em.ape1, em.ape2
+from EMPREGADO e inner join empregado em
+on e.num_empregado_xefe = em.numero;
+
+select * from EMPREGADO;
+
+--– Proposta 8. Número e nome completo de todos os empregados, co número e o 
+--nome completo do seu xefe nunha segunda columna. Nas columnas aparecerán o 
+--número separado do nome completo por un guión. Se algún empregado non tivese 
+--xefe, na segunda columna debe aparecer a frase 'Xefe por designar.'. 
+
+select cast(e.numero as varchar(3))+ '-' + e.nome + ' ' + e.ape1 as empregado, 
+      isnull((cast(x.numero as varchar(3))+ '-' + x.nome + ' ' + x.ape1), 'Xefe por designar') as xefe 
+from EMPREGADO e left join empregado x
+on e.num_empregado_xefe = x.numero;
+
+
+--– Proposta 9. Nome completo de todos os empregados co nome do cliente que teñen 
+--asignado. No caso de que non tivesen ningún cliente aparecerá no nome do cliente a 
+--frase 'Sen cliente.'. Do mesmo xeito se un cliente non ten empregado asignado, na 
+--columna do empregado aparecerá 'Sen vendedor.'. É importante que aparezan 
+--todos os empregados, teñan ou non clientes e todos os clientes teñan ou non 
+--empregados.
+
+select isnull(e.nome + ' ' + e.ape1 + ' ' + isnull(e.ape2,''), 'Sin vendedor') as ape2, isnull(c.nome,'Sen cliente') as cliente
+from EMPREGADO e full join cliente c
+on e.numero = c.num_empregado_asignado;
+
+
+--– Proposta 10. Escolle unha das túas solucións das consultas propostas nas que 
+--empregaches un LEFT JOIN, e modifícaa usando RIGHT JOIN.
+
+SELECT pr.cod_fabricante+'-'+pr.identificador as id_produto,
+ pr.descricion
+FROM  PEDIDO pe right join PRODUTO pr
+ ON pr.cod_fabricante= pe.cod_fabricante AND
+ pr.identificador =pe. id_produto
+WHERE pe.numero is NULL;
