@@ -1,6 +1,141 @@
 use EMPRESA_BEA;
 
---HOJA 27------------------------------------------------------------------------------
+use SOCIEDADE_CULTURAL_BEA;
+
+---TAREFAS CONSULTAS SIMPLES------------------------------------------------------------------------------------
+
+--– Proposta 1. Nome e apelidos (cada un nunha columna) de todos os empregados.
+SELECT e.nome, e.ape1, e.ape2
+FROM EMPREGADO E;
+
+
+--– Proposta 2. Número, nome e apelidos (cada un nunha columna) de todos 
+--empregados.
+
+SELECT e.numero, e.nome, e.ape1, e.ape2
+FROM EMPREGADO E;
+
+--– Proposta 3. Número, nome e apelidos (cada un nunha columna) de todos os 
+--empregados por orde alfabética de apelidos e nome.
+
+SELECT e.numero, e.nome , e.ape1, e.ape2
+FROM EMPREGADO E
+ORDER BY e.ape1, ape2, nome;
+
+--– Proposta 4. Número, nome e apelidos (cada un nunha columna) de todos os 
+--empregados por orde alfabética de apelidos e nome. Os nomes das columnas no 
+--resultado serán: num_socio, nome_socio, apelido1, apelido2.
+
+SELECT e.numero as num_socio, e.nome as nome_socio, e.ape1 as apelido1, e.ape2 as apelido2
+FROM EMPREGADO E
+ORDER BY e.ape1, ape2, nome;
+
+
+--– Proposta 5. Número, nome completo (os 4 campos nunha única columna, de nome 
+--socio, co formato numero - ape1 ape2, nome) e salario de todos os empregados. No 
+--resultado deberán aparecer primeiro os que máis cobran.
+
+SELECT cast(e.numero as varchar(7)) + ' - ' + e.ape1 + e.ape2 + ', ' + e.nome as socios,
+salario_mes
+FROM EMPREGADO E
+ORDER BY salario_mes desc;
+
+SELECT cast(numero as varchar(7))+' - '+ape1+' '+ape2+', '+ nome 
+ as socio, 
+ salario_mes
+FROM EMPREGADO
+ORDER BY salario_mes desc;
+
+
+--– Proposta 6. Número, nome completo (os 4 campos nunha única columna, de nome 
+--socio, co formato numero - ape1 ape2, nome) e salario de todo o profesorado. No 
+--resultado deberán aparecer primeiro os que máis cobran. O campo cargo contén 
+--PRF para o profesorado, e ADM se é un ou unha administrativo.
+
+select cast(e.numero as varchar (7))+ ' - ' + e.ape1 + ' ' + e.ape2 + ', ' + e.nome as socio, e.salario_mes
+from EMPREGADO e 
+where e.cargo = 'PRF'
+order by salario_mes desc;
+
+SELECT cast(numero as varchar(7))+' - '+ape1+' '+ape2+', '+ nome 
+ as socio, 
+ salario_mes
+FROM EMPREGADO
+WHERE cargo='PRF'
+ORDER BY salario_mes desc;
+
+--– Proposta 7. Número identificador do profesorado que imparte clases. Como é 
+--lóxico, se un profesor imparte máis dunha actividade, o seu número só pode 
+--aparecer unha vez.
+
+SELECT DISTINCT num_profesorado_imparte
+FROM ACTIVIDADE;
+
+
+--– Proposta 8. Número identificador das actividades ás que asiste profesorado, é dicir, 
+--cursadas por profesorado. 
+
+select p.id_actividade
+from PROFE_CURSA_ACTI p;
+
+SELECT DISTINCT id_actividade
+FROM PROFE_CURSA_ACTI;
+
+--– Proposta 9. Nome, importe, e importe rebaixado un 20%, da actividade de nome 
+--xadrez.
+
+
+--Solución1
+SELECT nome, prezo, prezo-(prezo*0.20) as prezo_rebaixado
+FROM ACTIVIDADE
+WHERE nome='XADREZ';
+--Solución2
+SELECT nome, prezo, prezo*0.80 as prezo_rebaixado
+FROM ACTIVIDADE
+WHERE nome='XADREZ';
+
+--– Proposta 10. NIF, nome e apelidos dos socios dos que non temos teléfono gardado.
+
+SELECT NIF, nome, ape1, ape2
+FROM SOCIO
+WHERE telefono1 IS NULL AND
+ telefono2 IS NULL;
+
+--– Proposta 11. NIF, nome, apelidos e data de nacemento dos socios nados entre 1980 
+--e 1990, ambos incluídos.
+
+SELECT NIF, nome, ape1, ape2, data_nac
+FROM SOCIO
+WHERE data_nac BETWEEN '1/1/1980' AND '31/12/1990';
+
+--– Proposta 12. Todos os datos das actividades cuxo nome contén a letra T.
+SELECT *
+FROM ACTIVIDADE
+WHERE nome LIKE '%T%';
+
+
+--– Proposta 13. Nome e importe das cotas cun custo de 30 ou 100 euros.
+SELECT nome, importe
+FROM COTA
+WHERE importe IN (30,100);
+
+--Solución2
+SELECT nome, importe
+FROM COTA
+WHERE importe=30 OR
+ importe=100;
+
+--– Proposta 14. Nome e número de prazas das actividades que non teñen nin 15 nin 20 
+--prazas.
+SELECT nome, num_prazas
+FROM ACTIVIDADE
+WHERE num_prazas NOT IN (15,20);
+
+--Solución2
+SELECT nome, num_prazas
+FROM ACTIVIDADE
+WHERE num_prazas!=15 AND
+ num_prazas!=20;
 
 --– Proposta 15. Nome de todos os clientes por orde alfabética. 
 
@@ -82,7 +217,10 @@ where p.existencias BETWEEN 11 AND 99;
 
 
 
---HOJA 35---------------------------------------------------------------------------
+
+
+
+-----TAREFAS CONSULTAS RESUMO-------------------------------------------------------------------------------------------
 
 --– Proposta 1. Media de unidades vendidas de cada vendedor. O resultado terá dúas 
 --columnas, na primeira o número identificador do empregado (vendedor) e nunha 
@@ -137,16 +275,18 @@ having count(p.numero)>2;
 select p.num_cliente, count(p.numero) as total_pedidos_realizados
 from PEDIDO p
 group by p.num_cliente
-having count(p.numero) > 2 & avg(p.cantidade) < 10;
-
+having count(p.numero) > 2 AND avg(p.cantidade) < 10;
 
 --– Proposta 7. Cantidade total de sucursais que hai por rexión. Aparecerá o nome da 
 --rexión e na mesma columna separado por un guión, a cantidade de sucursais 
 --situadas nesa rexión.
 
+SELECT rexion+' - '+ cast(count(*) as varchar(5)) as total_sucursais
+FROM SUCURSAL
+GROUP BY rexion;
 
 
---HOJA 51---------------------------------------------------------------------------
+--------TAREFAS DE CONSULTAS DE COMBINACIÓNS JOINS-------------------------------------------------------------------
 
 --– Proposta 1. Nome de todos os fabricantes dos que se fixeron pedidos. Debes 
 --propoñer dúas solucións, unha coa sintaxe coa condición de combinación no 
@@ -169,8 +309,6 @@ SELECT DISTINCT f.nome
 FROM FABRICANTE f INNER JOIN PEDIDO p
  ON f.codigo=p.cod_fabricante;
  --aquí hacemos un join o inner join, que arroja el mismo resultado.
-
-
 
 --– Proposta 2. Nome de todos os fabricantes, fixéranse ou non pedidos. Se tiveron 
 --pedidos aparecerá o nome e nunha segunda columna o número de pedido. Se dun 
@@ -291,9 +429,7 @@ WHERE pe.numero is NULL;
 
 
 
-
-
---4. Tarefa de consultas con subconsultas --? Consultas propostas na BD EMPRESA.
+----- TAREFAS DE SUBCONSULTAS------------------------------------------------------------------------------------------------
 
 --– Proposta 1. Nome de todos os fabricantes dos que hai produtos na BD. Non se permite 
 --usar combinacións nesta consulta.
@@ -421,3 +557,126 @@ where s.obxectivo *0.8 < any (select e.cota_de_vendas
 --– Proposta 10. Nome dos clientes cuxos empregados asignados traballan en sucursais da 
 --rexión OESTE. Non se poden usar joins, só subconsultas encadeadas.
 
+select c.nome
+from CLIENTE c
+where c.num_empregado_asignado in (select e.numero
+								   from EMPREGADO e
+								   where e.id_sucursal_traballa in (select s.identificador
+																	from SUCURSAL s
+																	where s.rexion = 'OESTE'));
+
+select * from SUCURSAL;			
+
+SELECT nome
+FROM CLIENTE
+WHERE num_empregado_asignado IN (SELECT numero
+								 FROM EMPREGADO
+								WHERE id_sucursal_traballa IN (SELECT identificador
+															 FROM SUCURSAL
+															 WHERE rexion='OESTE'));---------CONSULTAS CON FUNCIÓNS INTEGRADAS NO XESTOR----------------------------------------------------------
+--– Proposta 1. Desexamos coñecer o código ASCII da vogal E. Na consulta deberás 
+--devolver nunha columna a vogal en maiúscula, e nunha segunda o código ASCII que 
+--lle corresponde.
+
+
+--– Proposta 2. Consulta que devolve o carácter que lle corresponde aos seguintes 
+--códigos ASCII: 70, 80, 90.
+
+
+--– Proposta 3. Queremos obter unha listaxe que en cada liña teña o seguinte texto: O 
+--empregado con nome e apelidos X ten que acadar unha cota de vendas anual de Y. 
+--Sendo X o nome e os apelidos do empregado, e Y a cota de vendas. É importante 
+--fixarse no segundo apelido. A listaxe terá por título Empregados e cotas.
+
+
+
+--– Proposta 4. Consulta que devolva as datas nas que se contrataron empregados. O 
+--formato das diferentes datas será dd-mm-aaaa e o nome da columna Datas de 
+--contratación.
+
+
+--– Proposta 5. Queremos obter un nome abreviado das sucursais. Ese nome 
+--comporase polos tres primeiros caracteres da cidade, os dous últimos da rexión e 
+--separado por un guión baixo, o número de caracteres do nome da cidade.
+
+
+--– Proposta 6. Queremos obter un nome abreviado dos produtos. Ese nome 
+--comporase polo segundo carácter do código do fabricante en minúscula, máis o 
+--terceiro, cuarto, quinto e sexto da descrición do produto. Nunha primeira columna o 
+--código aparecerá en minúsculas, e nunha segunda en maiúsculas.
+
+
+
+--– Proposta 7. Listaxe cos nomes dos empregados co formato ape1 ape2, nome. Se 
+--algún empregado non ten segundo apelido, por exemplo Susanne Smith, no 
+--resultado aparecerá Smith, Sussane, sen espazos antes da coma.
+
+
+
+--– Proposta 8. Queremos amosar os distintos títulos dos nosos empregados en 
+--castelán, e para iso deberemos substituír a palabra VENDAS por VENTAS.
+
+
+
+--– Proposta 9. Consulta que devolva a seguinte información de tempo en distintas 
+--columnas co nome adecuado cada unha:
+--– data e hora actuais sen axuste de zona horaria,
+--– data e hora actuais con axuste de zona horaria,
+--– mes actual en número,
+--– mes actual en número (emprega unha función diferente á da anterior 
+--columna),
+--– ano actual,
+--– mes actual en nome,
+--– hora actual,
+--– nanosegundos actuais.
+
+
+
+
+
+
+--– Proposta 10. Listaxe que devolva o nome de todos os empregados (nome, ape1, 
+--ape2), a data de contrato, e nunha última columna a data de contrato adiantada un 
+--ano. O formato das dúas datas será dd/mm/aaaa (con barras).
+
+
+
+--– Proposta 11. Listaxe que devolva o número de cada pedido coa data de pedido. 
+--Nunha terceira columna deberá aparecer a mesma data de pedido pero retrasada 
+--dous meses. O formato das dúas datas será dd-mm-aaaa (con guións).
+
+
+
+--– Proposta 12. Listaxe que devolva o nome e apelidos (nome, ape1, ape2) de cada 
+--empregado, a data de contrato e o número de anos que hai que leva traballando na 
+--empresa cada un deles. 
+
+
+
+--– Proposta 13. Consulta que devolva a descrición de cada produto co seu prezo nunha 
+--segunda columna, e ademais deberán amosarse en columnas diferentes: 
+--– o prezo como un enteiro aproximado por defecto, 
+--– o prezo como un enteiro aproximado por exceso, 
+--– a raíz cadrada do prezo,
+--– o cadrado do prezo, e, 
+--– o cubo do prezo.
+
+
+
+--– Proposta 14. Repite a consulta anterior pero agora só amosaremos a descrición, o 
+--prezo e a raíz cadrada, pero a raíz cadrada deberá amosarse con como moito 4 cifras 
+--na parte enteira e 3 na decimal.
+
+
+
+--– Proposta 15. Consulta que devolva a seguinte información do servidor no que está a 
+--nosa instancia de SQL Server: idioma, número máximo de conexións permitidas, 
+--nome do servidor e da instancia e versión do xestor.
+
+
+--– Proposta 16. Consulta que amose a descrición do produto e as súas existencias. 
+--Nunha terceira columna de nome estado_existencias amosarase o seguinte:
+--– Se o número de existencias é superior a 20 aparecerá a palabra Suficientes.
+--– Se o número de existencias é menor ou igual a 20 aparecerá Insuficientes.
+--Esta consulta deberás resolvela de dous xeitos posibles, en dúas consultas 
+--diferentes, empregando dúas funcións lóxicas distintas
