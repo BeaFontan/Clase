@@ -3,6 +3,7 @@
 margin: 0px;
 font-family: "Righteous";}
 
+
 .verde{
     color: green;
 
@@ -44,7 +45,6 @@ div:hover .menu_item{
 
 
 
-
 /* Estilos para el texto */
 
 .main_text{
@@ -55,15 +55,11 @@ div:hover .menu_item{
 }
 
 .main_text div{
-
     color: white;
     font-size: 3vw;
-
     padding-top: 15px;
-
     margin-right: 20px;
     margin-left: 20px;
-
 }
 
 .main_text p{
@@ -113,6 +109,7 @@ div:hover .menu_item{
 }
 
 
+
 /* 
 Estilos para pantallas medias */
 @media screen and (min-width: 992px) {
@@ -122,34 +119,37 @@ Estilos para pantallas medias */
     }
     
     .menu_item{
-       
-           
-
+       display: block;
+        position: relative;
+        left: -40px;
+        top: -25px;
+        margin-right: 10px;
        
     }
-
 
     .main_text{
         
-        background-color: aquamarine;
-        width: 500px;
-        height: 600px;
+        background-color: rgb(107, 109, 108);
+        width: 472px;
+        height: 720px;
         float: left;
-
 
     }
 
-    .images{
+    .main_text div{
+        font-size: 2.2vw;
+    }
 
-        background-color:cornflowerblue;
-        width: 400px;
+
+    .images{
+        width: 410px;
         height: 600px;
         float: right;
         display: flex;
         flex-wrap: wrap;
         flex-direction: row;
         position: relative;
-            left: -56px;
+            left: -80px;
     }
 
 
@@ -158,20 +158,90 @@ Estilos para pantallas medias */
         width: 200px;
     }
     .novedades{
-        clear:both;
+
+        display: flex;
+        flex-direction: row;
+        align-items: flex-start;
+        position: absolute;
+            top: 800px;
        
-     }
+    }
+
+    .novedades article{
+        width: 220px;
+        margin-right: 5px;
+    }
+
+    .novedades h2{
+        margin-right: 80px;
+    }
     
-
 }
-
-
 
 
 
 /* Estilos para escritorios */
 @media screen and (min-width: 1200px) {
 
-  
+
+
+
+header h1{
+    position: relative;
+        left: 38px;
+}
+.images{
+    width: 600px;
+    height: 450px;
+
+    position: relative;
+        left: -500px;
+}
+
+.menu_item{
+    display: block;
+     position: relative;
+     left: 10px;
+
+
+    
+ }
+
+.images img{
+    height: 150px;
+    width: 180px;
+}
+
+.main_text{
+    width: 500px;
+    height: 450px;
+
+    position: relative;
+        left: 600px;
+}
+
+.hidden{
+    display: block;
+}
+
+.novedades h2{
+    position: relative;
+    top: -280px;
+    right: -60px;
+}
+
+.novedades article{
+    background-color: blueviolet;
+    text-align: left;
+    width: 270px;
+   position: relative;
+   top: -270px;
+   right: -67px;
+}
+
+.main_text div{
+    font-size: 1.2vw;
+}
+
 
 }
