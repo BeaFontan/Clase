@@ -1,0 +1,39 @@
+#!/bin/bash
+
+ limpiarPantalla=`clear`
+
+ menu="
+  Pulsa A para sumar 
+  pulsa B para crear un novo ficheiro de texto
+  pulsa C para 
+  pulsa D
+  pulsa E
+  pulsa F para Sair "
+
+echo $limpiarPantalla;
+
+
+read -p "$menu" respuesta
+
+ while (( $respuesta != F ))
+do
+        case $respuesta in
+        "A")
+        accións
+        ;;
+        valor2)
+        accións
+        ;;
+        valor3|valor4)
+        accións
+        ;;
+        *) # Calquera cousa
+        accións
+        esac
+
+
+
+
+    read -p "$menu" respuesta
+
+done
