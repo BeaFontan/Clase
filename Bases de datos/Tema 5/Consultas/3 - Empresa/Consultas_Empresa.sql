@@ -573,14 +573,21 @@ WHERE num_empregado_asignado IN (SELECT numero
 								 FROM EMPREGADO
 								WHERE id_sucursal_traballa IN (SELECT identificador
 															 FROM SUCURSAL
-															 WHERE rexion='OESTE'));---------CONSULTAS CON FUNCIÓNS INTEGRADAS NO XESTOR----------------------------------------------------------
+															 WHERE rexion='OESTE'));---------CONSULTAS CON FUNCIÓNS INTEGRADAS NO XESTOR paxina 62----------------------------------------------------------
+use EMPRESA_BEA;
+
 --– Proposta 1. Desexamos coñecer o código ASCII da vogal E. Na consulta deberás 
 --devolver nunha columna a vogal en maiúscula, e nunha segunda o código ASCII que 
 --lle corresponde.
 
+select ascii('E') as codigo_ascii_de_E,
+	char(69) as caracterASCII_do_codigo69;
+
 
 --– Proposta 2. Consulta que devolve o carácter que lle corresponde aos seguintes 
 --códigos ASCII: 70, 80, 90.
+
+select char(70) as caracter70, char(80) as caracter80, char(90) as caracter90;
 
 
 --– Proposta 3. Queremos obter unha listaxe que en cada liña teña o seguinte texto: O 
@@ -588,16 +595,25 @@ WHERE num_empregado_asignado IN (SELECT numero
 --Sendo X o nome e os apelidos do empregado, e Y a cota de vendas. É importante 
 --fixarse no segundo apelido. A listaxe terá por título Empregados e cotas.
 
+select 'O empregado con nome e apelidos: ' + e.nome + ' ' + e.ape1 + ' ' + isnull(ape2, ' ') + ' ten que acadar unha cota de ventas anual de ' + isnull(convert(char(20),e.cota_de_vendas), 0) as Empregados_e_cotas
+from EMPREGADO e;
 
+select * from EMPREGADO;
 
 --– Proposta 4. Consulta que devolva as datas nas que se contrataron empregados. O 
 --formato das diferentes datas será dd-mm-aaaa e o nome da columna Datas de 
 --contratación.
 
+select distinct convert(char(10), e.data_contrato, 105) as "Datas de contratacion"
+from EMPREGADO e;
+
 
 --– Proposta 5. Queremos obter un nome abreviado das sucursais. Ese nome 
 --comporase polos tres primeiros caracteres da cidade, os dous últimos da rexión e 
 --separado por un guión baixo, o número de caracteres do nome da cidade.
+
+select left(s.cidade, 3) + ' ' + right(s.rexion, 2) + '_' + convert(char(3), len(s.cidade))
+from SUCURSAL s;
 
 
 --– Proposta 6. Queremos obter un nome abreviado dos produtos. Ese nome 
@@ -605,18 +621,27 @@ WHERE num_empregado_asignado IN (SELECT numero
 --terceiro, cuarto, quinto e sexto da descrición do produto. Nunha primeira columna o 
 --código aparecerá en minúsculas, e nunha segunda en maiúsculas.
 
+select lower(upper(substring(p.cod_fabricante, 2,1)) + substring(p.descricion,3,4)) as nombre_abrev, upper(upper(substring(p.cod_fabricante, 2,1)) + substring(p.descricion,3,4)) as nombre_mayus
+from PRODUTO p;
 
+select * from PRODUTO;
 
 --– Proposta 7. Listaxe cos nomes dos empregados co formato ape1 ape2, nome. Se 
 --algún empregado non ten segundo apelido, por exemplo Susanne Smith, no 
 --resultado aparecerá Smith, Sussane, sen espazos antes da coma.
 
+--le hago el rtrim a nombre y apellido, para que los nulos del ape2, se borre el 
+select rtrim(e.ape1 + ' ' +  isnull(e.ape2, ' ')) + ', ' + e.nome as nome_apelidos
+from EMPREGADO e;
 
 
 --– Proposta 8. Queremos amosar os distintos títulos dos nosos empregados en 
 --castelán, e para iso deberemos substituír a palabra VENDAS por VENTAS.
 
+select replace(e.titulo, 'VENDAS', 'VENTAS') as titulos
+from EMPREGADO e;
 
+select titulo from EMPREGADO;
 
 --– Proposta 9. Consulta que devolva a seguinte información de tempo en distintas 
 --columnas co nome adecuado cada unha:
