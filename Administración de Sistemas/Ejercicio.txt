@@ -3,37 +3,76 @@
  limpiarPantalla=`clear`
 
  menu="
-  Pulsa A para sumar 
-  pulsa B para crear un novo ficheiro de texto
-  pulsa C para 
-  pulsa D
-  pulsa E
-  pulsa F para Sair "
+  Pulsa 1 Para sumar dous números
+  pulsa 2 para crear un novo ficheiro de texto
+  pulsa 3 para averiguar o maior de duas persoas
+  pulsa 4 adiviñar un número
+  pulsa 5 
+  pulsa 6 para Sair "
 
-echo $limpiarPantalla;
+  sumar(){
+      read -p "Dime o primeiro número " numeroPrimeiro
+      read -p "Dime o segundo número " numeroSegundo
 
+      suma=$((numeroPrimeiro+numeroSegundo))
+      echo $suma
+  }
+
+  ficheiro(){
+    read -p "Dime o nome que lle queres poñer" nomeFicheiro
+
+    comando=`touch $nomeFicheiro.txt`
+
+    echo "ficheiro creado"
+  }
+
+  maior(){
+    read -p "Dime o nome da primeira persoa " nome1
+    read -p "Dime a súa idade " idade1
+    read -p "Dime o nome da segunda persoa " nome2
+    read -p "Dime a súa idade " idade2
+
+    if [ $idade1 -gt $idade2 ]
+    then 
+      echo "$nome1 é maior que $nome2"
+    else
+      echo "$nome2 é maior que $nome1"
+    fi
+  }
+
+
+  
 
 read -p "$menu" respuesta
+echo $limpiarPantalla;
 
- while (( $respuesta != F ))
+ while (( $respuesta != 6 ))
 do
-        case $respuesta in
-        "A")
+      case $respuesta in
+      1)
+        sumar
+      ;;
+
+      2)
+        ficheiro
+      ;;
+
+      3)
+        maior
+        ;;
+
+      4) 
         accións
         ;;
-        valor2)
-        accións
-        ;;
-        valor3|valor4)
-        accións
-        ;;
-        *) # Calquera cousa
+
+      5) 
         accións
         esac
 
 
-
-
     read -p "$menu" respuesta
+    echo $limpiarPantalla;
+
 
 done
+
