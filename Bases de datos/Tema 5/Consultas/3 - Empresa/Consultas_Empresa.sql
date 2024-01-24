@@ -655,28 +655,38 @@ select titulo from EMPREGADO;
 --– hora actual,
 --– nanosegundos actuais.
 
-
-
-
+select
+sysdatetime() as hora_sen_axuste,
+sysdatetimeoffset() as hora_con_axuste_zona_horaria,
+datepart(month, getdate()) as mes,
+datepart(month, getutcdate()) as mes_otra_funcion,
+datepart(year, getdate()) as anho_actual,
+datename(month, getdate()) as mes_nome,
+datepart(hour, getdate()) as hora_actual,
+datepart(ns, getdate()) as nanosegundos;
 
 
 --– Proposta 10. Listaxe que devolva o nome de todos os empregados (nome, ape1, 
 --ape2), a data de contrato, e nunha última columna a data de contrato adiantada un 
 --ano. O formato das dúas datas será dd/mm/aaaa (con barras).
 
+select e.nome, e.ape1, isnull(e.ape2, ' ') as ape2, convert(char(10), e.data_contrato,103) as fecha_original, convert(varchar(10), dateadd(year, 1, e.data_contrato),103) as ano_adiantado
+from EMPREGADO e;
 
 
 --– Proposta 11. Listaxe que devolva o número de cada pedido coa data de pedido. 
 --Nunha terceira columna deberá aparecer a mesma data de pedido pero retrasada 
 --dous meses. O formato das dúas datas será dd-mm-aaaa (con guións).
 
-
+select p.numero, p.data_pedido, convert(char(10), dateadd(month, -2, p.data_pedido), 105) as dos_meses_menos
+from PEDIDO p;
 
 --– Proposta 12. Listaxe que devolva o nome e apelidos (nome, ape1, ape2) de cada 
 --empregado, a data de contrato e o número de anos que hai que leva traballando na 
 --empresa cada un deles. 
 
-
+select e.nome, e.ape1, isnull(e.ape2, ' ') as ape2, e.data_contrato, datediff(year, e.data_contrato, getdate()) as anhos_empresa
+from EMPREGADO e;
 
 --– Proposta 13. Consulta que devolva a descrición de cada produto co seu prezo nunha 
 --segunda columna, e ademais deberán amosarse en columnas diferentes: 
@@ -686,17 +696,27 @@ select titulo from EMPREGADO;
 --– o cadrado do prezo, e, 
 --– o cubo do prezo.
 
+select p.descricion, p.prezo, ceiling(p.prezo) as aproximado_defecto, 
+floor(p.prezo) as aproximado_exceso, sqrt(p.prezo) as raiz_cadrada_prezo, square(p.prezo) as cuadrodo_prezo,
+power(p.prezo,3) as cubo
+from PRODUTO p;
+
 
 
 --– Proposta 14. Repite a consulta anterior pero agora só amosaremos a descrición, o 
 --prezo e a raíz cadrada, pero a raíz cadrada deberá amosarse con como moito 4 cifras 
 --na parte enteira e 3 na decimal.
 
-
+select p.descricion, p.prezo,
+convert(numeric(7,3),sqrt(p.prezo)) as raiz_cadrada_prezo
+from PRODUTO p;
 
 --– Proposta 15. Consulta que devolva a seguinte información do servidor no que está a 
 --nosa instancia de SQL Server: idioma, número máximo de conexións permitidas, 
 --nome do servidor e da instancia e versión do xestor.
+
+select
+@@language as idioma, @@MAX_CONNECTIONS as conexiones_maximas_permitidas, @@SERVERNAME as nombre_servidor, @@version as version_servidor;
 
 
 --– Proposta 16. Consulta que amose a descrición do produto e as súas existencias. 
@@ -705,3 +725,138 @@ select titulo from EMPREGADO;
 --– Se o número de existencias é menor ou igual a 20 aparecerá Insuficientes.
 --Esta consulta deberás resolvela de dous xeitos posibles, en dúas consultas 
 --diferentes, empregando dúas funcións lóxicas distintas
+
+
+select p.descricion, p.existencias,
+	case
+		when p.existencias > 20 then 'Suficientes'
+		else 'Insuficientes'
+	end as existencias
+from PRODUTO p;
+
+
+select p.descricion, p.existencias, iif(p.existencias > 20, 'Suficientes', 'Insuficientes') as existencias
+from PRODUTO p;
+
+---------CONSULTAS COMPUESTAS paxina 94----------------------------------------------------------
+
+use EMPRESA_BEA;
+
+--– Proposta 1. Empregando unha consulta composta realizar unha listaxe do código do 
+--fabricante e identificador daqueles produtos con prezo superior a 60€ ou que teñan 
+--pedidos de cantidade inferior a 5 unidades. O resultado aparecerá ordenado por 
+--fabricante e para o mesmo fabricante por produto.
+
+SELECT cod_fabricante, identificador
+FROM PRODUTO
+WHERE prezo>60
+UNION 
+SELECT cod_fabricante, id_produto
+FROM PEDIDO
+WHERE cantidade<5
+ORDER BY cod_fabricante, identificador;
+
+
+--– Proposta 2. Empregando unha consulta composta amosar os código dos 
+--empregados que non fixeron pedidos. Deberán aparecer primeiro os empregados 
+--con código maior.
+
+
+--– Proposta 3. Empregando unha consulta composta amosar o código dos clientes que 
+--fixeron pedidos e con límite de crédito maior ou igual a 40000. Usa unha diferenza 
+--para resolver esta consulta.
+
+
+--– Proposta 4. Empregando unha consulta composta amosar os código dos clientes que 
+--fixeron pedidos e con límite de crédito maior ou igual a 40000. Usa unha 
+--intersección para resolver esta consulta. Ordena o resultado por código de cliente 
+--en orde ascendente.
+
+
+--– Proposta 5. Empregando unha consulta composta amosar o código dos empregados 
+--que son directores dalgunha sucursal ou que teñen unha cota de vendas superior a 
+--250000€. 
+
+
+--– Debes propoñer dúas solucións: 
+--– na primeira só pode aparecer unha vez cada empregado no resultado, e,
+--– na segunda se un empregado é director dunha sucursal e ademais ten unha 
+--cota superior a 250000€, aparecerá no resultado máis dunha vez.
+
+
+
+---------CONSULTAS COMPLEXAS paxina 101----------------------------------------------------------
+
+use EMPRESA_BEA;
+use SOCIEDADE_CULTURAL_BEA;
+
+--– Proposta 1. DB SOCIEDADE_CULTURAL. Nif e nome completo nunha columna (ape1 
+--ape2, nome) de cada socio, só para os socios que deben algunha actividade. Nunha 
+--segunda columna aparecerá o importe total que debe en actividades. A columna do 
+--nome chamarase nome_completo e a do importe debido cantidade_debe. O 
+--resultado aparecerá por orde alfabética de apelidos e nome dos socios.
+
+
+
+
+--– Proposta 2. BD EMPRESA. Número de pedido, descrición e prezo do produto, 
+--unidades vendidas e importe de todos os pedidos da BD ordenados de maior a 
+--menor importe. No caso de coincidir os importes deberá ordenarse alfabeticamente 
+--pola descrición do produto.
+
+
+
+--– Proposta 3. BD EMPRESA. Número de pedido, descrición e prezo do produto, 
+--unidades vendidas e importe dos pedidos da BD con importe superior a 1000€, 
+--ordenados de maior a menor importe. No caso de coincidir os importes deberá 
+--ordenarse alfabeticamente pola descrición do produto.
+
+
+
+--– Proposta 4. BD EMPRESA. Número de pedido, nome do cliente e data de pedido dos 
+--pedidos recibidos nos días en que se contrataron empregados. No resultado deben 
+--aparecer primeiro os pedidos máis recentes.
+
+
+
+--– Proposta 5. DB EMPRESA. Nome completo dos empregados co nome do empregado 
+--que teñen por xefe. Na primeira columna de nome empregado aparecerá o nome 
+--completo de cada empregado co formato ape1 ape2, nome, teña ou non teña xefe. 
+--Na segunda columna de nome xefe aparecerá o nome completo do xefe dese 
+--empregado co mesmo formato que o campo empregado. No caso de non ter xefe na 
+--segunda columna aparecerá a frase 'XEFE POR DETERMINAR'.
+--Non se amosan os empregados que dirixen a sucursal onde traballa cada un 
+--deles, senón o xefe directo. (Ver campo EMPREGADO.num_empregado_xefe).
+
+
+
+
+--– Proposta 6. DB SOCIEDADE_CULTURAL. Gasto en actividades por socio. Na primeira 
+--columna aparecerá o nif do socio e na segunda o gasto, pagado ou non, que leva 
+--feito en actividades. Os socios que non participaron en actividades non aparecerán 
+--no resultado.
+
+
+
+--– Proposta 7. DB SOCIEDADE_CULTURAL. Nome e apelidos, (en tres columnas de 
+--nomes apelido1, apelido2 e nome_propio) das persoas que forman parte da nosa 
+--sociedade cultural independentemente da súa labor na sociedade. Nunha cuarta 
+--columna cargo se a persoa é empregado aparecerá a frase 'É EMPREGADO' e noutro 
+--caso 'NON É EMPREGADO'. O resultado aparecerá ordenado alfabeticamente por 
+--apelidos e nome.
+
+
+
+--– Proposta 8. BD EMPRESA. Empregando unha consulta composta amosa o 
+--identificador das sucursais que non teñen empregados traballando nelas.
+
+
+
+--– Proposta 9. BD EMPRESA. Nunha columna nome_abreviado amosa os tres primeiros 
+--caracteres en minúsculas do primeiro apelido de cada empregado.
+
+
+
+--– Proposta 10. DB SOCIEDADE_CULTURAL. Nome e apelidos, (en tres columnas de 
+--nomes apelido1, apelido2 e nome_propio) dos socios que cumpren anos no mes 
+--actual.
