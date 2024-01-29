@@ -40,6 +40,12 @@ public class Cidade implements Comparable{
         }
         return 0;
     }
+
+
+    public int getCidade() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'getCidade'");
+    }
     
     
 }

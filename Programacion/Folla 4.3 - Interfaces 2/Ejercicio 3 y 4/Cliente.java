@@ -1,22 +1,22 @@
 public class Cliente implements Comparable{
 
-    private String nome;
+    private String nomeCliente;
     private Cidade cidade;
 
     
-    public Cliente(String nome, Cidade cidade) {
-        this.nome = nome;
+    public Cliente( String nomeCliente, Cidade cidade) {
+        this.nomeCliente = nomeCliente;
         this.cidade = cidade;
     }
 
 
     public String getNome() {
-        return nome;
+        return nomeCliente;
     }
 
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNome(String nomeCliente) {
+        this.nomeCliente = nomeCliente;
     }
 
 
@@ -31,11 +31,21 @@ public class Cliente implements Comparable{
 
 
     @Override
-    public int compareTo(Object o) {
-        Cliente cliente = (Cliente)o;
-        if (this.cidade.getPoblacion() > cliente.getCidade()) {
-            
+    public int compareTo(Object obj) {
+        Cliente cliente = (Cliente)obj;
+        if (this.getCidade().getPoblacion() < cliente.getCidade().getPoblacion()) {
+            return -1;
         }
+
+        if (this.getCidade().getPoblacion() > cliente.getCidade().getPoblacion()) {
+            return 1;
+        }
+
+        return 0;
     }
+
+
+
+
     
 }
