@@ -1,0 +1,15 @@
+div.container div.row div {
+    height: 100px;
+}
+
+.green{
+    background-color: green;
+}
+
+.yellow{
+    background-color: yellow;
+}
+
+.blueviolet{
+    background-color: blueviolet;
+}
