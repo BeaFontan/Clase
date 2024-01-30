@@ -1,7 +1,7 @@
-create database eurovision_bea;
+create database eurovision_bea_2;
 
 go 
-use eurovision_bea;
+use eurovision_bea_2;
 go
 
 
@@ -19,7 +19,9 @@ create table cancion(
 	titulo varchar(80) null,
 	id_pais int not null, --clave foránea de pais
 
-	constraint pk_cancion_numero primary key (numero));
+	constraint pk_cancion_numero primary key (numero),
+	constraint uq_cancion_id_pais unique (id_pais)
+);
 
 create table pais(
 	identificador int not null,
