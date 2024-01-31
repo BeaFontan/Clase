@@ -2,7 +2,7 @@
 public class produtoSenStockException extends Exception{
 
     private int codigoError;
-    private String mensaxeErro;
+    private String mensaxeErro = "Non hay stock suficiente";
 
     public produtoSenStockException(int codigoError, String mensaxeErro){
         super(mensaxeErro);
@@ -19,7 +19,7 @@ public class produtoSenStockException extends Exception{
 
     @Override
     public String toString() {
-        return "produtoSenStockException [codigoError=" + codigoError + ", mensaxeErro=" + mensaxeErro + "]";
+        return "[codigoError=" + codigoError + ", mensaxeErro=" + mensaxeErro + "]";
     }
 
     
