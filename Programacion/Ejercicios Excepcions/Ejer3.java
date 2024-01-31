@@ -1,3 +1,5 @@
+import org.xml.sax.SAXException;
+
 class AppVariasFiguras {
     public static void main(String[] args) {
 
@@ -18,8 +20,12 @@ class AppVariasFiguras {
 
 abstract class Figura {
     protected String cor;
-    public Figura(String cor) {
+    public Figura(String cor) throws Exception {
         this.cor = cor;
+
+        if (cor.equals("branco")) {
+            throw new Exception("non pode ser un cor blanco");
+        }
     }
     abstract public double area();
 }
@@ -27,7 +33,7 @@ abstract class Figura {
 class Triangulo extends Figura {
     private double base;
     private double altura;
-    public Triangulo(double base, double altura, String cor) {
+    public Triangulo(double base, double altura, String cor) throws Exception {
         super(cor);
         this.base = base;
         this.altura = altura;
@@ -41,7 +47,7 @@ class Triangulo extends Figura {
 
 class Circulo extends Figura {
     private double radio;
-    public Circulo(double radio, String cor)  {
+    public Circulo(double radio, String cor) throws Exception  {
         super(cor);
         this.radio = radio;
     }
