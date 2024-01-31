@@ -44,7 +44,7 @@ create table votacion(
 	--CHECKS
 
 	alter table interprete
-	add constraint chk_control_fecha_nac check (datediff(year,getdate(),fechaNac) > 16);
+	add constraint chk_control_fecha_nac check (datediff(year,getdate(),fechaNac) >= 16);
 
 
 	--CLAVES FORANEAS
@@ -52,7 +52,7 @@ create table votacion(
 	--clave foránea de cancion pasa para intérprete N:1
 	alter table interprete
 	add
-	constraint fk_interprete_num_numero
+	constraint fk_interprete_cancion_num_numero
 	foreign key(num_cancion)
 	references cancion (numero)
 	on update cascade;
@@ -61,7 +61,7 @@ create table votacion(
 
 	alter table cancion
 	add
-	constraint FK_id_pais
+	constraint FK_CANCION_PAIS_id_pais
 	foreign key(id_pais)
 	references pais (identificador)
 	on update cascade;
@@ -69,15 +69,13 @@ create table votacion(
 	--primary key de votacion
 	alter table votacion
 	add
-	constraint FK_pais_vota_a
+	constraint FK_PAIS_pais_vota_a
 	foreign key(id_pais_vota_a)
 	references pais (identificador)
 	on update no action --no me deja hacerlo si pongo cascade
-	on delete no action;
+	on delete no action,
 
-	alter table votacion
-	add
-	constraint FK_pais_es_votado_por
+	constraint FK_PAIS_pais_es_votado_por
 	foreign key(id_pais_es_votado_por)
 	references pais (identificador)
 	on update no action --no me deja hacerlo si pongo cascade
