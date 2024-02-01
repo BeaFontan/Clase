@@ -1,0 +1,25 @@
+.row div{
+    height: 300px;
+    /* Aquí le doy tamaño a todos */
+}
+
+/* le ponemos la clase al continer */
+.container{
+    height: 800px;
+    background-color: rgb(213, 230, 213);
+}
+
+.red{
+    background-color:red;
+
+}
+
+.blue{
+    background-color:blue;
+
+}
+
+.green{
+    background-color: green;
+
+}

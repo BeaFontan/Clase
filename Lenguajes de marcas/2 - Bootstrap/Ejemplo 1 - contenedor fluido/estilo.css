@@ -5,16 +5,20 @@ body{
     text-align: center;
 }
 
-.container{
+.container-fluid{
     background-color: blueviolet;
     color: white;
     height: 600px;
     text-align: center;
 }
 
-.container-fluid{
+.container{
     background-color: blueviolet;
     color: white;
     height: 600px;
     text-align: center;
+}
+.icono{
+    height:200px;
+    background-color: blueviolet;
 }
