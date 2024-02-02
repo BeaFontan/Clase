@@ -1,0 +1,68 @@
+import os
+
+
+menu = "Pulsa 1 Para sumar dous números \n pulsa 2 para crear un novo ficheiro de texto \n pulsa 3 para averiguar o maior de duas persoas \n pulsa 4 adiviñar un número \n pulsa 5 para comprobar os alumnos matriculados \n pulsa 6 para Sair \n"
+
+def operacions(numero1, numero2):
+    
+    operacion = int(input(f"Pulsa 1 para suma, 2 para restar, 3 para multiplicar, 4 para dividir: "))
+
+    if operacion == 1:
+        resultado =numero1 + numero2
+        print(f"{numero1} + {numero2} = {resultado}") 
+
+    elif operacion == 2:
+        resultado =numero1 - numero2
+        print( f"{numero1} - {numero2} = {resultado}") 
+
+    elif operacion == 3:
+        resultado =numero1 * numero2
+        print( f"{numero1} * {numero2} = {resultado}") 
+ 
+    elif operacion == 4:
+        resultado =numero1 / numero2
+        print( f"{numero1} / {numero2} = {resultado}") 
+
+
+def ficheiro():
+    nomeFicheiro=input("Dime o nome que lle queres poñer")
+
+    os.system(f"touch {nomeFicheiro}.txt")
+
+    print(f"ficheiro creado")
+  
+
+
+respuesta = int(input(menu))
+os.system("clear")
+
+while respuesta != 6:
+
+    match respuesta:
+        case 1:
+            numero1=int(input("Dime o primero numero: ")) 
+            numero2=int(input("Dime o segundo numero: ")) 
+            operacions(numero1,numero2)
+
+
+        case 2:
+            ficheiro()
+           
+
+        case 3:
+            maior
+        
+        case 4:
+            adivina
+         
+
+        case 5: 
+            lista
+
+        case other:
+            print("Opción non válida. Por favor, escolle unha opción entre 1 e 6.") 
+  
+
+    respuesta = int(input(menu))
+    os.system("clear")
+
