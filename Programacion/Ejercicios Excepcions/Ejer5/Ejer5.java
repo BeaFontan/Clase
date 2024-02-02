@@ -14,6 +14,13 @@ public class Ejer5 {
         this.stock = stock;
     }
 
+    
+    @Override
+    public String toString() {
+        return "Ejer5 [id=" + id + ", prezo=" + prezo + ", stock=" + stock + "]";
+    }
+
+
 }
 
 
