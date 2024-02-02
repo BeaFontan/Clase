@@ -2,11 +2,11 @@
 public class produtoSenStockException extends Exception{
 
     private int codigoError;
-    private String mensaxeErro = "Non hay stock suficiente";
+    private String mensaxeErro;
 
-    public produtoSenStockException(int codigoError, String mensaxeErro){
-        super(mensaxeErro);
-        this.codigoError = codigoError;
+    public produtoSenStockException(){
+        super("Non hay stock suficiente");
+        this.codigoError = 101;
     }
 
     public int getCodigoError() {
