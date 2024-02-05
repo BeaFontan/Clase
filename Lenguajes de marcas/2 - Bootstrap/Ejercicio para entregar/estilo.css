@@ -1,30 +1,104 @@
-*{margin: 0px; box-sizing: border-box;}
+*{margin: 0; padding: 0; box-sizing: border-box;}
 
 .container-fluid{
-    height: 600px;
     background-color: rgb(255, 255, 255);
 }
 
+/* Estilo encabezado */
 .encabezado{
     height: 150px;
-    background-color: rgb(255, 255, 255);
+
+}
+
+/* Estilo navegador */
+.nav{
+    height: 50px;
+    background-color: rgb(240, 167, 155);
+    color: white;
+}
+
+.nav li a {
+    color: white;
+}
+
+li a{
+    height: 50px;
+    color: white;
+}
+.nav li a:hover {
+    color: rgb(240, 167, 155);
+}
+
+li a:hover{
+    color: rgb(190, 61, 61);
+    background-color: #fff;
+    border: 1px solid rgb(240, 167, 155);
 }
 
 
-.navegador{
-    height: 150px;
-    background-color: rgb(255, 255, 255);
+
+
+
+
+
+/* Estilo para foto y vídeo */
+
+.video{
+
+    background-color: rgb(240, 167, 155,);
+
+
 }
 
-.fotoVideo{
-    height: 150px;
-    background-color: rgb(255, 255, 255);
+.video video{
+    background-color: rgb(240, 167, 155,);
+    height: 550px;
+    width: 700px;
+    border: 1px solid rgb(240, 167, 155);
 }
+
+
+.fotoPrimera{
+    height:600px;
+
+    
+}
+
+.fotoPrimera img{
+    border: 1px solid rgb(240, 167, 155);
+    margin: auto;
+    
+}
+
+
+
+
+
+
+
+
+
 
 .seccion{
     height: 150px;
     background-color: rgb(255, 255, 255);
 }
+
+.tituloSeccion{
+    height: 150px;
+    background-color: rgb(240, 167, 155,);
+}
+
+
+
+
+
+
+
+
+
+
+
 
 .formContacto{
     height: 150px;
@@ -32,6 +106,6 @@
 }
 
 .redes{
-    height: 150px;
+    height: 300px;
     background-color: rgb(255, 255, 255);
 }
