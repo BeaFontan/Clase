@@ -1,0 +1,7 @@
+.row div{
+    height: 100px;
+    /* Aquí le doy tamaño a todos */
+}
+
+.container{background-color: rgb(231, 125, 166);}
+

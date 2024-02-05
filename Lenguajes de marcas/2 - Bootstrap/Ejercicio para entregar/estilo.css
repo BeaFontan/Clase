@@ -1,0 +1,37 @@
+*{margin: 0px; box-sizing: border-box;}
+
+.container-fluid{
+    height: 600px;
+    background-color: rgb(255, 255, 255);
+}
+
+.encabezado{
+    height: 150px;
+    background-color: rgb(255, 255, 255);
+}
+
+
+.navegador{
+    height: 150px;
+    background-color: rgb(255, 255, 255);
+}
+
+.fotoVideo{
+    height: 150px;
+    background-color: rgb(255, 255, 255);
+}
+
+.seccion{
+    height: 150px;
+    background-color: rgb(255, 255, 255);
+}
+
+.formContacto{
+    height: 150px;
+    background-color: rgb(255, 255, 255);
+}
+
+.redes{
+    height: 150px;
+    background-color: rgb(255, 255, 255);
+}
