@@ -26,9 +26,7 @@ public class AppExercicio7 {
             String m_capacidadeString = JOptionPane.showInputDialog("Dime a capacidade da memoria");
             int m_capacidade = Integer.parseInt(m_capacidadeString);
       
-     
-
-
+    
             String m_tipo = JOptionPane.showInputDialog("Dime o tipo de memoria");
 
             String m_velocidade_String = JOptionPane.showInputDialog("Dime a velocidade da memoria");
@@ -55,10 +53,29 @@ public class AppExercicio7 {
             String prezoString = JOptionPane.showInputDialog("Dime o prezo");
             int prezo = Integer.parseInt(prezoString);
 
-            Ordenador ord = new Ordenador(numeroSerie, m_capacidade, m_tipo, m_velocidade, d_capacidade, d_tipo, d_velocidade, p_modelo, p_velocidade, prezo);
+            Ordenador ord;
+            boolean repetir = false;
+
+            try {
+                ord = new Ordenador(numeroSerie, m_capacidade, m_tipo, m_velocidade, d_capacidade, d_tipo, d_velocidade, p_modelo, p_velocidade, prezo);
+            } catch (OrdenadorException e) {
+                System.out.println(e.getMessage());
+                repetir = true;
+            } catch(Exception e){
+                System.out.println("Hay datos mal introducidos");
+            }
+            
+            //le hago esto para que en caso de que salte la excepción, el bucle disminuya uno y vuelva a pedir esa posición que nos queda atrás
+           if (repetir == true) {
+            i--;
+           }
 
             ord = arrayOrdenadors[i];
 
+        }
+
+        for (Ordenador ordenador : arrayOrdenadors) {
+            System.out.println(ordenador.getNumeroSerie());
         }
 
 
