@@ -6,6 +6,7 @@ public class AppDni {
         
         Scanner teclado = new Scanner(System.in);
         DNI[] arrayDni = new DNI[3];
+        DNI dni;
 
         String numeroIntroducido;
         System.out.println("Dime o dni");
@@ -13,11 +14,23 @@ public class AppDni {
 
         for (int i = 0; i < arrayDni.length; i++) {
            
+            System.out.println("Dime o dni");
+            numeroIntroducido = teclado.nextLine();
+
             try {
-                DNI dni = new DNI(numeroIntroducido);
+                dni = new DNI(numeroIntroducido);
+
+                arrayDni[i] = dni;
+
             } catch (DNIException e) {
                 System.out.println(e.getMessage());
+                i--;
             }
+
+        }
+
+        for (DNI datosArrayDni : arrayDni) {
+            System.out.println(datosArrayDni.getDNI());
         }
 
 

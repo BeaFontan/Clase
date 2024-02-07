@@ -11,7 +11,15 @@ public class DNI {
         }
 
         //paso a dividir el dni la parte de número y la parte de letra
-        int dniNumero = Integer.parseInt(dni.substring(0,6));
+        try{
+            int dniNumero = Integer.parseInt(dni.substring(0,6));
+        }
+        catch(Exception e){
+            e.getMessage();
+        }
+
+
+
         String dniLetra = dni.substring(7);
         
         
@@ -20,8 +28,9 @@ public class DNI {
         boolean comprobarLetra = Character.isLetter(dniLetra.charAt(0));
 
         if (comprobarLetra == false ) {
-            throw new DNIException(dniLetra);
+            throw new DNIException("Erro, non se axusta o formato 1234567X");
         }
+
     }
 
     public String getDNI() {
