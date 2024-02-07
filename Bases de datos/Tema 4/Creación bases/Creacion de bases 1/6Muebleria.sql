@@ -13,10 +13,10 @@ ape2 varchar(30) not null,
 salario numeric(6,2) not null constraint CH_EMPLEADO_salarioMaximo check(salario < 9999.99),
 telefono1 int null,
 telefono2 int null,
-entidad char(4) not null,
-oficina char(4) not null,
-digitos_control char(2) not null,
-num_cuenta char(10) not null,
+CCC_entidad char(4) not null,
+CCC_oficina char(4) not null,
+CCC_digitos_control char(2) not null,
+CCC_num_cuenta char(10) not null,
 cargo char(3) not null constraint CH_EMPLEADO_cargo check (cargo in ('PAP', 'MON', 'REP')),
 dietas as (salario*0.10) -- campo calculado 
 
@@ -112,7 +112,8 @@ fecha_Hora_Devolucion datetime null,
 
 --clave primaria 
 constraint PK_ENTREGA_num_repartidor_fecha_hora_entrega
-primary key (num_repartidor_entrega, fecha_Hora_Entrega),
+primary key (num_repartidor_entrega, fecha_Hora_Entrega), 
+-- hAY QUE PONER COMA OBLIGATORIAMENTE PARA PODER HACER EL CHECK DE FECHA HORA, SINO DA ERROR
 
 constraint CH_ENTREGA_DEV_FECHA_MAYOR check (fecha_Hora_Devolucion > fecha_Hora_Entrega),
 
