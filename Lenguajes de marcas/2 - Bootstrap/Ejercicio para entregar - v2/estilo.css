@@ -2,12 +2,39 @@
 *{margin: 0; padding: 0; box-sizing: border-box;
 font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;}
 
-
-/* Estilo encabezado */
-.encabezado{
-    height: 250px;
+body {
+    /* Ajusta la imagen de fondo y la configuración como desees */
+    background-image: url('Multimedia/fondo.jpg'); /* Ruta a tu imagen de fondo */
+    background-size: cover; /* Cubrir toda el área */
+    background-position: center; /* Centrar la imagen */
+    background-repeat: no-repeat; /* Evitar repetición */
 }
 
+
+
+/* Estilo encabezado */
+
+.encabezado{
+    height: 350px;
+    background-color: white;
+    color: rgb(230, 155, 240);
+
+}
+
+.encabezado h1{
+    font-size: 200px;
+    margin-left: 80px;
+}
+
+
+.encabezado img{
+    width: 550px;
+    height: 400px;
+    z-index: 1;
+    position: relative;
+        top: 30px;
+
+}
 
 
 /* Estilo navegador */
@@ -19,13 +46,16 @@ font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans
 
 .nav{
     height: 50px;
-    background-color: rgb(240, 167, 155);
+    background-color: rgb(230, 155, 240);
     color: white;
+    z-index: -1;
+
 }
 
 .nav li a {
     color: white;
     font-size: 20px;
+    
 }
 
 li a{
@@ -35,12 +65,12 @@ li a{
 }
 
 .nav li a:hover {
-    color: rgb(240, 167, 155);
+    color:  rgb(230, 155, 240);
 }
 
 li a:hover{
     background-color: #fff;
-    border: 1px solid rgb(240, 167, 155);
+    border: 1px solid  rgb(230, 155, 240);
 }
 
 
@@ -49,10 +79,7 @@ li a:hover{
 /* Estilo para foto y vídeo */
 
 .video video{
-    background-color: rgb(240, 167, 155,);
-    height: 550px;
-    width: 700px;
-    border: 1px solid rgb(240, 167, 155);
+    border: 1px solid  rgb(230, 155, 240);
 }
 
 .fotoPrimera{
@@ -60,9 +87,9 @@ li a:hover{
 }
 
 .fotoPrimera img{
-    border: 1px solid rgb(240, 167, 155);
+    border: 1px solid  rgb(230, 155, 240);
     margin: auto;
-    width:350px;
+    width: 350px;
     height: 250px;
 }
 
@@ -73,7 +100,7 @@ li a:hover{
 
 .tituloSeccion{
     height: 50px;
-    background-color: rgb(240, 167, 155);
+    background-color:  rgb(230, 155, 240);
     color:rgb(255, 255, 255);
     margin-top: 10px;
     margin-bottom: 10px;
@@ -87,7 +114,7 @@ margin-bottom: 30px;
 
 .cuadriculaSeccion div{
     height: 800px;
-    border: 1px solid rgb(240, 167, 155);
+    border: 1px solid  rgb(230, 155, 240);
     margin-right: 10px;
     margin-left: 10px;
     margin-bottom: 10px;
@@ -95,10 +122,11 @@ margin-bottom: 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: white;
 }
 
 .imagenSeccion img{
-    border: 1px solid rgb(240, 167, 155);
+    border: 1px solid rgb(230, 155, 240);
     width: 450px;
     height: 300px;
     margin-bottom: 10px;
@@ -112,7 +140,7 @@ margin-bottom: 30px;
 }
 
 .imagenSeccion h1{
-    color: rgb(240, 167, 155);
+    color:  rgb(230, 155, 240);
 }
 
 
@@ -123,8 +151,8 @@ margin-bottom: 30px;
 .formContacto{
     width: 850px;
     background-color: rgb(255, 255, 255);
-    color:rgb(240, 167, 155);
-    border: 1px solid rgb(240, 167, 155);
+    color: rgb(230, 155, 240);
+    border: 1px solid rgb(230, 155, 240);
     padding: 10px;
 
 }
@@ -135,7 +163,7 @@ input[type=text],
 input[type=email], 
 textarea, 
 select {
-    border: 1px solid rgb(240, 167, 155);
+    border: 1px solid  rgb(230, 155, 240);
     border-radius: 4px; /* Necesitas especificar solo el valor de radio de borde */
     box-sizing: border-box;
 }
@@ -144,9 +172,9 @@ select {
 input[type=text]:focus, 
 input[type=email]:focus,
 select:focus {
-    border: 1px solid rgb(240, 167, 155);
+    border: 1px solid  rgb(230, 155, 240);
     border-radius: 4px;
-    box-shadow: 0 0 5px rgb(240, 167, 155); /* Cambia el color y la opacidad según tus preferencias */
+    box-shadow: 0 0 5px rgb(230, 155, 240); 
     box-sizing: border-box;
 }
 
@@ -158,15 +186,15 @@ select:focus {
     width: 100%;
     height: 150px;
     padding-left: 5px;
-    border: 1px solid rgb(240, 167, 155);
+    border: 1px solid rgb(230, 155, 240);
     
 }
  
 #mensajeFormulario:focus {
-    border: 1px solid rgb(240, 167, 155);
+    border: 1px solid rgb(230, 155, 240);
     border-radius: 4px;
-    box-shadow: 0 0 5px rgb(240, 167, 155); /* Cambia el color y la opacidad según tus preferencias */
-    box-sizing: border-box; /* Cambia el color y la opacidad según tus preferencias */
+    box-shadow: 0 0 5px  rgb(230, 155, 240);
+    box-sizing: border-box; 
 }
 
 
@@ -177,33 +205,34 @@ select:focus {
 
 .btn-primary[type=submit]{
     width: 100%;
-    background-color: rgb(240, 167, 155);
+    background-color: rgb(230, 155, 240);
     border: 1px solid rgb(255, 255, 255);
 }
 
 .btn-primary:hover[type=submit]{
     width: 100%;
-    background-color: rgb(240, 167, 155);
+    background-color: rgb(230, 155, 240);
     border: 1px solid rgb(255, 255, 255);
 }
 
 .btn-primary:visited[type=submit]{
     width: 100%;
-    background-color: rgb(240, 167, 155);
+    background-color: rgb(230, 155, 240);
     border: 1px solid rgb(255, 255, 255);
 }
 .btn-primary:active[type=submit]{
     width: 100%;
-    background-color: rgb(240, 167, 155);
+    background-color: rgb(230, 155, 240);
     border: 1px solid rgb(255, 255, 255);
 }
+
 
 /* Estilo para redes */
 
 .redes{
     padding-top: 30px;
     height: 150px;
-    background-color:  rgb(240, 167, 155);
+    background-color: rgb(230, 155, 240);
 }
 
 .redes img{
