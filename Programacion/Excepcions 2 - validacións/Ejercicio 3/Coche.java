@@ -5,10 +5,31 @@ public class Coche {
     private String modelo;
 
 
-    public Coche (String matricula, double prezo, String modelo){
+    public Coche (String matricula, double prezo, String modelo) throws CocheException{
         this.matricula = matricula;
         this.prezo = prezo;
         this.modelo = modelo;
+
+        //Compruebo los datos con las funciones con las excepciones que programé en la clase
+        try {
+            comprobarMatricula(matricula);
+        } catch (CocheException e) {
+            throw new CocheException("erro na matricula");
+        }
+
+        try {
+            comprobarModelo(modelo);
+        } catch (CocheException e) {
+            throw new CocheException("erro no modelo");
+        }
+
+        try {
+            comprobarPrecio(prezo);
+        } catch (CocheException e) {
+            throw new CocheException("erro no prezo");
+        }
+
+
     }
 
 
@@ -41,7 +62,16 @@ public class Coche {
         this.modelo = modelo;
     }
 
+    
 
+    @Override
+    public String toString() {
+        return "Coche [matricula=" + matricula + ", prezo=" + prezo + ", modelo=" + modelo + "]";
+    }
+
+
+
+    //FUNCIONES PARA COMPROBAR LOS DATOS INTRODUCIDOS QUE LANZAN EXCEPCIÓN COCHE QUE HEMOS CREADO.
 
     public static boolean comprobarMatricula(String matricula) throws CocheException, NumberFormatException{
 
@@ -49,13 +79,12 @@ public class Coche {
             throw new CocheException("Ten que ter 8 caracteres");
         }
 
+        //transformación de los números a int y comprobar que no haya problema en convertirlos
         try {
-            int numerosMatricula = Integer.parseInt(matricula.substring(0, 4));
+            Integer.parseInt(matricula.substring(0, 4));
         } catch (NumberFormatException e) {
-            System.out.println(e.getMessage());
+            throw new CocheException("A matricula ten que ter números");
         }
-
-   
 
         //Comprobación de las letras
         String [] vocales = {"a","e","i","o","u"};
@@ -63,13 +92,13 @@ public class Coche {
         String letrasMatricula = matricula.substring(4,8);
 
             for (int i = 0; i < vocales.length; i++) {
-                if (letrasMatricula.contains(vocales[i])) {
+                if (!letrasMatricula.contains(vocales[i])) {
+                
                     throw new CocheException("A matrícula non leva vogais");
+                
                 }
+    
             }
-
-
-
 
         return true;
     }
