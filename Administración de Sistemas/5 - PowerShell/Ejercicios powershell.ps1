@@ -7,7 +7,7 @@ Write-Host $fecha
 
 <#2-Lista os directorios ou arquivos que hai en Windows/System32 e que o seu nome comece por w. #>
 
-Get-ChildItem C:/Windows/System32 w*
+Get-ChildItem C:/Windows/System32 w* -Recurse
 
 
 <#3-Fai a seguinte estrutura de directorios e arquivos:
@@ -38,7 +38,7 @@ Copy-Item -Path "L:\SistemasInformaticos/SISTEMAS/DOS/MANUAL/EXERCICIOS/*" -Dest
 
 New-Item -Path "L:\SistemasInformaticos/SISTEMAS/" -Name "PRACTICA2" -ItemType "directory"
 
-Copy-Item -Path "C:\Windows\SysWOW64\label.exe" -Destination "L:\SistemasInformaticos\SISTEMAS\PRACTICA2" -Recurse
+Copy-Item -Path "C:\Windows\SysWOW64\label.exe" -Destination "L:\SistemasInformaticos\SISTEMAS\PRACTICA2\etiqueta.exe" -Recurse
 
 
 
@@ -77,7 +77,8 @@ Remove-Item L:\SistemasInformaticos\CopySist -Recurse
 
 <#12.Pon atributo oculto ao arquivo folla.dat que hai no directorio DOS. Tes que facer algo especial para listar dito arquivo oculto?#>
 
-Get
+$file = Get-Item folla.dat
+$file.Attributes = 'Hidden'
 
 
 <#13.Cambia ao directorio DOS e, utilizando direccionamiento (>), crea un arquivo novo chamado folla.txt#>
@@ -87,8 +88,10 @@ Get
 
 <#14.Amosa por pantalla o contido de folla.dat e folla.txt (2 comandos).#>
 
-Write-Host L:\SistemasInformaticos\SISTEMAS\DOS\folla.dat
+Get-Content L:\SistemasInformaticos\SISTEMAS\DOS\folla.dat
+
 Write-Host L:\SistemasInformaticos\SISTEMAS\DOS\folla.txt
 
 <#15.Engade o contido de folla.txt a folla.dat sen borrar o que hai en folla.dat.#>
 
+>> 
