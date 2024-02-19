@@ -25,7 +25,7 @@ importeBillete AS (PRECIO*IVA),
 
 constraint PK_MEDIO_COLECTIVO_cod_MTrans_Colectivo primary key(cod_MTrans_Colectivo),
 
---clave foránea
+--clave forï¿½nea
 constraint FK_MEDIO_COLECTIVO_MEDIO_TRANSPORTE_cod_MTrans_Colectivo 
 foreign key (cod_MTrans_Colectivo)
 references MEDIO_TRANSPORTE(codigo)
@@ -35,11 +35,11 @@ on update cascade
 
 
 CREATE TABLE MEDIO_PRIVADO(
-cod_MTrans_Privado int not null,--clave primaria y foránea
+cod_MTrans_Privado int not null,--clave primaria y forï¿½nea
 
 constraint PK_MEDIO_PRIVADO_cod_MTrans_Privado primary key (cod_MTrans_Privado),
 
---clave foránea
+--clave forï¿½nea
 constraint FK_MEDIO_PRIVADO_MEDIO_PRIVADO_cod_MTrans_Privado
 foreign key (cod_MTrans_Privado)
 references MEDIO_TRANSPORTE(codigo)
@@ -58,7 +58,7 @@ docId_numDoc char(15) not null, --canditata
 telefono1 varchar(13) null,
 telefono2 varchar(13) null,
 telefono3 varchar(13) null,
-cod_medio_privado int null, -- clave foránea
+cod_medio_privado int null, -- clave forï¿½nea
 fechaCompra date null constraint CH_COMPROBAR_FECHA check(getdate() > fechaCompra),
 
 constraint PK_PERSONA_numero primary key(numero),
@@ -72,8 +72,8 @@ on update cascade
 );
 
 create table CONDUCIDO_POR(
-num_Medio_Trans int not null, --clave foránea
-num_persona smallint not null, -- clave foránea
+num_Medio_Trans int not null, --clave forï¿½nea
+num_persona smallint not null, -- clave forï¿½nea
 
 constraint PK_CONDUCIDO_POR_num_Medio_Trans_num_persona primary key(num_Medio_Trans, num_persona),
 
@@ -93,7 +93,7 @@ on update cascade
 
 
 CREATE TABLE PARADA(
-cod_MTransp_Colectivo int not null, -- clave primaria y foránea
+cod_MTransp_Colectivo int not null, -- clave primaria y forï¿½nea
 numero tinyint not null, -- clave primaria
 descripcion varchar(70) not null,
 
