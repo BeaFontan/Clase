@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ejemplos>
+
+<colección_musical>
+    <artista nome="Queen">
+        <album nome = "A Nigth at the Opera">
+            <cancion>Bohemian Rhapsody</cancion>
+            <cancion>39</cancion>
+        </album>   
+    </artista>
+
+    <artista nome="REM">
+        <album nome = "Life's Rich Pageant">
+            <cancion>Superman</cancion>
+            <cancion>These days</cancion>
+        </album>   
+    </artista>
+</colección_musical>
+
+
+
+<deportistas>
+
+    <deportista>
+
+        <deporte>Atletismo</deporte> 
+
+        <nombre>Jesse Owens</nombre>
+
+    </deportista>
+
+    <deportista>
+
+        <deporte>Natación</deporte>
+
+        <nombre>Mark Spitz</nombre>
+
+    </deportista>
+
+</deportistas>
+
+
+<peliculas>
+    <pelicula>
+
+        <titulo>Con faldas y a lo loco</titulo>
+
+        <director>Billy Wilder</director>
+
+    </pelicula>
+
+    <pelicula>
+
+        <director>Leo McCarey</director>
+
+        <titulo>Sopa de ganso</titulo>
+
+        <autor>barto</autor>
+
+    </pelicula>
+</peliculas>
+
+
+
+
+
+
+<texto>
+
+  <titulo>XML explicado a los niños</titulo>
+
+  <párrafo>El <abreviatura>XML</abreviatura>define cómo crear lenguajes de marcas.</párrafo>
+
+  <párrafo>Las marcas se añaden a un documento de texto para añadir información.</párrafo>
+
+  <http>www.example.org</http>
+
+</texto>
+
+
+
+
+
+<geografia_mundial>
+
+  <paises>
+
+    <pais>España</pais>
+
+    <continente>Europa</continente>
+
+    <capital nombre="Madrid"></capital>
+
+  </paises>
+
+</geografia_mundial>
+
+
+
+
+
+<programas>
+
+  <programa nombre="Firefox" licencia="GPL" licencia2="MPL"></programa>
+
+  <programa nombre="LibreOffice" licencia="LGPL"></programa>
+
+  <programa nombre="Inkscape" licencia="GPL"></programa>
+
+</programas>
+
+
+
+
+<mundiales-de-futbol>
+
+  <mundial>
+
+    <pais nombre="España"></pais>
+
+    <año>1982</año>
+
+  </mundial>
+
+</mundiales-de-futbol>
+
+
+
+
+<mediosDeTransporte>
+
+  <bicicleta velocidad_maxima="v &lt; 100km/h"/>
+
+  <patinete velocidad="50 km/h"/>
+
+</mediosDeTransporte>
+
+
+</ejemplos>
