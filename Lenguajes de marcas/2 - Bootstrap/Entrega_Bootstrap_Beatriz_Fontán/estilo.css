@@ -1,7 +1,28 @@
 *{margin: 0; padding: 0; box-sizing: border-box;
     font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;}
     
+
+body{background-image: url(Multimedia/log2.avif);}
+
+
+
+/* Estilo para navegador */
+
+.nav-link {
+    color:  rgb(240, 167, 155) !important;
+}
+
+
+
 /* Estilo para foto y vídeo */
+
+.fondoBlanco{
+    background-color: white;
+}
+
+.fotosPrimeras{
+    background-color: white;
+}
 
 video{
     margin-top: 30px;
@@ -12,7 +33,6 @@ video{
     border: 1px solid rgb(240, 167, 155);
 }
 
-
 .fotosPrimeras img{
     border: 1px solid rgb(240, 167, 155);
     margin: auto;
@@ -21,29 +41,30 @@ video{
 }
 
 
-/* Estilo primera sección */
+
+/* Estilo para títulos */
 
 .tituloSeccion{
     height: 50px;
     background-color: rgb(240, 167, 155);
     color:rgb(255, 255, 255);
     margin-top: 10px;
-    margin-bottom: 10px;
     font-size: 30px;
+    margin-bottom: 20px;
 }
 
 
+
+/* Estilo primera sección */
 
 .cuadriculaSeccion div{
     border: 1px solid rgb(240, 167, 155);
     padding: 10px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
 }
 
 .imagenSeccion img{
     border: 1px solid rgb(240, 167, 155);
-    
-
 }
 
 .imagenSeccion p{
@@ -54,6 +75,7 @@ video{
 .imagenSeccion h1{
     color: rgb(240, 167, 155);
 } 
+
 
 
 /* Estilo formulario */
@@ -84,9 +106,7 @@ select:focus {
 } 
 
 #mensajeFormulario{
- 
     border: 1px solid rgb(240, 167, 155);
-    
 }
 
 #mensajeFormulario:focus {
@@ -97,12 +117,14 @@ select:focus {
 }
 
 
+
 /* Botón */
 
 .btn-primary[type=submit]{
     width: 100%;
     background-color: rgb(240, 167, 155);
     border: 1px solid rgb(255, 255, 255);
+    margin-bottom: 30px;
 }
 
 .btn-primary:hover[type=submit]{
@@ -123,11 +145,16 @@ select:focus {
 } 
 
 
+
 /* Estilo para redes */
 
 .redes{
     height: 150px;
     background-color:  rgb(240, 167, 155);
+}
+
+.redes a{
+    padding-right: 10px;
 }
 
 .redes img{
