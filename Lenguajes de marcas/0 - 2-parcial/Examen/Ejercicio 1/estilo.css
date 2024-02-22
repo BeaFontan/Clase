@@ -1,0 +1,29 @@
+.continer{
+    width: 100%;
+}
+
+
+.continer div{
+    height: 40px;
+
+}
+
+.rojo{
+    background-color: red;
+}
+
+.rosa{
+    background-color: pink;
+}
+
+.gris{
+    background-color: grey;
+}
+
+.azul{
+    background-color: blue;
+}
+
+.azulClaro{
+    background-color:aqua; 
+}
