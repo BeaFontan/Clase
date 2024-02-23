@@ -15,38 +15,44 @@ public class Ejer5 {
 
     public static void main(String[] args) throws IOException {
         
-    Scanner teclado = new Scanner(System.in);
-    Path objetoPath;
-    String respuesta = "";
-    System.out.println("Dime a ruta");
-    String ruta = teclado.nextLine();
+        Scanner teclado = new Scanner(System.in);
+        Path objetoPath;
+        String respuesta = "";
+        System.out.println("Dime a ruta");
+        String ruta = teclado.nextLine();
 
-    objetoPath = Paths.get(ruta);
+        objetoPath = Paths.get(ruta);
 
-    if (Files.exists(objetoPath)) {
-        respuesta = "Existe";
-    }
+        if (Files.exists(objetoPath)) {
+            respuesta = "Existe";
+        }
 
-    if (Files.isDirectory(objetoPath)){
-        respuesta +=", es un directorio,";
-    }
+        if (Files.isDirectory(objetoPath)){
+            respuesta +=", es un directorio,";
+        }
 
-    if (Files.isRegularFile(objetoPath)) {
+        if (Files.isRegularFile(objetoPath)) {
 
-        long tamaño = Files.size(objetoPath);
+            long tamaño = Files.size(objetoPath);
 
-        //falta si se puede leer y si se puede escribir
+            respuesta+=", es un fichero," + objetoPath.getFileName() + ", " + tamaño + " , "  ;
+        }
+
+        if (Files.isReadable(objetoPath)) {
+            
+            respuesta+= "se puede leer, ";
+
+        }
+
+        if (Files.isWritable(objetoPath)) {
+            respuesta+= " se puede escribir ";
+        }
 
 
-        respuesta+=", es un fichero," + objetoPath.getFileName() + ", " + tamaño + " , "  ;
-    }
+        System.out.println(respuesta);
 
 
-
-
-
-
-    teclado.close();
+        teclado.close();
     }
 
 }
