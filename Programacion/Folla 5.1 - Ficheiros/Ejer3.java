@@ -12,10 +12,8 @@ public class Ejer3{
 
     public static void main(String[] args) throws IOException{
         
-
-    Scanner scanner = null;
     
-    try (scanner = new Scanner(new File("test.txt"));){
+    try (Scanner teclado = new Scanner(new File("test.txt"));){
         
         while (scanner.hasNext()) {
             System.out.println(scanner.nextLine());
@@ -24,6 +22,7 @@ public class Ejer3{
         e.printStackTrace();
 
     }
+
 
     }
 
