@@ -1,6 +1,8 @@
 ﻿-- Consultas propostas na BD SOCIEDADE_CULTURAL.
 use SOCIEDADE_CULTURAL_BEA;
 
+use SOCIOS;
+
 --– Proposta 1. Aumentar o número de prazas das actividades nun 15%.
 
 BEGIN TRAN
@@ -114,14 +116,31 @@ ROLLBACK;
 
 BEGIN TRAN
 
+select * from SOCIO;
+
+select * into #SOCIO3
+from SOCIO;
+
+delete from #SOCIO3
+where telefono1 is null OR telefono2 is null;
+
+select *from #SOCIO3;
 
 ROLLBACK;
+
 
 --– Proposta 9. Substituír os espazos en branco das observacións das actividades, as que 
 --asisten docentes, por guións baixos(_).
 
 BEGIN TRAN
 
+select * from ACTIVIDADE;
+
+update ACTIVIDADE
+set observacions = replace(observacions, ' ', '_')
+from ACTIVIDADE;
+
+select * from ACTIVIDADE;
 
 ROLLBACK;
 
@@ -130,13 +149,33 @@ ROLLBACK;
 
 BEGIN TRAN
 
+select * from ACTIVIDADE;
+
+update ACTIVIDADE
+set data_ini = DATEADD(day, -1, data_ini);
+
+select * from ACTIVIDADE;
+
 
 ROLLBACK;
 
 --– Proposta 11. Eliminar os fabricantes dos que non hai produtos na BD.
 
+use EMPRESA_BEA;
+
 BEGIN TRAN
 
+select p.cod_fabricante
+from PRODUTO p inner join FABRICANTE f
+		on p.cod_fabricante = f.codigo;
+
+select * from FABRICANTE;
+
+delete from FABRICANTE
+where codigo not in(select p.cod_fabricante
+					from  PRODUTO p);
+
+select * from FABRICANTE;
 
 ROLLBACK;
 
@@ -145,6 +184,14 @@ ROLLBACK;
 
 BEGIN TRAN
 
+select * from SUCURSAL;
+
+update SUCURSAL
+set obxectivo = obxectivo * 1.06,
+	rexion = 'WEST'
+where rexion = 'OESTE';
+
+select * from SUCURSAL;
 
 ROLLBACK;
 
@@ -154,22 +201,60 @@ ROLLBACK;
 
 BEGIN TRAN
 
+select * from FABRICANTE;
+
+select * into #FABRICANTE2
+from FABRICANTE;
+
+select * from #FABRICANTE2;
+
+
+
+truncate table #FABRICANTE2;
+
 
 ROLLBACK;
 
 --– Proposta 14. Transferir todos os empregados que traballan na sucursal de 
 --BARCELONA á sucursal de VIGO, e cambiar a súa cota de vendas pola media das 
 --cotas de vendas de tódolos empregados.
+
 BEGIN TRAN
 
+select * from EMPREGADO;
+
+
+update EMPREGADO
+set id_sucursal_traballa = 22, --id sucursal de vigo
+	cota_de_vendas = (select avg(cota_de_vendas) from EMPREGADO)
+where id_sucursal_traballa = 11; --id de sucursal barcelona
+
+--o lo que es lo mismo:
+update EMPREGADO
+set id_sucursal_traballa = 22,
+	cota_de_vendas = (select avg(cota_de_vendas) from EMPREGADO)
+from EMPREGADO e inner join SUCURSAL s
+	on e.id_sucursal_traballa = s.identificador
+	where s.cidade = 'BARCELONA';
+
+
+select * from EMPREGADO;
 
 ROLLBACK;
 
 --– Proposta 15. Elimina os pedidos de empregados contratados antes do ano 2001.
 
-
-
 BEGIN TRAN
 
+select * from EMPREGADO;
+
+select * from PEDIDO;
+
+delete from PEDIDO
+from PEDIDO p inner join EMPREGADO e
+		on p.num_empregado = e.numero
+		where data_contrato < '01-01-2001';
+
+select * from PEDIDO;
 
 ROLLBACK;

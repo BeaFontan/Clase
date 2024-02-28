@@ -62,7 +62,8 @@ SELECT cast(numero as varchar(7))+' - '+ape1+' '+ape2+', '+ nome
  salario_mes
 FROM EMPREGADO
 WHERE cargo='PRF'
-ORDER BY salario_mes desc;
+ORDER BY salario_mes desc;
+
 
 --– Proposta 7. Número identificador do profesorado que imparte clases. Como é 
 --lóxico, se un profesor imparte máis dunha actividade, o seu número só pode 
@@ -79,7 +80,8 @@ select p.id_actividade
 from PROFE_CURSA_ACTI p;
 
 SELECT DISTINCT id_actividade
-FROM PROFE_CURSA_ACTI;
+FROM PROFE_CURSA_ACTI;
+
 
 --– Proposta 9. Nome, importe, e importe rebaixado un 20%, da actividade de nome 
 --xadrez.
@@ -92,7 +94,8 @@ WHERE nome='XADREZ';
 --Solución2
 SELECT nome, prezo, prezo*0.80 as prezo_rebaixado
 FROM ACTIVIDADE
-WHERE nome='XADREZ';
+WHERE nome='XADREZ';
+
 
 --– Proposta 10. NIF, nome e apelidos dos socios dos que non temos teléfono gardado.
 
@@ -106,7 +109,8 @@ WHERE telefono1 IS NULL AND
 
 SELECT NIF, nome, ape1, ape2, data_nac
 FROM SOCIO
-WHERE data_nac BETWEEN '1/1/1980' AND '31/12/1990';
+WHERE data_nac BETWEEN '1/1/1980' AND '31/12/1990';
+
 
 --– Proposta 12. Todos os datos das actividades cuxo nome contén a letra T.
 SELECT *
@@ -123,7 +127,8 @@ WHERE importe IN (30,100);
 SELECT nome, importe
 FROM COTA
 WHERE importe=30 OR
- importe=100;
+ importe=100;
+
 
 --– Proposta 14. Nome e número de prazas das actividades que non teñen nin 15 nin 20 
 --prazas.
@@ -135,7 +140,8 @@ WHERE num_prazas NOT IN (15,20);
 SELECT nome, num_prazas
 FROM ACTIVIDADE
 WHERE num_prazas!=15 AND
- num_prazas!=20;
+ num_prazas!=20;
+
 
 --– Proposta 15. Nome de todos os clientes por orde alfabética. 
 
@@ -573,7 +579,11 @@ WHERE num_empregado_asignado IN (SELECT numero
 								 FROM EMPREGADO
 								WHERE id_sucursal_traballa IN (SELECT identificador
 															 FROM SUCURSAL
-															 WHERE rexion='OESTE'));---------CONSULTAS CON FUNCIÓNS INTEGRADAS NO XESTOR paxina 62----------------------------------------------------------
+															 WHERE rexion='OESTE'));
+
+
+---------CONSULTAS CON FUNCIÓNS INTEGRADAS NO XESTOR paxina 62----------------------------------------------------------
+
 use EMPRESA_BEA;
 
 --– Proposta 1. Desexamos coñecer o código ASCII da vogal E. Na consulta deberás 
@@ -754,7 +764,8 @@ UNION
 SELECT cod_fabricante, id_produto
 FROM PEDIDO
 WHERE cantidade<5
-ORDER BY cod_fabricante, identificador;
+ORDER BY cod_fabricante, identificador;
+
 
 
 --– Proposta 2. Empregando unha consulta composta amosar os código dos 
