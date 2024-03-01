@@ -77,7 +77,7 @@ public class Cliente {
             //ahora crea un objeto printwriter para para imprimir dentro del file
             PrintWriter escritura = new PrintWriter(fw);
 
-            //bucle para recorrer la lista de objetos
+            //bucle para recorrer la lista de objetos que pasa a una cadena para poder mostrar luego en el foreach
             for (int i = 0; i < clientes.size(); i++) {
                 //ahora maneja los datos, para escribir, crea un string, coge el nombre y añade un ;
                 String cadea = clientes.get(i).getNome() + ";"+ 

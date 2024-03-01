@@ -11,7 +11,7 @@ public class AppCliente {
     System.out.println(menu);
     respuesta = teclado.nextLine();
 
-    while (respuesta.equals("fin")) {
+    while (!respuesta.equals("fin")) {
         
 
         switch (respuesta) {
@@ -27,7 +27,9 @@ public class AppCliente {
 
                 break;
         }
-
+        
+        System.out.println(menu);
+        respuesta = teclado.nextLine();
     }
     
         
