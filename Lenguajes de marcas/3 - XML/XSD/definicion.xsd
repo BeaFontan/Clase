@@ -1,7 +1,0 @@
-<?xml version="1.0"?>
-    <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
-
-    <xs:element name="letras">
-            <xs:complexTypename="letra" type="xs:string"></xs:complexTypename></xs:complexType>
-    
-    </xs:schema>

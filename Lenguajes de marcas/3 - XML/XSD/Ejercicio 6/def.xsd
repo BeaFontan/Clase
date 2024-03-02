@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="escritores">
+
+        <xs:complexType>
+
+            <xs:sequence>
+
+                <xs:element name="escritor" minOccurs="1" maxOccurs="2">
+
+                    <xs:complexType>
+
+                        <xs:sequence>
+
+                            <xs:element name="nombre" type="xs:string" minOccurs="1" maxOccurs="2"></xs:element>
+                            <xs:element name="nacimiento" type="xs:string" minOccurs="1" maxOccurs="2"></xs:element>
+                            <!-- Me da error el validador en nacimiento y no se porqué -->
+                        </xs:sequence>
+
+
+                    </xs:complexType>
+
+
+                </xs:element>
+
+            </xs:sequence>
+
+        </xs:complexType>
+
+
+    </xs:element>
+
+
+</xs:schema>
