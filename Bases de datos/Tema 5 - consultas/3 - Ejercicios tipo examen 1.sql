@@ -17,6 +17,25 @@
 --y 2 decimales.
 --Deberán aparecer primero en el resultado los productos con mayor gasto total.
 
+use EMPLEADOS;
+
+select * from PRODUCTO;
+select * from pedido;
+
+SELECT 
+    CONCAT_WS('\', p.DESCRIPCION, ROUND(p.PRECIO, 2)) AS Producto,
+    COALESCE(ROUND(SUM(pe.CANT * pe.IMPORTE), 2), 'PRODUCTO QUE TODAVÍA NO SE HA VENDIDO') AS "Gasto total"
+FROM 
+    PRODUCTO p
+LEFT JOIN 
+    PEDIDO pe ON p.ID_PRODUCTO = pe.PRODUCTO
+GROUP BY 
+    p.ID_PRODUCTO, p.DESCRIPCION, p.PRECIO
+HAVING 
+    COALESCE(SUM(pe.CANT * pe.IMPORTE), 0) / NULLIF(COUNT(pe.NUM_PEDIDO), 0) < 3000
+ORDER BY 
+    COALESCE(SUM(pe.CANT * pe.IMPORTE), 0) DESC;
+
 
 
 
