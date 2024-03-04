@@ -54,16 +54,68 @@ ORDER BY
 --- Si la cantidad de unidades del pedido es mayor o igual que 30 aparecerá el texto MUCHAS.
 --Deben aparecer los pedidos más recientes primero. Asegúrate que aparecen bien ordenados.
 
+select p.NUM_PEDIDO as 'numero pedido',
+	   convert(varchar(10),p.FECHA_PEDIDO,105) as FechaPed,
+	   case 
+			when p.CANT < 7 then 'POCAS'
+			when p.CANT >= 7 AND p.CANT < 30 then 'NORMAL'
+			else 'MUCHAS'
+		end as CANT
+from PEDIDO p
+where datediff(year,p.FECHA_PEDIDO,getdate()) between 24 and 35 --aumento los años para que me de resultados
+order by FECHA_PEDIDO desc;
 
+
+select * from PEDIDO;
 
 
 
 --1.3. BD EMPLEADOS. Consulta que devuelva la ciudad de cada una de las oficinas de la BD, su región en 
---minúsculas y en otra tercera columna el importe del pedido más barato de la oficina. Ten en cuenta que 
---un pedido es de una oficina si ha sido realizado por un representante de ventas que trabaja en esa oficina.
+--minúsculas y en otra tercera columna el importe del pedido más barato de la oficina.
+
+--Ten en cuenta que un pedido es de una oficina si ha sido realizado por un representante de ventas que trabaja en esa oficina.
+
+
 --Sólo se mostrarán las oficinas con objetivo de ventas superior a 500000, y que además el pedido con 
 --mayor importe (pedido de importe máximo) no supera los 30000€.
 --Si existiese alguna oficina que no ha vendido nada, no aparecerá en el resultado.
+
+select * from OFICINA;
+select * from REPVENTAS;
+
+
+
+
+
+SELECT 
+    o.ciudad AS Ciudad,
+    LOWER(o.region) AS Region,
+    (
+        SELECT MIN(p.importe)
+        FROM PEDIDO p
+        WHERE p.rep IN (
+            SELECT r.NUM_EMPL
+            FROM REPVENTAS r
+            WHERE r.OFICINA_REP = o.OFICINA
+        )
+    ) AS Importe_Pedido_Mas_Bajo
+FROM 
+    OFICINA o
+WHERE 
+    o.oficina IN (
+        SELECT r.OFICINA_REP
+        FROM REPVENTAS r
+    )
+    AND o.oficina IN (
+        SELECT DISTINCT r.OFICINA_REP
+        FROM REPVENTAS r
+        JOIN PEDIDO p ON r.NUM_EMPL = p.rep
+        GROUP BY r.OFICINA_REP
+        HAVING SUM(p.importe) > 500000
+        AND MAX(p.importe) <= 30000
+    );
+
+
 
 
 

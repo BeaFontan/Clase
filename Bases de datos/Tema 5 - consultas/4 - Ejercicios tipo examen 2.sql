@@ -5,6 +5,7 @@
 
 
 --1.1. BD EMPRESA. (2 puntos)
+use EMPRESA_BEA;
 --Consulta con 4 columnas: el número identificador, el nombre completo (apellido 1 
 --apellido2, nombre), los días que lleva contratado en la empresa y la cuota de ventas, de
 --cada uno de los empleados que están asignados a algún cliente. Si algún vendedor no 
@@ -12,7 +13,18 @@
 --En el resultado deben aparecer primero los empleados que lleven menos días contratados.
 --IMPORTANTE: No puedes usar ningún tipo de join ni tampoco una consulta compuesta.
 
+select e.numero as id_empregado,
+concat(e.ape1, ' ', ltrim(e.ape2), ' ', e.nome) as nome_empregado, 
+datediff(day,e.data_contrato,getdate()) as dias_contratado,
+isnull(e.cota_de_vendas,0) as cota_vendas
+from EMPREGADO e
+where e.numero in (select c.num_empregado_asignado
+					from CLIENTE c)
+order by dias_contratado;
 
+
+		
+select * from EMPREGADO;				
 
 
 --1.2. BD EMPRESA. (1’5 puntos)
@@ -27,6 +39,13 @@
 --Deben aparecer los pedidos más recientes primero. Asegúrate que aparecen bien 
 --ordenados.
 
+select p.num_cliente as numero_pedido,
+	   convert(varchar(10),p.data_pedido, 105) as fecha_pedido
+from PEDIDO p
+where datediff(month, getdate(),p.data_pedido) between 50 and 60
+group by p.num_cliente, p.data_pedido
+order by fecha_pedido;
+--no me da resultados
 
 
 
@@ -37,6 +56,13 @@
 --aparecerá ASUAK47A. El resultado deberá aparecer ordenado alfabéticamente.
 --IMPORTANTE: El nombre de la columna debe ser exactamente el que se indica, incluidos 
 --los espacios en blanco
+
+select concat(p.cod_fabricante,p.identificador) as 'PRODUCTOS SIN PEDIDO'
+from PRODUTO p
+except
+select concat(pe.cod_fabricante,pe.numero)
+from PEDIDO pe
+where pe.id_produto not in(pe.cod_fabricante);
 
 
 --1.4. BD EMPRESA. (2’75 puntos)
@@ -54,6 +80,7 @@
 --caso de que hubiese varios empleados con el mismo importe medio, deberán aparecer 
 --primero los que tienen mayor antigüedad en la empresa. Asegúrate que aparecen bien 
 --ordenados.
+
 
 
 
