@@ -14,7 +14,7 @@ use EMPRESA_BEA;
 --IMPORTANTE: No puedes usar ningún tipo de join ni tampoco una consulta compuesta.
 
 select e.numero as id_empregado,
-concat(e.ape1, ' ', ltrim(e.ape2), ' ', e.nome) as nome_empregado, 
+rtrim(e.ape1 +' '+ isnull(e.ape2, ''))+ ', '+ e.nome as nome_empregado, 
 datediff(day,e.data_contrato,getdate()) as dias_contratado,
 isnull(e.cota_de_vendas,0) as cota_vendas
 from EMPREGADO e
@@ -22,8 +22,6 @@ where e.numero in (select c.num_empregado_asignado
 					from CLIENTE c)
 order by dias_contratado;
 
-
-		
 select * from EMPREGADO;				
 
 
@@ -38,14 +36,14 @@ select * from EMPREGADO;
 --FechaPed).
 --Deben aparecer los pedidos más recientes primero. Asegúrate que aparecen bien 
 --ordenados.
+use EMPRESA_BEA;
 
 select p.num_cliente as numero_pedido,
-	   convert(varchar(10),p.data_pedido, 105) as fecha_pedido
+	   convert(char(10),p.data_pedido, 105) as FechaPed
 from PEDIDO p
-where datediff(month, getdate(),p.data_pedido) between 50 and 60
-group by p.num_cliente, p.data_pedido
-order by fecha_pedido;
---no me da resultados
+where datediff(month, p.data_pedido, getdate()) between 105 and 119
+order by p.data_pedido desc; -- ojo, aquí ordenamos por fecha, porque si usamos el alias ordena por character, ya que lo hemos convertido a char
+
 
 
 
@@ -57,12 +55,16 @@ order by fecha_pedido;
 --IMPORTANTE: El nombre de la columna debe ser exactamente el que se indica, incluidos 
 --los espacios en blanco
 
+use EMPRESA_BEA;
+
+
 select concat(p.cod_fabricante,p.identificador) as 'PRODUCTOS SIN PEDIDO'
 from PRODUTO p
 except
-select concat(pe.cod_fabricante,pe.numero)
+select concat(pe.cod_fabricante,pe.id_produto) --ojo, son foraneas juntas por dependencia
 from PEDIDO pe
-where pe.id_produto not in(pe.cod_fabricante);
+where pe.id_produto not in(pe.cod_fabricante)
+order by [PRODUCTOS SIN PEDIDO];
 
 
 --1.4. BD EMPRESA. (2’75 puntos)
@@ -81,8 +83,18 @@ where pe.id_produto not in(pe.cod_fabricante);
 --primero los que tienen mayor antigüedad en la empresa. Asegúrate que aparecen bien 
 --ordenados.
 
+use EMPRESA_BEA;
 
-
+select e.nome, convert(char(10), e.data_contrato, 103) as data_contrato, 
+		isnull(convert(varchar(30),convert(numeric(10,2), avg(pe.cantidade*pr.prezo))), 'ESTE EMPLEADO NO TIENE PEDIDOS')
+		as importe_medio
+from EMPREGADO e left join PEDIDO pe on e.numero = pe.num_empregado
+	left join PRODUTO pr on pe.cod_fabricante = pr.cod_fabricante and 
+							pe.id_produto = pr.identificador
+where day(e.data_contrato) in (1,6,26)
+group by e.numero, e.nome, e.data_contrato
+having isnull(max(pe.cantidade*pr.prezo),0) <=20000 --ojo, acordarse de hacer el is null, poque tiene que considerarlos un 0, sino no los considera
+order by avg(pe.cantidade*pr.prezo) desc, e.data_contrato; -- ojo se ordena por la media, porque luego lo transformamos a char, y tiene que ser ordenador por la media!! ojooooo y por fecha.
 
 
 
@@ -103,6 +115,14 @@ where pe.id_produto not in(pe.cod_fabricante);
 -- Para hacer la comprobación del importe de las cuotas que paga cada socio no 
 --puedes usar ni la cláusula IN, ni OR ni tampoco los operadores >=, >, <=, !=, = <>.
 
+use SOCIEDADE_CULTURAL_BEA;
+
+select top 50 percent s.numero, s.nome, s.ape1, len(s.ape1) as longitud_ape1, 
+		concat(datename(month,s.data_nac), '-', c.importe) as "MesNac_Cuota"
+from SOCIO s inner join cota c on s.cod_cota = c.codigo
+where substring(s.nome,2,1) = 'A' and
+	  c.importe between 29 and 100
+order by month(s.data_nac);
 
 
 
