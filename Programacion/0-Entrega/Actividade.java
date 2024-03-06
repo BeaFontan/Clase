@@ -1,10 +1,11 @@
 public class Actividade {
 
-    private int codActividade;
+    public static int codActividade;
     private String nomeActividade;
     private int horasSemanais;
     private double prezoActividade;
     private String salaActividade;
+    private int codActividadePrivado;
 
 
     public Actividade(String nomeActividade, int horasSemanais, double prezoActividade, String salaActividade) {
@@ -12,12 +13,17 @@ public class Actividade {
         this.horasSemanais = horasSemanais;
         this.prezoActividade = prezoActividade;
         this.salaActividade = salaActividade;
+        codActividadePrivado = codActividade;
         codActividade++;
     }
 
 
     public int getCodActividade() {
         return codActividade;
+    }
+
+    public int getCodActividadePrivado() {
+        return codActividadePrivado;
     }
 
 
@@ -69,13 +75,13 @@ public class Actividade {
     
     @Override
     public String toString() {
-        return "Actividade [codActividade=" + codActividade + ", nomeActividade=" + nomeActividade + ", horasSemanais="
+        return "Actividade [codActividade=" + codActividadePrivado + ", nomeActividade=" + nomeActividade + ", horasSemanais="
                 + horasSemanais + ", prezoActividade=" + prezoActividade + "]";
     }
 
 
     public String toStringParaFichero() {
-        return codActividade + nomeActividade + horasSemanais + prezoActividade;
+        return codActividade + ";" + nomeActividade + ";" + horasSemanais + ";" + prezoActividade;
     }
     
 

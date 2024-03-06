@@ -91,7 +91,7 @@ public class Socio {
 
 
     public String toStringParaFichero() {
-        return codSocio + ";" + nomeSocio + ";" + apelidosSocio + ";" + emailSocio + ";" + dataNacementoSocio;
+        return codSocio + "," + nomeSocio + "," + apelidosSocio + "," + emailSocio + "," + dataNacementoSocio;
     }
 
 
