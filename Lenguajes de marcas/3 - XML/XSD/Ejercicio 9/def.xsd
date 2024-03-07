@@ -6,15 +6,16 @@
         <xs:complexType>
 
             <xs:sequence>
-                <xs:element name="cuerpo" minOccurs="0" maxOccurs="3">
+
+                <xs:element name="cuerpo" minOccurs="1" maxOccurs="unbounded">
 
                     <xs:complexType>
+
                         <xs:sequence>
                             
                             <xs:element name="planeta" type="xs:string" minOccurs="0" maxOccurs="1"></xs:element>
                             <xs:element name="satelite" type="xs:string" minOccurs="0" maxOccurs="1"></xs:element>
                             <xs:element name="asteroide" type="xs:string" minOccurs="0" maxOccurs="1"></xs:element>
-
 
                         </xs:sequence>
 

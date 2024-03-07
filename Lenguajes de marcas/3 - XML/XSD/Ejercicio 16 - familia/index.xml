@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<familias xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="familias.xsd">
+
+    <familia>
+        <padre nombre ="Manuel" apellido="Perez" apellido ="Vázquez" edad ="30" dni ="35478554X"></padre>
+        <madre nombre ="Manuel" apellido="Perez" apellido ="Vázquez" edad ="30" dni ="35478554X"></madre>
+        <hijo nombre ="Manuel" edad ="30" dni ="35478554X"></hijo>
+        <hija nombre ="Manuel" edad ="30" dni ="35478554X"></hija>
+    </familia>
+
+
+</familias>

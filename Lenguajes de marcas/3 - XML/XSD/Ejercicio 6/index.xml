@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<escritores>
+<escritores xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="def.xsd">
     <escritor>
         <nombre> Mario Vargas LLosa </nombre>
         <nacimiento>28 de marzo de 1936</nacimiento>

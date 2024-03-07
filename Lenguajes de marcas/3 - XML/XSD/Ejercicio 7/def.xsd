@@ -7,15 +7,17 @@
 
             <xs:sequence>
 
-                <xs:element name="musico" minOccurs="1" maxOccurs="2">
+                <xs:element name="musico" minOccurs="0" maxOccurs="unbounded">
 
                     <xs:complexType>
 
                         <xs:sequence>
 
-                            <xs:element name="apodo" type="xs:string" minOccurs="1" maxOccurs="2"></xs:element>
+                            <xs:element name="nombre" type="xs:string" minOccurs="0" maxOccurs="1"> </xs:element>
 
-                            <xs:element name="fechaNacimiento" type="xs:string" minOccurs="1" maxOccurs="2"></xs:element>
+                            <xs:element name="apodo" type="xs:string" minOccurs="0" maxOccurs="2"></xs:element>
+
+                            <xs:element name="fechaNacimiento" type="xs:string"></xs:element>
 
 
                         </xs:sequence>

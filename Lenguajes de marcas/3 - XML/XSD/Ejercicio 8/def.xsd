@@ -7,7 +7,7 @@
 
             <xs:sequence>
 
-                <xs:element name="contacto" minOccurs="0" maxOccurs="2">
+                <xs:element name="contacto" minOccurs="0" maxOccurs="unbounded">
 
                     <xs:complexType>
 
@@ -17,7 +17,7 @@
 
                             <xs:element name="telefonoFijo" type="xs:string" minOccurs="1" maxOccurs="unbounded"></xs:element>
 
-                            <xs:element name="telefonoMovil" type="xs:string" minOccurs="1" maxOccurs="2"></xs:element>
+                            <xs:element name="telefonoMovil" type="xs:string" minOccurs="1" maxOccurs="1"></xs:element>
                         
                         </xs:sequence>
 

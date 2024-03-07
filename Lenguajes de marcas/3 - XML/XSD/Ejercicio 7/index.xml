@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<musicos>
+<musicos xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="def.xsd">
 
     <musico>
 
@@ -11,7 +11,7 @@
 
     <musico>
 
-        <apodo>Johann Sebastian Bach (El viejo peluca)</apodo>
+        <nombre>Johann Sebastian Bach (El viejo peluca)</nombre>
         <fechaNacimiento>21 de marzo de 16854</fechaNacimiento>
 
     </musico>
