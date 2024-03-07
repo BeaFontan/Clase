@@ -1,10 +1,4 @@
-﻿--1. Realiza lo que se te pide en los siguientes apartados sobre la BD que se te indica al principio del 
---apartado. Si no se indica ninguna escoge la más conveniente para la realización correcta del apartado.
---IMPORTANTE: 
--- Todas las columnas de los resultados deben tener un NOMBRE.
--- En cada consulta deberá incluirse la instrucción que selecciona la BD adecuada para ejecutarla.
-
-
+﻿
 --1.1. BD EMPLEADOS. Consulta que devuelve en una primera columna la descripción y el precio de todos los
 --productos, separados por una barra invertida (por ejemplo ARTICULO TIPO2 \ 76), y en una segunda 
 --columna el gasto total en pedidos de ese producto. Entre la descripción y la barra invertida sólo puede 
@@ -39,7 +33,6 @@ ORDER BY
 
 
 
-
 --1.2. BD EMPLEADOS. Consulta que devuelva la lista de los pedidos que hace más de 24 años y menos de 28 
 --años que se han realizado.
 --IMPORTANTE: Para hacer la comprobación de los años que hace que se ha realizado el pedido no puedes 
@@ -54,6 +47,8 @@ ORDER BY
 --- Si la cantidad de unidades del pedido es mayor o igual que 30 aparecerá el texto MUCHAS.
 --Deben aparecer los pedidos más recientes primero. Asegúrate que aparecen bien ordenados.
 
+use EMPLEADOS_BEA;
+
 select p.NUM_PEDIDO as 'numero pedido',
 	   convert(varchar(10),p.FECHA_PEDIDO,105) as FechaPed,
 	   case 
@@ -62,7 +57,7 @@ select p.NUM_PEDIDO as 'numero pedido',
 			else 'MUCHAS'
 		end as CANT
 from PEDIDO p
-where datediff(year,p.FECHA_PEDIDO,getdate()) between 24 and 35 --aumento los años para que me de resultados
+where datediff(year,p.FECHA_PEDIDO,getdate()) between 30 and 34 --aumento los años para que me de resultados
 order by FECHA_PEDIDO desc;
 
 
@@ -72,19 +67,15 @@ select * from PEDIDO;
 
 --1.3. BD EMPLEADOS. Consulta que devuelva la ciudad de cada una de las oficinas de la BD, su región en 
 --minúsculas y en otra tercera columna el importe del pedido más barato de la oficina.
-
 --Ten en cuenta que un pedido es de una oficina si ha sido realizado por un representante de ventas que trabaja en esa oficina.
-
-
 --Sólo se mostrarán las oficinas con objetivo de ventas superior a 500000, y que además el pedido con 
 --mayor importe (pedido de importe máximo) no supera los 30000€.
 --Si existiese alguna oficina que no ha vendido nada, no aparecerá en el resultado.
 
+use EMPLEADOS;
+
 select * from OFICINA;
 select * from REPVENTAS;
-
-
-
 
 
 SELECT 
@@ -117,5 +108,112 @@ WHERE
 
 
 
+--1.4. BD EMPRESA. Consulta que devuelva el nombre de cada cliente y al lado la media de unidades 
+--compradas en sus pedidos, sólo para aquellos clientes cuyo empleado asignado/vendedor trabaje 
+--en una oficina de la región oeste. Si el cliente no ha comprado nada como media de unidades 
+--deberá aparecer 0.
+--La columna de las unidades medias tendrá 4 dígitos como máximo en la parte entera y 1 decimal.
+--En el resultado deberán aparecen primero los clientes que tengan mayor número de unidades 
+--medias.
 
+use EMPRESA_BEA;
+
+select c.nome, isnull(convert(numeric(8,1),avg(p.cantidade)),0) as 'media ud. compradas'
+from CLIENTE c 
+			   left join PEDIDO p on c.numero = p.num_cliente
+			   join EMPREGADO e on c.num_empregado_asignado = e.numero
+			   join SUCURSAL s on e.id_sucursal_traballa = s.identificador
+where S.rexion IN ('OESTE')		
+group by p.numero, c.nome
+order by avg(p.cantidade) desc;
+
+
+--1.5. BD EMPRESA. Consulta que devuelva el total de productos de cada fabricante. En el resultado 
+--aparecerán dos columnas: el nombre del fabricante y el total de productos del fabricante.
+--Deberá mostrarse en primer lugar aquellos fabricantes que tienen más productos. Si varios 
+--fabricantes tienen el mismo número de productos deberán aparecer ordenados alfabéticamente 
+--por nombre, por ejemplo:
+--ASUS 10
+--LOGITECH 5
+--TOSHIBA 5
+
+use EMPRESA_BEA;
+
+select f.nome, count(p.cod_fabricante) as 'total productos de cada fabricante'
+from PRODUTO p inner join FABRICANTE f
+		on p.cod_fabricante = f.codigo
+group by p.cod_fabricante, f.nome
+order by count(p.cod_fabricante) desc, f.nome;
+
+
+select * from PRODUTO;
+
+--1.6. BD EMPRESA. Sin usar joins ni subconsultas realiza la consulta que muestre la descripción y el 
+--precio de los productos de los que todavía no se han hecho pedidos. En el resultado aparecerán 
+--primero los productos más caros.
+
+use EMPRESA_BEA;
+
+select p.descricion, p.prezo
+from PRODUTO p
+except
+select pr.descricion, pr.prezo
+from PEDIDO pe join PRODUTO pr
+	on pe.cod_fabricante = pr.cod_fabricante and pe.id_produto = pr.identificador;
+
+select * from pedido;
+
+
+--1.7. BD EMPRESA. Realiza la consulta anterior usando join.
+
+use EMPRESA_BEA;
+
+select pr.descricion, pr.prezo
+from PRODUTO pr left join PEDIDO pe
+	on pr.cod_fabricante = pe.cod_fabricante and pr.identificador = pe.id_produto
+
+select * from PRODUTO;
+
+
+--1.8. BD EMPRESA. Listado de las sucursales cuyo objetivo es mayor que 300.000 y en ellas trabajan 
+--empleados cuyo primer apellido acaba por Z o su segundo apellido tiene más de 5 letras. En el 
+--resultado aparecerá el identificador de la oficina separado de la ciudad por un guión medio, por 
+--ejemplo 11-BARCELONA.
+
+use EMPRESA_BEA;
+
+
+--1.9. BD EMPRESA. Consulta que devuelva el nombre y apellidos de cada empleado (con formato 
+--nombre ape1 ape2) y en una segunda columna el número identificador del director de la oficina en 
+--la que trabaja el empleado. Ordena el resultado alfabéticamente por apellidos y nombre del 
+--empleado.
+
+use EMPRESA_BEA;
+
+
+--1.10. BD EMPRESA. Repite la consulta anterior pero en la segunda columna en lugar de aparecer el 
+--número identificador del director de la oficina deberá aparecer el nombre del director con formato 
+--nombre ape1 ape2.
+
+use EMPRESA_BEA;
+
+
+--1.11. BD EMPRESA. Listado del nombre de todos los clientes siempre que haya alguno cuyo límite de 
+--crédito supere los 65.000€
+
+use EMPRESA_BEA;
+
+
+--1.12. BD EMPRESA. En una única columna deberán aparecer todas las ciudades de las sucursales y todas 
+--las regiones ordenadas alfabéticamente. La columna se llamará SUCURSALES Y REGIONES (respeta 
+--los espacios en blanco del nombre de la columna).
+
+use EMPRESA_BEA;
+
+
+
+--1.13. BD EMPRESA. Usando una consulta compuesta devuelve el nombre de los clientes que hicieron 
+--pedidos
+
+use EMPRESA_BEA;
 
