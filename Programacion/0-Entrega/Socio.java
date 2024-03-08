@@ -1,24 +1,33 @@
+import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Arrays;
+
+import javax.swing.JOptionPane;
 
 public class Socio {
 
-    private int codSocio;
+    private static int codSocio;
     private String nomeSocio;
     private String apelidosSocio;
     private String emailSocio;
-    private String dataNacementoSocio;
-    public ArrayList<Actividade> arrayActividadesInscrito= new ArrayList<Actividade>();
+    private Date dataNacementoSocio;
+    private int codSocioPrivado;
+    private int[] arrayActividadesInscrito = new int[3];
 
 
-    public Socio(String nomeSocio, String apelidosSocio, String emailSocio, String dataNacementoSocio) {
+    public Socio(String nomeSocio, String apelidosSocio, String emailSocio, Date dataNacementoSocio) {
         codSocio++;
         this.nomeSocio = nomeSocio;
         this.apelidosSocio = apelidosSocio;
         this.emailSocio = emailSocio;
         this.dataNacementoSocio = dataNacementoSocio;
+        codSocioPrivado = codSocio;
+        
     }
 
+
+    public int getCodSocioPrivado() {
+        return codSocioPrivado;
+    }
 
 
     public int getCodSocio() {
@@ -28,7 +37,7 @@ public class Socio {
 
 
     public void setCodSocio(int codSocio) {
-        this.codSocio = codSocio;
+        Socio.codSocio = codSocio;
     }
 
 
@@ -69,21 +78,41 @@ public class Socio {
 
 
 
-    public String getDataNacementoSocio() {
+    public Date getDataNacementoSocio() {
         return dataNacementoSocio;
     }
 
 
 
-    public void setDataNacementoSocio(String dataNacementoSocio) {
+    public void setDataNacementoSocio(Date dataNacementoSocio) {
         this.dataNacementoSocio = dataNacementoSocio;
     }
 
 
 
+
+    public int[] getarrayActividadesInscrito() {
+        return arrayActividadesInscrito;
+    }
+
+
+    public void setarrayActividadesInscrito(int indiceActividade) {
+
+       for (int i = 0; i < arrayActividadesInscrito.length; i++) {
+         if (arrayActividadesInscrito.length > 3) {
+             JOptionPane.showMessageDialog(null, "non podes introducir máis de 3 actividades");
+         }
+         if (arrayActividadesInscrito[i] == 0) {
+            this.arrayActividadesInscrito[i] = indiceActividade;
+         }
+       }
+
+    }
+
+
     @Override
     public String toString() {
-        return "Socio [codSocio=" + codSocio + ", nomeSocio=" + nomeSocio + ", apelidosSocio=" + apelidosSocio
+        return "Socio [codSocio=" + codSocioPrivado + ", nomeSocio=" + nomeSocio + ", apelidosSocio=" + apelidosSocio
                 + ", emailSocio=" + emailSocio + ", dataNacementoSocio=" + dataNacementoSocio
                 + ", arrayActividadesInscrito=]";
     }
@@ -91,7 +120,7 @@ public class Socio {
 
 
     public String toStringParaFichero() {
-        return codSocio + "," + nomeSocio + "," + apelidosSocio + "," + emailSocio + "," + dataNacementoSocio;
+        return codSocioPrivado + ";" + nomeSocio + ";" + apelidosSocio + ";" + emailSocio + ";" + dataNacementoSocio;
     }
 
 

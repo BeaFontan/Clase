@@ -9,17 +9,13 @@ public class Actividade {
 
 
     public Actividade(String nomeActividade, int horasSemanais, double prezoActividade, String salaActividade) {
+        codActividade++;
         this.nomeActividade = nomeActividade;
         this.horasSemanais = horasSemanais;
         this.prezoActividade = prezoActividade;
         this.salaActividade = salaActividade;
         codActividadePrivado = codActividade;
-        codActividade++;
-    }
 
-
-    public int getCodActividade() {
-        return codActividade;
     }
 
     public int getCodActividadePrivado() {
@@ -27,8 +23,13 @@ public class Actividade {
     }
 
 
+    public int getCodActividade() {
+        return codActividade;
+    }
+
+
     public void setCodActividade(int codActividade) {
-        this.codActividade = codActividade;
+        Actividade.codActividade = codActividade;
     }
 
 
@@ -81,7 +82,7 @@ public class Actividade {
 
 
     public String toStringParaFichero() {
-        return codActividade + ";" + nomeActividade + ";" + horasSemanais + ";" + prezoActividade;
+        return codActividadePrivado + ";" + nomeActividade + ";" + horasSemanais + ";" + prezoActividade;
     }
     
 
