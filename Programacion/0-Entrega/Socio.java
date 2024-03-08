@@ -1,6 +1,4 @@
 import java.sql.Date;
-import java.util.ArrayList;
-
 import javax.swing.JOptionPane;
 
 public class Socio {
@@ -97,16 +95,36 @@ public class Socio {
 
 
     public void setarrayActividadesInscrito(int indiceActividade) {
+        boolean bandera = false;
+    
+        for (int i = 0; i < arrayActividadesInscrito.length; i++) {
+            if (arrayActividadesInscrito[i] == 0) {
+                this.arrayActividadesInscrito[i] = indiceActividade;
+                bandera = true;
+                break; // Salir del bucle una vez que se haya asignado la actividad
+            }
+        }
+    
+        if (bandera==false) {
+            JOptionPane.showMessageDialog(null, "Non hai espazo dispoñible para máis actividades");
+        }
+    }
+    
 
-       for (int i = 0; i < arrayActividadesInscrito.length; i++) {
-         if (arrayActividadesInscrito.length > 3) {
-             JOptionPane.showMessageDialog(null, "non podes introducir máis de 3 actividades");
-         }
-         if (arrayActividadesInscrito[i] == 0) {
-            this.arrayActividadesInscrito[i] = indiceActividade;
-         }
-       }
+    public void borrarArrayActividadesInscrito(int indiceActividadeBorrar) {
 
+        boolean bandera = false;
+        for (int i = 0; i < arrayActividadesInscrito.length; i++) {
+            if (arrayActividadesInscrito[i] == indiceActividadeBorrar) {
+                arrayActividadesInscrito[i] = 0;
+                bandera = true;
+                break; 
+            }
+        }
+        if (bandera == false) {
+            JOptionPane.showMessageDialog(null, "Non existe unha actividade asignada con ese índice");
+        }
+        
     }
 
 
@@ -120,7 +138,7 @@ public class Socio {
 
 
     public String toStringParaFichero() {
-        return codSocioPrivado + ";" + nomeSocio + ";" + apelidosSocio + ";" + emailSocio + ";" + dataNacementoSocio;
+        return nomeSocio + ";" + apelidosSocio + ";" + emailSocio + ";" + dataNacementoSocio;
     }
 
 

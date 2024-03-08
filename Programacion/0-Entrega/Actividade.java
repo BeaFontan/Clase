@@ -82,7 +82,7 @@ public class Actividade {
 
 
     public String toStringParaFichero() {
-        return codActividadePrivado + ";" + nomeActividade + ";" + horasSemanais + ";" + prezoActividade;
+        return nomeActividade + ";" + horasSemanais + ";" + prezoActividade + ";" + salaActividade;
     }
     
 
