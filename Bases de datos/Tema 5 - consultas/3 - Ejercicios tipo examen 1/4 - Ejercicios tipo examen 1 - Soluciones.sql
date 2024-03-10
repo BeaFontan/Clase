@@ -1,111 +1,203 @@
---1.	Realiza lo que se te pide en los siguientes apartados sobre la BD que se te indica
---al principio del apartado. Si no se indica ninguna escoge la más conveniente para la 
---realización correcta del apartado.
---IMPORTANTE: Todas las columnas de los resultados deben tener un NOMBRE.
+-- SOLUCIONES Consultas tipo examen
 
---1.1.	BD EMPRESA.
---Consulta con 4 columnas: el número identificador, el nombre completo (apellido 1 apellido2, nombre), 
---los días que lleva contratado en la empresa y la cuota de ventas, de cada uno de los empleados que 
---están asignados a algún cliente. Si algún vendedor no tiene cuota asignada deberá aparecer un 0 en su lugar.
---En el resultado deben aparecer primero los empleados que lleven menos días contratados.
---IMPORTANTE: No puedes usar ningún tipo de join ni tampoco una consulta compuesta.
-USE EMPRESA;
+--1.1. BD EMPLEADOS. Consulta que devuelve en una primera columna la descripciï¿½n y el precio de todos los
+--productos, separados por una barra invertida (por ejemplo ARTICULO TIPO2 \ 76), y en una segunda
+--columna el gasto total en pedidos de ese producto. Entre la descripciï¿½n y la barra invertida sï¿½lo puede
+--existir un espacio en blanco y entre la barra invertida y el precio otro espacio en blanco.
+--En el resultado sï¿½lo podrï¿½n aparecer aquellos productos cuyo gasto medio es menor de 3000ï¿½.
+--La primera columna se llamarï¿½ Producto y la segunda Gasto total.
+--Si de algï¿½n producto no se han realizado pedidos en la columna del Gasto total deberï¿½ aparecer la
+--frase PRODUCTO QUE TODAVIA NO SE HA VENDIDO.
+--La columna del gasto total deberï¿½ mostrar los importes con 6 dï¿½gitos como mï¿½ximo en la parte entera
+--y 2 decimales.
+--Deberï¿½n aparecer primero en el resultado los productos con mayor gasto total.
+use EMPLEADOS;
 GO
-SELECT e.numero, 
-       rtrim(e.ape1+' '+isnull(ape2,''))+', '+nome as nombre_completo, 
-       e.ape1+isnull(' '+ape2,'')+', '+nome as nombre_completov2, -- otra solución sin rtrim para el nombre completo
-       concat(e.ape1,isnull(' '+e.ape2,''), ', ', e.nome) as nome_completov3, -- otra solución con concat para el nombre completo
-       datediff(day,e.data_contrato, getdate()) as dias_contratado, isnull(e.cota_de_vendas,0) as ventas_a_alcanzar 
-FROM EMPREGADO e
-WHERE e.numero in (SELECT num_empregado_asignado FROM CLIENTE)
-ORDER BY dias_contratado;
+select rtrim(pr.descripcion)+' \ '+CAST(pr.precio as varchar(18)) as Producto, 
+      -- isnull(cast(cast(SUM(pe.importe) as numeric(8,2)) as varchar(37)),
+      --'PRODUCTO QUE TODAVIA NO SE HA VENDIDO') as 'Gasto total'
+	   isnull(convert(varchar(37),convert(numeric(8,2),SUM(pe.importe))),
+	          'PRODUCTO QUE TODAVIA NO SE HA VENDIDO') as "Gasto total"
+from PRODUCTO pr LEFT JOIN PEDIDO pe
+on pr.ID_FAB=pe.fab and
+   pr.ID_PRODUCTO=pe.PRODUCTO
+group by pr.ID_FAB, pr.ID_PRODUCTO, pr.DESCRIPCION, pr.PRECIO
+having isnull(AVG(pe.importe),0)<3000
+--having AVG(pe.importe)<3000
+order by SUM(pe.importe) desc;
+--order by 'Gasto total' desc; Ordena alfï¿½beticamente
 
---1.2.	BD EMPRESA.
---Consulta que devuelva la lista de los pedidos que hace más de 50 meses 
---y menos de 60 meses que se han realizado.
---IMPORTANTE: Para hacer la comprobación de los meses que hace que se ha 
---realizado el pedido no puedes usar ni la cláusula IN, ni OR ni tampoco  
---los operadores >=, >, <,  <=, !=, = <>.
---En el resultado deberá aparecer el número del pedido y en una segunda 
---columna la fecha del pedido con formato dd-mm-aaaa 
---(Fíjate que se separan con guiones y llámale FechaPed).
---Deben aparecer los pedidos más recientes primero. Asegúrate que aparecen bien ordenados.
-USE EMPRESA;
+
+--1.2. BD EMPLEADOS. Consulta que devuelva la lista de los pedidos que hace mï¿½s de 24 aï¿½os y menos de 28
+--aï¿½os que se han realizado.
+--IMPORTANTE: Para hacer la comprobaciï¿½n de los aï¿½os que hace que se ha realizado el pedido no puedes
+--usar ni la clï¿½usula IN, ni OR ni tampoco los operadores >=, >, <=, !=, = <>.
+--En el resultado deberï¿½ aparecer el nï¿½mero del pedido, en una segunda columna la fecha del pedido
+--con formato dd-mm-aaaa (Fï¿½jate que se separan con guiones y llï¿½male FechaPed) y en una tercera
+--columna de nombre Unidades aparecerï¿½ lo siguiente en funciï¿½n del nï¿½mero de unidades solicitadas en el
+--pedido:
+--- Si la cantidad de unidades del pedido es menor que 7 aparecerï¿½ el texto POCAS.
+--- Si la cantidad de unidades del pedido es mayor o igual que 7 y menor que 30 aparecerï¿½ el texto
+--NORMAL.
+--- Si la cantidad de unidades del pedido es mayor o igual que 30 aparecerï¿½ el texto MUCHAS.
+--Deben aparecer los pedidos mï¿½s recientes primero. Asegï¿½rate que aparecen bien ordenados.
+USE EMPLEADOS;
 GO
-SELECT numero, convert(char(10),data_pedido, 105) as FechaPed
-FROM PEDIDO
-WHERE datediff(month, data_pedido, getdate()) between 105 AND 115 --Para probar que devuelva algo cambiad los valores (105-115, a marzo del 2024 devuelve 8 pedidos)
-ORDER BY data_pedido DESC;
+select NUM_PEDIDO, convert(char(10),fecha_pedido,105) as FechaPed, 
+	   CASE 
+		when cant<7 then 'POCAS'
+		when cant between 7 and 29 then 'NORMAL'
+		when cant>=30 then 'MUCHAS'
+	   END as Unidades
+from PEDIDO
+--where DATEDIFF(year, fecha_pedido, getdate()) between 25 and 27
+where DATEDIFF(year, fecha_pedido, getdate()) between 30 and 34
+--order by FechaPed desc;--Pq ordena caracteres e non datas
+order by fecha_pedido desc;
 
---1.3.	BD EMPRESA. 
---Utiliza una consulta compuesta para obtener el código de los productos de los que no se han hecho pedidos. 
---En el resultado deben aparecer el identificador del fabricante y el del producto en una única columna de 
---nombre PRODUCTOS SIN PEDIDO, por ejemplo aparecerá ASUAK47A. El resultado deberá aparecer ordenado alfabéticamente.
---IMPORTANTE: El nombre de la columna debe ser exactamente el que se indica, incluidos los espacios en blanco.
-USE EMPRESA;
+
+--1.3. BD EMPLEADOS. Consulta que devuelva la ciudad de cada una de las oficinas de la BD, su regiï¿½n en
+--minï¿½sculas y en otra tercera columna el importe del pedido mï¿½s barato de la oficina. Ten en cuenta que
+--un pedido es de una oficina si ha sido realizado por un representante de ventas que trabaja en esa oficina.
+--Sï¿½lo se mostrarï¿½n las oficinas con objetivo de ventas superior a 500000, y que ademï¿½s el pedido con
+--mayor importe (pedido de importe mï¿½ximo) no supera los 30000ï¿½.
+--Si existiese alguna oficina que no ha vendido nada, no aparecerï¿½ en el resultado.
+USE EMPLEADOS;
+
+select o.ciudad, lower(o.region) as region, min(pe.importe) as pedido_minimo
+from oficina o inner join repventas r on o.OFICINA=r.OFICINA_REP 
+               inner join PEDIDO pe on r.NUM_EMPL=pe.REP
+where o.OBJETIVO>500000
+group by o.OFICINA, o.CIUDAD, o.region
+having max(pe.importe) <= 30000;
+
+
+--1.4. BD EMPRESA. Consulta que devuelva el nombre de cada cliente y al lado la 
+--media de unidades compradas en sus pedidos, sï¿½lo para aquellos clientes cuyo 
+--empleado asignado/vendedor trabaje en una oficina de la regiï¿½n oeste. 
+--Si el cliente no ha comprado nada como media de unidades deberï¿½ aparecer 0.
+--La columna de las unidades medias tendrï¿½ 4 dï¿½gitos como mï¿½ximo en la parte entera y 1 decimal.
+--En el resultado deberï¿½n aparecen primero los clientes que tengan mayor nï¿½mero de unidades medias.
+use empresa;
+--NOTA: Si convertimos a numeric(5,1) nos da un error de desbordamiento aritmï¿½tico porque
+--hay medias que son superiores al mayor nï¿½mero que se puede representar con un numeric(5,1)
+--que serï¿½a 9999,9
+select c.nome, convert(numeric(7,1),isnull(avg(p.cantidade),0)) as unidades_medias 
+from cliente c left join pedido p on c.numero=p.num_cliente
+     inner join empregado e on c.num_empregado_asignado=e.numero 
+	 inner join sucursal s on e.id_sucursal_traballa=s.identificador
+where s.rexion='LESTE'
+group by c.numero, c.nome
+order by unidades_medias desc; -- En este caso podemos ordenar por el alias 
+-- Si cambiamos a regiï¿½n LESTE aparecerï¿½n clientes que no tienen pedidos
+-- El cliente INFOR REPARACIONS no aparece porque no tiene empleado asignado
+
+
+--1.5. BD EMPRESA. Consulta que devuelva el total de productos de cada fabricante. 
+--En el resultado aparecerï¿½n dos columnas: el nombre del fabricante y el total de 
+--productos del fabricante.
+--Deberï¿½ mostrarse en primer lugar aquellos fabricantes que tienen mï¿½s productos. 
+--Si varios fabricantes tienen el mismo nï¿½mero de productos deberï¿½n aparecer ordenados 
+--alfabï¿½ticamente por nombre, por ejemplo:
+--ASUS
+--10
+--LOGITECH
+--5
+--TOSHIBA
+--5
+use empresa;
+select f.nome, count(pr.cod_fabricante) as total_productos
+from fabricante f left join produto pr on f.codigo=pr.cod_fabricante
+group by f.codigo,  f.nome
+order by total_productos desc, f.nome;
+
+--1.6. BD EMPRESA. Sin usar joins ni subconsultas realiza la consulta que muestre la descripciï¿½n y 
+--el precio de los productos de los que todavï¿½a no se han hecho pedidos. En el resultado aparecerï¿½n 
+--primero los productos mï¿½s caros.
+use empresa;
+--NOTA: Usaremos una consulta compuesta. Podï¿½is usar join en las consultas de la consulta compuesta
+select pr.descricion, pr.prezo
+from produto pr
+except
+select pr.descricion, pr.prezo
+from produto pr inner join pedido pe on pr.cod_fabricante+pr.identificador=pe.cod_fabricante+pe.id_produto
+order by pr.prezo desc;
+
+--1.7. BD EMPRESA. Realiza la consulta anterior usando join.
+use empresa;
 GO
-SELECT cod_fabricante+identificador as "PRODUCTOS SIN PEDIDO" -- El nombre de la columna resultante se indica siempre en la primera SELECT, 
-FROM PRODUTO												  -- no es necesario poner el nombre es las demás consultas
-EXCEPT
-SELECT cod_fabricante+id_produto
-FROM PEDIDO
-ORDER BY "PRODUCTOS SIN PEDIDO";
+select pr.descricion, pr.prezo
+from produto pr left join pedido pe on pr.cod_fabricante+pr.identificador=pe.cod_fabricante+pe.id_produto
+where pe.cod_fabricante is null --Hacemos un left join y buscamos aquellos que en una columna PK de pedido estï¿½ tomando valores nulos
+order by pr.prezo desc;
+
+--1.8. BD EMPRESA. Listado de las sucursales cuyo objetivo es mayor que 300.000 y en ellas trabajan 
+--empleados cuyo primer apellido acaba por Z o su segundo apellido tiene mï¿½s de 5 letras. 
+--En el resultado aparecerï¿½ el identificador de la oficina separado de la ciudad por un guiï¿½n 
+--medio, por ejemplo 11-BARCELONA.
+use EMPRESA;
+
+select distinct convert(varchar(15),s.identificador)+'-'+s.cidade as oficina
+       --concat(s.identificador,'-',s.cidade) si usamos concat no es necesario convertir a varchar
+from SUCURSAL s inner join empregado e on s.identificador=e.id_sucursal_traballa
+where s.obxectivo>300000 and (e.ape1 like '%Z' or len(e.ape2)>5);  
+      --Es muy importante el uso de  parï¿½ntesis en el or del where ya que si no ponemos parï¿½ntesis 
+	  --ejecuta antes el and que el 
+
+--1.9. BD EMPRESA. Consulta que devuelva el nombre y apellidos de cada empleado (con formato 
+--nombre ape1 ape2) y en una segunda columna el nï¿½mero identificador del director de la oficina 
+--en la que trabaja el empleado. Ordena el resultado alfabï¿½ticamente por apellidos y nombre del empleado.
+use EMPRESA;
+
+select e.nome+' '+e.ape1+' '+isnull(e.ape2,'') as nombre_emple, s.num_empregado_director
+       -- serï¿½a mejor hacer un isnull porque el campo num_empregado director admite Nulos
+	   --e.nome+' '+e.ape1+' '+isnull(ape2,'') as nombre_emple, isnull(convert(varchar(20),s.num_empregado_director),'oficina sin director') as director_ofi
+from empregado e inner join sucursal s 
+     on e.id_sucursal_traballa=s.identificador--Hacemos inner join porque id_sucursal_traballa es NOT NULL
+order by e.ape1, e.ape2, e.nome;
+
+--1.10. BD EMPRESA. Repite la consulta anterior pero en la segunda columna en lugar de aparecer 
+--el nï¿½mero identificador del director de la oficina deberï¿½ aparecer el nombre del director con formato nombre ape1 ape2.
+use EMPRESA;
+
+select s.identificador, e.nome+' '+e.ape1+' '+isnull(e.ape2,'') as nombre_emple, 
+      isnull(dir.nome+' '+dir.ape1+' '+isnull(dir.ape2,''),'SIN DIRECTOR') as  director_ofi
+       -- serï¿½a mejor hacer un isnull porque hay oficinas que puede que no tengan director
+	   -- puedes probar la consulta aï¿½adiendo una sucursal sin director y despuï¿½s un empleado que trabaje en esa sucursal
+from empregado e inner join sucursal s 
+     on e.id_sucursal_traballa=s.identificador--Hacemos inner join porque id_sucursal_traballa es NOT NULL
+	 left join empregado dir on s.num_empregado_director=dir.numero
+order by e.ape1, e.ape2, e.nome;
 
 
---1.4.	BD EMPRESA.
---Consulta que devuelva el nombre de cada uno de los empleados de la BD, su fecha de contrato 
---con formato dd/mm/aaaa y en otra tercera columna el importe medio de los pedidos del 
---empleado (o llamado también vendedor).  
---Si existiese algún vendedor (empleado) que no ha vendido nada, en la columna del importe medio deberá 
---aparecer la frase ‘ESTE EMPLEADO NO TIENE PEDIDOS’. 
---Sólo se mostrarán los vendedores(empleados)  cuyo pedido más caro no supere los 20000€ de importe y
---que además, hayan sido contratados un día 1, 6 ó 26 de cualquier mes y de cualquier año. 
---En la columna del importe medio se deberán mostrar los importes con 8 dígitos como máximo 
---en la parte entera y 2 decimales.
---Deberán aparecer primero en el resultado los empleados con mayor importe medio. 
---En caso de que hubiese varios vendedores con el mismo importe medio, deberán aparecer primero 
---los que tienen mayor antigüedad en la empresa. Asegúrate que aparecen bien ordenados.
-USE EMPRESA;
-GO
-SELECT e.nome, convert(char(10),e.data_contrato,103) as FechaContrato, 
-       isnull(convert(varchar(30),convert(numeric(10,2),avg(p.cantidade*pr.prezo))), 'ESTE EMPLEADO NO TIENE PEDIDOS') as MediaPedidos
-FROM (EMPREGADO e LEFT JOIN PEDIDO p ON e.numero=p.num_empregado) LEFT JOIN PRODUTO pr on pr.cod_fabricante=p.cod_fabricante AND pr.identificador=p.id_produto
-WHERE day(e.data_contrato) IN (1,6,26)
-GROUP BY e.numero,e.nome, e.data_contrato
-HAVING isnull(max(p.cantidade*pr.prezo),0)<=20000
-ORDER BY avg(p.cantidade*pr.prezo) DESC, data_contrato; -- Ojo con las ordenaciones si las columnas se han convertido a varchar no ordenará bien las cantidades
-                                                        -- porque lo considera caracteres. Por eso no ordenamos por MediaPedidos sino por avg(p.cantidade*pr.prezo)
+--1.11. BD EMPRESA. Listado del nombre de todos los clientes siempre que haya alguno cuyo lï¿½mite 
+--de crï¿½dito supere los 65.000ï¿½
+use empresa;
+select c.nome
+from cliente c
+where exists (select cl.numero
+              from CLIENTE cl
+			  where cl.limite_de_credito > 65000); -- Tiene que devolver los 21 clientes, ya que sï¿½ que 
+			                                       -- existen clientes con lï¿½mite de crï¿½dito superior a 65000
 
+--1.12. BD EMPRESA. En una ï¿½nica columna deberï¿½n aparecer todas las ciudades de las sucursales y 
+--todas las regiones ordenadas alfabï¿½ticamente. La columna se llamarï¿½ SUCURSALES Y REGIONES 
+--(respeta los espacios en blanco del nombre de la columna).
+use empresa;
 
---1.5.	BD SOCIEDAD CULTURAL. 
---Consulta que devuelva el 50% de los socios cuyo nombre de pila tiene por segunda letra una A y 
---que pagan cuotas cuyo importe sea mayor o igual que 29 y menor o igual que 100. La consulta 
---mostrará en 5 columnas el número de socio, el nombre de pila, el primer apellido, el número de 
---caracteres del primer apellido, el nombre del mes en que nació 
---y el importe de la cuota que paga. 
---El nombre del mes en que nació y el importe de la cuota aparecerán en una única columna separados 
---por un guión (-). Esta columna se llamará MesNac-Cuota (con un guión medio).
---	El resultado deberá aparecer ordenado por mes de nacimiento, es decir, los de enero 
---	aparecerán antes que los de febrero, los de febrero antes 
---que los de marzo, y así sucesivamente.
---IMPORTANTE: 
---•	Para resolver la búsqueda de la letra A en la segunda posición del nombre, deberás emplear 
---una función integrada en el gestor. No puedes usar el predicado LIKE. 
---•	Para hacer la comprobación del importe de las cuotas que paga cada socio no puedes usar ni
---la cláusula IN, ni OR ni tampoco  los operadores >=, >, <=, !=, = <>.
-USE SOCIEDADE_CULTURAL;
-GO
-SELECT top 50 PERCENT s.numero, 
-       s.nome, s.ape1, len(s.ape1) as long_ape1, 
-       datename(month, s.data_nac)+'-'+convert(varchar(19),c.importe) as "MesNac-Cuota"
-FROM SOCIO s INNER JOIN COTA c ON s.cod_cuota=c.codigo
-WHERE substring(s.nome, 2,1)='A' AND
-      c.importe BETWEEN 29 AND 100
---ORDER BY month(s.data_nac)
-order by datepart(month,s.data_nac);-- tb se podría hacer con month(s.data_nac)
+select cidade as "SUCURSALES Y REGIONES"
+from SUCURSAL
+union
+select rexion
+from SUCURSAL
+order by "SUCURSALES Y REGIONES";
 
+--1.13. BD EMPRESA. Usando una consulta compuesta devuelve el nombre de los clientes que hicieron pedidos.
+use empresa;
 
-
-
-
+select c.nome
+from cliente c
+intersect
+select cl.nome
+from pedido p inner join cliente cl on p.num_cliente=cl.numero;
 

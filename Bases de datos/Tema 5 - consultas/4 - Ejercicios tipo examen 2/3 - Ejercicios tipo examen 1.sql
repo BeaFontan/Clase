@@ -159,7 +159,8 @@ from PRODUTO p
 except
 select pr.descricion, pr.prezo
 from PEDIDO pe join PRODUTO pr
-	on pe.cod_fabricante = pr.cod_fabricante and pe.id_produto = pr.identificador;
+	on pe.cod_fabricante = pr.cod_fabricante and pe.id_produto = pr.identificador
+order by p.prezo desc;
 
 select * from pedido;
 
@@ -171,8 +172,10 @@ use EMPRESA_BEA;
 select pr.descricion, pr.prezo
 from PRODUTO pr left join PEDIDO pe
 	on pr.cod_fabricante = pe.cod_fabricante and pr.identificador = pe.id_produto
+where pe.cod_fabricante is null
+order by pr.prezo desc;
 
-select * from PRODUTO;
+select * from PEDIDO;
 
 
 --1.8. BD EMPRESA. Listado de las sucursales cuyo objetivo es mayor que 300.000 y en ellas trabajan 
@@ -182,6 +185,12 @@ select * from PRODUTO;
 
 use EMPRESA_BEA;
 
+select distinct convert(varchar(15), s.identificador)+'-'+ s.cidade as 'id_oficina id_ciudad'
+from SUCURSAL s inner join EMPREGADO e
+	on s.identificador = e.id_sucursal_traballa
+where s.obxectivo > 300000 and
+	 (e.ape1 like '%Z' or len(e.ape2) > 5) ;
+
 
 --1.9. BD EMPRESA. Consulta que devuelva el nombre y apellidos de cada empleado (con formato 
 --nombre ape1 ape2) y en una segunda columna el número identificador del director de la oficina en 
@@ -190,6 +199,15 @@ use EMPRESA_BEA;
 
 use EMPRESA_BEA;
 
+select e.nome + ' ' + e.ape1 + ' ' + isnull(e.ape2,'') as empregado, 
+su.num_empregado_director as director
+from EMPREGADO e inner join SUCURSAL su
+	 on e.id_sucursal_traballa = su.identificador
+order by e.ape1, e.ape2, e.nome;
+
+
+select * from EMPREGADO;
+select * from SUCURSAL;
 
 --1.10. BD EMPRESA. Repite la consulta anterior pero en la segunda columna en lugar de aparecer el 
 --número identificador del director de la oficina deberá aparecer el nombre del director con formato 
@@ -197,11 +215,29 @@ use EMPRESA_BEA;
 
 use EMPRESA_BEA;
 
+select e.nome + ' ' + e.ape1 + ' ' + e.ape2 as empregado, 
+dir.numero, dir.nome + ' ' + dir.ape1 + ' ' + dir.ape2 as director
+from EMPREGADO e inner join SUCURSAL su on e.id_sucursal_traballa = su.identificador
+				 left join EMPREGADO dir on su.num_empregado_director = dir.numero
+order by e.ape1, e.ape2, e.nome;
+
+
+select s.identificador, e.nome+' '+e.ape1+' '+isnull(e.ape2,'') as nombre_emple, 
+      isnull(dir.nome+' '+dir.ape1+' '+isnull(dir.ape2,''),'SIN DIRECTOR') as  director_ofi
+from empregado e inner join sucursal s on e.id_sucursal_traballa=s.identificador
+				left join empregado dir on s.num_empregado_director=dir.numero
+order by e.ape1, e.ape2, e.nome;
 
 --1.11. BD EMPRESA. Listado del nombre de todos los clientes siempre que haya alguno cuyo límite de 
 --crédito supere los 65.000€
 
 use EMPRESA_BEA;
+
+select c.nome
+from CLIENTE c
+where exists (select cl.numero
+							from CLIENTE cl
+							where cl.limite_de_credito > 65000);
 
 
 --1.12. BD EMPRESA. En una única columna deberán aparecer todas las ciudades de las sucursales y todas 
@@ -210,10 +246,25 @@ use EMPRESA_BEA;
 
 use EMPRESA_BEA;
 
+select s.cidade + ' ' +s.rexion as 'SUCURSALES Y REGIONES'
+from SUCURSAL s
+order by s.cidade, s.rexion;
+
+
+select cidade as "SUCURSALES Y REGIONES"
+from SUCURSAL
+union
+select rexion
+from SUCURSAL
+order by "SUCURSALES Y REGIONES";
 
 
 --1.13. BD EMPRESA. Usando una consulta compuesta devuelve el nombre de los clientes que hicieron 
 --pedidos
-
-use EMPRESA_BEA;
+select c.nome
+from CLIENTE c
+intersect
+select cl.nome
+from PEDIDO p inner join CLIENTE cl
+	on p.num_cliente = cl.numero
 

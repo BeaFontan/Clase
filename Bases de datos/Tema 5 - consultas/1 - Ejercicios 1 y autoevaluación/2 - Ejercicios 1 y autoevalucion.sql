@@ -1071,8 +1071,9 @@ use SOCIEDADE_CULTURAL_BEA;
 --cliente en orde ascendente.
 
 
+use EMPRESA_BEA;
 
---7. Tarefa de consultas complexas optimizadas--------------------------------------------------
+--7. Tarefa de consultas complexas optimizadas-------------------------------------------------
 
 -- Consulta 7.1. Consulta que devolve na primeira columna a descrición dos produtos, e nunha 
 --segunda columna o gasto total en pedidos dese produto. No resultado só poderán aparecer 
@@ -1082,6 +1083,16 @@ use SOCIEDADE_CULTURAL_BEA;
 --número cero.
 --Deberán aparecer primeiro no resultado os produtos con maior gasto total. 
 
+use EMPRESA_BEA;
+
+select p.descricion as 'Producto',
+	 isnull(SUM(pe.cantidade*p.prezo), 0) as Gasto_total
+from PRODUTO p left join PEDIDO pe
+		on p.cod_fabricante = pe.cod_fabricante and p.identificador = pe.id_produto
+group by pe.id_produto, p.descricion, pe.cantidade, p.prezo
+having isnull(SUM(pe.cantidade*p.prezo), 0) < 1000
+order by Gasto_total desc;
+
 
 
 -- Consulta 7.2. Consulta que devolva a lista dos pedidos que hai máis de 12 meses e menos de 
@@ -1090,7 +1101,7 @@ use SOCIEDADE_CULTURAL_BEA;
 --usar nin o predicado IN, nin OR nin tampouco os operadores de comparación >=, >, <=, !=, = 
 --<>.
 --No resultado deberá aparecer o número do pedido, nunha segunda columna FechaPed 
---aparecerá a data do pedido con formato dd-mm-aaaa (separación empregando guións), e 
+--aparecerá a data do pedido con formato dd-mm-aaaa (separación empregando guións), 
 --nunha terceira columna de nome Unidades aparecerá o seguinte en función do número de 
 --unidades solicitadas no pedido:
 --– Se a cantidade de unidades do pedido é inferior a 15 aparecerá o texto POUCAS.
@@ -1100,16 +1111,45 @@ use SOCIEDADE_CULTURAL_BEA;
 --MOITAS.
 --Deben aparecer os pedidos máis recentes primeiro. 
 
+use EMPRESA_BEA
+go
 
+select p.numero,
+	   convert(char(10),p.data_pedido, 105) as FechaPed,
+	   case
+			when p.cantidade < 15 then 'POUCAS'
+			when p.cantidade between 15 and 19 then 'NORMAL'
+			else 'MOITAS'
+			end as Unidades
+from PEDIDO p
+where datediff(month, p.data_pedido, getdate()) between 12 and 25
+order by FechaPed desc;
 
 
 -- Consulta 7.3. Consulta que devolva a cidade en maiúsculas de cada unha das sucursais da 
---BD, a súa rexión en minúsculas e noutra terceira columna de nome pedido_minimo as 
+--BD, a súa rexión en minúsculas 
+
+
+--e noutra terceira columna de nome pedido_minimo as 
 --unidades do pedido con menor número de unidades da sucursal. Ten en conta que un pedido 
 --pertence a unha sucursal se foi realizado por un empregado que traballa nesa sucursal. 
 --Se existise algunha sucursal que non teña vendido nada, non aparecerá no resultado.
 
 
+select upper(s.cidade) as 'CIDADE MAYUSCULA',
+	   lower(s.rexion) as 'rexión minúscula',
+	   min(p.cantidade) as 'pedido minimo'
+from SUCURSAL s inner join EMPREGADO e on s.identificador = e.id_sucursal_traballa
+				join PEDIDO p on e.numero = p.num_empregado
+group by s.identificador, s.cidade, s.rexion;
+
+
+SELECT upper(s.cidade) as cidade, lower(s.rexion) as rexion, 
+ min(p.cantidade) as pedido_minimo
+FROM SUCURSAL s, EMPREGADO e, PEDIDO p
+WHERE s.identificador=e.id_sucursal_traballa AND
+ e.numero=p.num_empregado
+GROUP BY s.identificador, s.cidade, s.rexion;
 
 
 -- Consulta 7.4. Nome completo nunha columna (co formato ape1 ape2, nome) e noutra a data 
@@ -1117,12 +1157,16 @@ use SOCIEDADE_CULTURAL_BEA;
 --12, 19 ou 20 de calquera mes e de calquera ano. Importante: Non se pode usar o operador 
 --OR nin a función day para resolver a consulta.
 
+select  rtrim(e.ape1+ ' ' +isnull(e.ape2, '')) + ', ' + e.nome as 'nome completo',
+		convert(varchar(10),e.data_contrato,103)
+from EMPREGADO e
+where datepart(day,e.data_contrato) in (12,19,20);
+
 
 
 -- Consulta 7.5. Executa no servidor a seguinte instrución e comproba que foi agregado un 
 --produto novo coa descrición PROBA_AVALIACION.
---INSERT INTO PRODUTO 
---(cod_fabricante, identificador, descricion, prezo, existencias)
+--INSERT INTO PRODUTO (cod_fabricante, identificador, descricion, prezo, existencias)
 --VALUES ('ASU', '41777', 'PROBA_AVALIACION', 300, 40);
 --Unha vez comprobado que a nova fila está na táboa, realiza a consulta que devolve o número 
 --total de produtos cuxa descrición contén algún dos seguintes tres caracteres: / (barra 
@@ -1133,13 +1177,26 @@ use SOCIEDADE_CULTURAL_BEA;
 --instrución:
 --DELETE FROM PRODUTO WHERE descricion='PROBA_AVALIACION';
 
-
-
+select count(p.identificador) 
+from PRODUTO p
+WHERE p.descricion LIKE '%\/%' ESCAPE '\' OR
+ p.descricion LIKE '%\_%' ESCAPE '\' OR
+ p.descricion LIKE '%-%';
+ 
 
 
 -- Consulta 7.6. Número, data e cantidade, dos pedidos con maior número de unidades. No 
 --resultado aparecerán primeiro os pedidos máis antigos.
 
+use EMPRESA_BEA
+go
+select p.numero, p.data_pedido, p.cantidade as pedido_mas_cantidad
+from PEDIDO p
+where p.cantidade = (select max(cantidade) from PEDIDO)
+order by p.data_pedido;
+
+
+select * from PEDIDO;
 
 
 
@@ -1149,22 +1206,41 @@ use SOCIEDADE_CULTURAL_BEA;
 --mes en que foi contratado. Para resolver a busca da letra A na segunda posición do primeiro 
 --apelido, deberase empregar unha función integrada no xestor.
 
-
+select top 25 percent e.numero, e.nome, e.ape1, len(e.ape1) as carc_ape1, datename(month, data_contrato) as mes_contradado
+from EMPREGADO e
+where substring(e.ape1, 2,1) in ('A')
 
 
 -- Consulta 7.8. Descrición dos produtos dos que non se fixeron pedidos. Para obter o 
 --resultado non se pode empregar ningunha combinación externa, nin a palabra reservada 
 --DISTINCT, nin subconsultas.
+use EMPRESA_BEA
+go
 
+--solución mala porque no dija usar joins
+select pr.descricion
+from PRODUTO pr left join PEDIDO pe
+	 on pr.cod_fabricante = pe.cod_fabricante and pr.identificador = pe.id_produto
+where pe.numero is null;
 
+--solución más o menos buena
+select pr.descricion
+from PRODUTO pr
+except
+select pro.descricion
+from PEDIDO p inner join PRODUTO pro
+	on p.cod_fabricante = pro.cod_fabricante and p.id_produto = pro.identificador;
 
--- Consulta 7.9. Nunha consulta haberá que devolver a hora actual (só a hora, sen minutos), as 
---data e hora actuais con axuste de zona horaria (seguindo o estándar Europeo 
---predeterminado+milisegundos), o nome da linguaxe do servidor e o número máximo de 
---conexións permitidas no servidor.
+--solución de mónica
+SELECT descricion
+FROM PRODUTO
+EXCEPT
+SELECT pr.descricion
+FROM PRODUTO pr, PEDIDO p
+WHERE pr.cod_fabricante=p.cod_fabricante AND
+pr.identificador=p.id_produto;
 
-
-
+--borré la 7.9 sino me daba problemas el programa
 
 -- Consulta 7.10. Nome de cada cliente e ao lado do mesmo as unidades vendidas de media 
 --(columna cantidade) nos seus pedidos, só para aqueles clientes cuxo representante de 
@@ -1173,31 +1249,63 @@ use SOCIEDADE_CULTURAL_BEA;
 --A columna das unidades medias deberá ter 3 díxitos como máximo na parte enteira e 2 
 --decimais.
 --Deberán aparecer primeiro no resultado os clientes con maior número de unidades medias.
+use EMPRESA_BEA
+go
+
+select c.nome, 
+convert(numeric(5,2) , isnull(avg(p.cantidade), 0)) as 'media_unidades'
+from (CLIENTE c left join PEDIDO p on c.numero = p.num_cliente)
+			   inner join EMPREGADO e on c.num_empregado_asignado = e.numero
+where e.titulo in ('RP VENDAS')
+group by c.numero, c.nome
+order by media_unidades desc;
+
+--solución de mónica
+SELECT c.nome, 
+ convert(numeric(5,2),isnull(avg(p.cantidade),0)) as media_unidades
+FROM (CLIENTE c LEFT JOIN PEDIDO p ON c.numero=p.num_cliente) 
+				INNER JOIN EMPREGADO e ON c.num_empregado_asignado=e.numero
+WHERE e.titulo='RP VENDAS'
+GROUP BY c.numero, c.nome
+ORDER BY media_unidades DESC;
 
 
-
-
--- Consulta 7.11. Produto cartesiano de FABRICANTE e PRODUTO. No resultado aparecerán 
---dúas columnas, o nome do fabricante e a descrición do produto. Esta consulta deberá 
---facerse sen empregar no FROM combinacións internas.
-
-
-
-
--- Consulta 7.12. Produto cartesiano de FABRICANTE e PRODUTO. No resultado aparecerán 
---dúas columnas, o nome do fabricante e a descrición do produto. Esta consulta deberá 
---facerse empregando no FROM só combinacións internas.
-
+--borré la 11 y 12 porque no funcionaba
 
 
 -- Consulta 7.13. Nome dos fabricantes dos que non hai produtos na BD.
 
+use EMPRESA_BEA
+go
 
+select f.nome
+from FABRICANTE f
+except
+select fr.nome
+from FABRICANTE fr inner join PRODUTO
+	on cod_fabricante = fr.codigo
+
+SELECT f.nome
+FROM FABRICANTE f LEFT JOIN PRODUTO p
+ ON f.codigo=p.cod_fabricante
+WHERE p.identificador IS NULL;
 
 -- Consulta 7.14. Número identificador e data dos pedidos que teñan 9,7,10 ou 8 unidades e 
 --que foron comprados polo cliente 1108 ou vendidos polo empregado 101.
 
+use EMPRESA_BEA
+go
 
-
+select pe.numero, pe.data_pedido
+from PEDIDO pe
+where (pe.num_cliente=1108 or pe.num_empregado = 101) and pe.cantidade between 7 and 10;
+
 -- Consulta 7.15. Nomes de tódolos clientes e de tódolos fabricantes da BD nunha única 
 --columna. A columna que se chamará empresas, deberá aparecer ordenada alfabeticamente
+use EMPRESA_BEA;
+go
+
+SELECT nome as empresas FROM CLIENTE
+UNION ALL
+SELECT nome FROM FABRICANTE
+ORDER BY nome
