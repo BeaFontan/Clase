@@ -1,28 +1,70 @@
 <?xml version="1.0"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
 
+
     <xs:element name="familias">
+ 
         <xs:complexType>
+
             <xs:sequence>
                 <xs:element name="familia" minOccurs="0" maxOccurs="unbounded">
+                    <!-- Defino los elementos de familia -->
                     <xs:complexType>
                         <xs:sequence>
-                            <xs:element name="padre">
+                            <xs:element name="padres">
                                 <xs:complexType>
-                                    <xs:attribute name="nombre" type="xs:string"></xs:attribute>
+                                    <xs:sequence>
+                                        <xs:element name="padre" minOccurs="0" maxOccurs="2">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="nombre" type="xs:string" minOccurs="1" maxOccurs="1"></xs:element>
+                                                    <xs:element name="apellido" type="xs:string" minOccurs="1" maxOccurs="2"></xs:element>
+                                                    <xs:element name="dni" minOccurs="1" maxOccurs="1">
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:pattern value="\d{2}\.\d{3}\.\d{3}\-[A-Za-z]"></xs:pattern>
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="edad" type="xs:int" minOccurs="1" maxOccurs="1"></xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                            
+
+                                        <xs:element name="madre" type="xs:string" minOccurs="0" maxOccurs="2"></xs:element>
+
+                                    </xs:sequence>
                                 </xs:complexType>
                             </xs:element>
-                            <xs:element name="madre"></xs:element>
-                            <xs:element name="hijo"></xs:element>
-                            <xs:element name="hija"></xs:element>
 
+                            <xs:element name="hijos" type="datos_hijos"></xs:element>
+
+                            
                         </xs:sequence>
-                    </xs:complexType>
 
+
+
+                        <!-- Defino el atributo de familia -->
+                        <xs:attribute name="codigo">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                <xs:pattern value="[A-Z]\d{2}\-\d{2}"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+
+                    </xs:complexType> 
+                    
                 </xs:element>
+
             </xs:sequence>
-        </xs:complexType>   
+
+        </xs:complexType>
+
     </xs:element>
 
 
+
+    
 </xs:schema>
