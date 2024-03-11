@@ -138,6 +138,9 @@ public class Socio {
 
 
     public String toStringParaFichero() {
+        for (int i = 0; i < arrayActividadesInscrito.length; i++) {
+            String datoArray = datoArray + ";" + arrayActividadesInscrito[i];
+        }
         return nomeSocio + ";" + apelidosSocio + ";" + emailSocio + ";" + dataNacementoSocio;
     }
 
