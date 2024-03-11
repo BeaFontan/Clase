@@ -1,21 +1,33 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.nio.charset.StandardCharsets;
+import java.nio.charset.Charset;
 import java.nio.file.Files;
+import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.List;
+
 import javax.swing.JOptionPane;
 
 public class AppClube {
 
+    //Hola Nacho, entrégoche o que me deu tempo a facer. Faltan moitas escepcións e as validacións e controlar alguns funcionamientos do programa como tal. No tempo que tiven foi o mellor que puden facer.
+    //Hubéseme gustado moito que puxeras esta actividade con mais tempo, e non  me refiro a tempo de clase. Gustaríame poder planificala, programala como é debido e que funcione ben, pero no tempo dado e cos exames foi 
+    //imposible facer mais.
+    //Unha actividade que me resultaría moi interesante e de moita utilidade para aprender, convertiuse nun foco de ansiedade dende o meu punto de vista. Xa sabes que non é nada personal.
+
+
+
     static ArrayList<Actividade> listaActividades = new ArrayList<>();
     static ArrayList<Socio> listaSocios = new ArrayList<>();
     static File ficheroActividades;
+    static Path ficheroSocios;
 
     public static void main(String[] args) {
 
@@ -29,8 +41,7 @@ public class AppClube {
                 ficheroActividades.createNewFile();
 
             } catch (IOException e) {
-                System.out.println("No se pudo encontrar el archivo " + e.getMessage());
-                e.printStackTrace();
+                JOptionPane.showMessageDialog(null, "Non se pudo encontrar o arquivo" + e.getMessage());
             }
 
         }//si existe, lo leo y cargo los datos
@@ -38,19 +49,70 @@ public class AppClube {
 
             try (BufferedReader brActividades = new BufferedReader(new FileReader(ficheroActividades))) {
                 String linea = brActividades.readLine();
-                // Leer cada línea del archivo
+         
                 while (linea != null) {
-                    // Dividir la línea en datosAtributos utilizando el separador "|"
                     String[] datosAtributos = linea.trim().split(";");
-                    // Crear una nueva actividad con la información de la línea
-                    Actividade actividad = new Actividade(datosAtributos[0], Integer.parseInt(datosAtributos[1]), Double.parseDouble(datosAtributos[2]), datosAtributos[3]);
-                    // Agregar la actividad al array de actividades
-                    listaActividades.add(actividad);
+                    Actividade datoIndiceArray = new Actividade(datosAtributos[0], Integer.parseInt(datosAtributos[1]), Double.parseDouble(datosAtributos[2]), datosAtributos[3]);
+                    listaActividades.add(datoIndiceArray);
+
+                    linea = brActividades.readLine();
                 }
+
+                brActividades.close();
             } catch (IOException e) {
-                System.out.println("Error al leer el archivo: " + e.getMessage());
+                JOptionPane.showMessageDialog(null, "Erro ó leer o archivo" + e.getMessage());
             }
         }
+
+
+
+        //Leer socios
+        ficheroSocios= Paths.get("socios.txt");
+
+
+        if (!Files.exists(ficheroSocios)) {
+            try {
+
+                Files.createFile(ficheroSocios);
+
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(null, "Erro ó leer o archivo" + e.getMessage());
+                e.printStackTrace();
+            }
+
+        }//si existe, lo leo y cargo los datos
+        else {
+
+            Charset charset = Charset.forName("ISO-8859-1"); // alfabeto Europa occidental
+            try {
+                // non nos preocupamos nin de abrir nin de pechar ningun recurso
+                List<String> lines = Files.readAllLines(ficheroSocios, charset);
+
+                for (int i = 0; i < lines.size(); i += 2) {
+                    String[] datosAtributos = lines.get(i).trim().split(";");
+                    String[] datosArray = lines.get(i+1).trim().split(",");
+
+                    Socio socio = new Socio(datosAtributos[0], datosAtributos[1], datosAtributos[2], Date.valueOf(datosAtributos[3]));
+
+                    listaSocios.add(socio);
+
+                    for (int j = 1; j < datosArray.length; j++) {
+                        int indiceActividad = Integer.parseInt(datosArray[j]);
+                        socio.setarrayActividadesInscrito(indiceActividad);
+                    }
+
+
+                }
+            } catch (IOException e) {
+                JOptionPane.showMessageDialog(null, "Erro escribindo no archivo" + e.getMessage());
+            }
+        }
+
+
+
+
+
+        //Menús
 
         String menu = "Pulsa 1 para xestionar ACTIVIDADES. \n Pulsa 2 para xestionar SOCIOS. \n Pulsa 3 Para asignar ACTIVIDADE a un SOCIO. \n Pulsa 4 Para mostrar as ACTIVIDADES dun SOCIO concreto. \n Pulsa 5 para saír";
         int respuesta;
@@ -144,13 +206,14 @@ public class AppClube {
 
                 case 3:
 
-                    String submenuSocio = "Pulsa + para asignar actividad a un socio. \n Pulsa - para quitar actividad do socio";
+                    String submenuSocio = "Pulsa + para asignar datoIndiceArray a un socio. \n Pulsa - para quitar datoIndiceArray do socio";
                     String respuestaSubmenuSocio = JOptionPane.showInputDialog(submenuSocio);
 
                     int indiceSocio, indiceActividade;
                     boolean bandera = false;
 
                     switch (respuestaSubmenuSocio) {
+                        //caso para añadir datoIndiceArray a un socio
                         case "+":
 
                             indiceSocio = Integer.parseInt(JOptionPane.showInputDialog("Dime o índice do socio para agregar"));
@@ -159,7 +222,7 @@ public class AppClube {
                             for (int i = 0; i < listaSocios.size(); i++) {
                                 //Si encuentra en la lista de socios el indice que me dan
                                 if (listaSocios.get(i).getCodSocioPrivado() == indiceSocio) {
-                                    //accede al array de actividades de socio y añade el índice de la actividad que me dan
+                                    //accedo al array de actividades de socio y añado el índice de la datoIndiceArray que me dan
                                     listaSocios.get(i).setarrayActividadesInscrito(indiceActividade);
                                     bandera = true;
                                 }
@@ -167,13 +230,14 @@ public class AppClube {
 
                             if (bandera == false) {
 
-                                JOptionPane.showMessageDialog(null, "No se ha podido asignar la actividad.");
+                                JOptionPane.showMessageDialog(null, "No se ha podido asignar la datoIndiceArray.");
                             } else {
                                 JOptionPane.showMessageDialog(null, "Actividad agregada al socio.");
                             }
 
                             break;
 
+                            //Caso para borrar datoIndiceArray de un socio
                         case "-":
 
                             indiceSocio = Integer.parseInt(JOptionPane.showInputDialog("Dime o índice do socio para desagregar"));
@@ -189,7 +253,7 @@ public class AppClube {
 
                             if (bandera == false) {
 
-                                JOptionPane.showMessageDialog(null, "No se ha podido eliminar la actividad");
+                                JOptionPane.showMessageDialog(null, "No se ha podido eliminar la datoIndiceArray");
                             } else {
                                 JOptionPane.showMessageDialog(null, "Actividad agregada al socio.");
                             }
@@ -213,8 +277,8 @@ public class AppClube {
                         if (listaSocios.get(i).getCodSocioPrivado() == indiceSocio) {
                             int[] actividadesSocio = listaSocios.get(i).getarrayActividadesInscrito();
                             for (int j = 0; j < actividadesSocio.length; j++) {
-                                if (actividadesSocio[j] != 0) { // Verifica si la actividad está asignada
-                                    // Utiliza actividadesSocio[j] como índice directo para listaActividades
+                                if (actividadesSocio[j] != 0) { 
+                                    
                                     cadeaMostrarActividadesDoSocio += listaActividades.get(actividadesSocio[j] - 1).toString() + "\n";
                                 }
                             }
@@ -313,6 +377,7 @@ public class AppClube {
 
     }
 
+
     //METODOS DE SOCIOS
     public static void mostrarSocios() {
 
@@ -387,10 +452,24 @@ public class AppClube {
 
     };
 
-    //POR HACER
+
     public static void gardarSociosFichero() {
 
+        List<String> lineas = new ArrayList<>();
+        for (Socio socio : listaSocios) {
+            lineas.add(socio.toStringParaFichero());
+            lineas.add(socio.toStringParaFicheroArrayActividades());
+        }
 
+        try (BufferedWriter writer = Files.newBufferedWriter(ficheroSocios)) {
+            for (String linea : lineas) {
+                writer.write(linea);
+                writer.newLine(); 
+            }
+            JOptionPane.showMessageDialog(null, "Os socios foron añadidos ó ficheiro");
+            } catch (IOException e) {
+            System.out.println("Erro gardando os socios " + e.getMessage());
+        }
 
     }
 }

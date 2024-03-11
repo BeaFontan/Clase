@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<futbol xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="def.xsd">
+<futbol xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:noNamespaceSchemaLocation="index.xsd" xmlns:xsi="http:/>/www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="def.xsd">
     <jugador nombre="Alfredo Di Stéfano" codigo="ads"/>
     <jugador nombre="Edison Arantes do Nascimento" codigo="ean" />
     <jugador nombre="Diego Armando Maradona" codigo="dam" />

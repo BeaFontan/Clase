@@ -101,7 +101,7 @@ public class Socio {
             if (arrayActividadesInscrito[i] == 0) {
                 this.arrayActividadesInscrito[i] = indiceActividade;
                 bandera = true;
-                break; // Salir del bucle una vez que se haya asignado la actividad
+                break; 
             }
         }
     
@@ -131,17 +131,23 @@ public class Socio {
     @Override
     public String toString() {
         return "Socio [codSocio=" + codSocioPrivado + ", nomeSocio=" + nomeSocio + ", apelidosSocio=" + apelidosSocio
-                + ", emailSocio=" + emailSocio + ", dataNacementoSocio=" + dataNacementoSocio
-                + ", arrayActividadesInscrito=]";
+                + ", emailSocio=" + emailSocio + ", dataNacementoSocio=" + dataNacementoSocio;
     }
 
 
 
     public String toStringParaFichero() {
-        for (int i = 0; i < arrayActividadesInscrito.length; i++) {
-            String datoArray = datoArray + ";" + arrayActividadesInscrito[i];
-        }
         return nomeSocio + ";" + apelidosSocio + ";" + emailSocio + ";" + dataNacementoSocio;
+    }
+
+    public String toStringParaFicheroArrayActividades(){
+        String numeroActividades = "";
+        for (int i : arrayActividadesInscrito) {
+            numeroActividades= numeroActividades + String.valueOf(i) + ",";
+        }
+        
+        return numeroActividades;
+
     }
 
 

@@ -1,0 +1,3 @@
+Guitarra;10;10.0;jhds
+Violín;10;20.0;Amarillo
+flauta;10;10.0;rosa
