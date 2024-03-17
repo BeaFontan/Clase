@@ -30,6 +30,8 @@ public class AppClube {
 
     public static void main(String[] args) {
 
+        //--------------------------------------------------------------------------JAVA IOOOOOOOOOOOOOO----------------------------------------------------------------------
+
         // cargar fichero actividades
 
         ficheroActividades = new File("actividades.txt");
@@ -64,6 +66,7 @@ public class AppClube {
         }
 
 
+//---------------------------------------------------------------------------------JAVA NIO---------------------------------------------------------------------------------------------------------
 
         //Leer socios
         ficheroSocios= Paths.get("socios.txt");
@@ -81,6 +84,7 @@ public class AppClube {
 
         }//si existe, lo leo y cargo los datos
         else {
+
 
             Charset charset = Charset.forName("ISO-8859-1"); // alfabeto Europa occidental
             try {
@@ -352,6 +356,9 @@ public class AppClube {
 
     }
 
+
+        //--------------------------------------------------------------------------JAVA IOOOOOOOOOOOOOO----------------------------------------------------------------------
+
     public static void gardarActividadesFicheiro() {
 
         try {
@@ -450,6 +457,10 @@ public class AppClube {
         }
 
     };
+
+
+//---------------------------------------------------------------------------------JAVA NIO---------------------------------------------------------------------------------------------------------
+
 
 
     public static void gardarSociosFichero() {
