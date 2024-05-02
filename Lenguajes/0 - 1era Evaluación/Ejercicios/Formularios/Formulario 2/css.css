@@ -1,0 +1,21 @@
+form{
+    border:2px solid rgb(176, 80, 255) ;
+    margin-top: 50px;
+    margin-bottom:50px;
+    margin-left: 500px;
+    margin-right: 500px;
+    padding-left: 100px;
+    padding-right: 100px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+}
+
+input[type=button], input[type=submit], input[type=reset] {
+    background-color: #8c33e0;
+    border: none;
+    color: white;
+    padding: 16px 32px;
+    text-decoration: none;
+    margin: 4px 2px;
+    cursor: pointer;
+  }

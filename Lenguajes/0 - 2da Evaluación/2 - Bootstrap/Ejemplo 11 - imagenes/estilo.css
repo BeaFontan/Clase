@@ -1,0 +1,8 @@
+.row:first-child{
+    border-bottom: 3px solid rgb(88, 88, 235);
+}
+
+.container{background-color: rgb(231, 125, 166);
+    font-weight: bolrder;font-style: italic;
+}
+

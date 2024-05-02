@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="estilo.css">
+        <title>Formulario</title>
+    </head>
+    <body>
+        <div>
+            <form>
+                <label for="nombre">Escribe o teu nome:</label></br>
+                <input type="text" id="nombre" name="nombre" placeholder="Nome" style="width:570px;">
+
+                </br>
+                </br>
+
+                <label for="apelido1">Escribe o teu apelido:</label>
+                <input type="text" id="apelido1" name="apelido1" placeholder="Primeiro apelido" style="width:428px;">
+
+                </br>
+                </br>
+
+                <label for="email">Escribe o teu email:</label>
+                <input type="email" id="email" name="email" placeholder="Escribe o teu email" style="width:438px;">
+
+                </br>
+
+                <p>Canto che gusta html?</p>
+
+                <input type="radio" id="1" name="valoracionHTML" value="1">
+                <label for="1">1</label>
+
+                <input type="radio" id="2" name="valoracionHTML" value="2">
+                <label for="1">2</label>
+
+                <input type="radio" id="3" name="valoracionHTML" value="3">
+                <label for="1">3</label>
+
+                <input type="radio" id="4" name="valoracionHTML" value="4">
+                <label for="1">4</label>
+
+                <input type="radio" id="5" name="valoracionHTML" value="5" checked="checked">
+                <label for="1">5</label>
+        
+
+                </br>
+                </br>
+
+            
+                <input type="checkbox" id="sistemas" name="Sistemas" value="sistemas">
+                <label for="opcion1" style="padding-right: 50px;"><b>Sistemas</b></label>
+
+                <input type="checkbox" id="programacion" name="Programación" value="programacion">
+                <label for="opcion2" style="padding-right: 50px;"><b>Programación</b></label>
+
+                <input type="checkbox" id="base de datos" name="vehicle3" value="bases de datos" >
+                <label for="opcion3" style="padding-right: 50px;"><b>Bases de Datos</b></label>
+
+
+                </br>
+                </br>
+
+
+                <label for="ciclos"><b>Selecciona os ciclos que che gustan</b></label></br></br>
+                <select id="ciclos" name="ciclos" size="5" multiple style="width:600px; height:200px;">
+                <option value="daw">DAW</option>
+                <option value="dam">DAM</option>
+                <option value="asir">ASIR</option>
+                <option value="ia">IA</option>
+                <option value="ciberseguridade">Ciberseguridade</option>
+                </select>
+
+                </br>
+                </br>
+
+                <p><b>Qué contido lle falta a este curso?</b></p>
+                <textarea name="sugerencias" style="width:600px; height:200px;" maxlength="500">
+                </textarea>
+
+                </br>
+                </br>
+
+                <input type="submit" value="Enviar">
+            </form>
+        </div>
+    </body>
+</html>

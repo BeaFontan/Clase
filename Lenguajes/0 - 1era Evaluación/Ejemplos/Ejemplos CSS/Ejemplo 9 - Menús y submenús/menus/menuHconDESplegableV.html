@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<head>
+<title>Menu h con submenu h</title>
+<meta charset="UTF-8">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-size:0;}  
+nav a{
+      text-decoration:none;
+      color:inherit; /* herda a cor do elto que o conteña*/
+      font-size:14px;
+      }
+            
+nav li{
+      display:inline-block;
+      width:150px;
+      height:30px;
+      padding:5px 10px;
+      background-color:#000;
+      border:1px solid #000;
+      text-align:center;
+      color:#fff;
+      position:relative;
+}
+            
+nav li:hover{
+      background-color:#fff;
+      color:#000;
+      }
+            
+nav li>ul{
+      display:none;
+      }
+
+nav li:hover>ul{
+      display:block;
+      position:absolute;
+      top:30px;
+      left:0px;
+}
+
+
+</style>
+</head>
+<body>
+    <body>
+        <header>
+            <nav>
+            <ul>
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#">Quén somos</a>
+                <ul><li><a href="">Historia</a></li>
+                <li><a href="">Prensa</a></li></ul>
+                </li>
+            <li><a href="#">Servizos</a>
+                <ul><li><a href="">Servizo 1</a></li>
+                <li><a href="">Servizo 2</a></li>
+                <li><a href="">Servizo 3</a></li>
+                <li><a href="">Servizo 4</a></li></ul>
+                </li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Contacto</a></li>
+            </ul>
+            </nav>
+        </header>
+        
+        </body>
+        </html>
+</body>
+</html>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<agenda xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="def.xsd">
+
+    <contacto>
+
+        <nombre>Ayuntamiento</nombre>
+        <telefonoFijo>010</telefonoFijo>
+        <telefonoMovil></telefonoMovil>
+
+    </contacto>
+
+    <contacto>
+
+        <nombre>AEmergencias</nombre>
+        <telefonoFijo>112 (Unión European)</telefonoFijo>
+        <telefonoFijo>911 (Estados Unidos)</telefonoFijo>
+        <telefonoMovil>Desconocido</telefonoMovil>
+
+    </contacto>
+
+</agenda>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<title>Exercicio taboas 2 html</title>
+	<meta charset="utf-8">
+	<meta name="author" content="clase">
+	<style>
+		table{
+			border-collapse:collapse;
+			caption-side: bottom;
+		}
+		caption{
+			font-weight:bold;
+			margin-top:16px;
+		}
+		th,td{padding:5px 10px;}
+		td,th{border:1px solid #1c1c1c;text-align:center;}
+
+	</style>
+</head>
+<body>
+
+<table>
+	<caption>Este é o caption da táboa</caption>
+
+		<tr>
+			<td colspan="2">Un,Dous<br/>colspan</td>
+			<!--td>Dous</td-->
+			<td rowspan="2">Tres, Seis<br/>rowspan</td>
+		</tr>	
+		<tr>
+			<td>Catro</td>
+			<td>Cinco</td>
+			<!--td>Seis</td-->
+		</tr>
+		
+
+</table>
+
+
+</body>
+</html>

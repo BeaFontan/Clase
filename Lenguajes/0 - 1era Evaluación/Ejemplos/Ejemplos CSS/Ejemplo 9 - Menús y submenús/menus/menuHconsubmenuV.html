@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<head>
+<title>Menu h con submenu h</title>
+<meta charset="UTF-8">
+<style>
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+    }
+                  
+    li{
+    list-style-type:none;
+    position:relative;
+    width:120px;
+    }
+                
+    li a{
+    text-decoration:none;
+    display:block;
+    padding:5px 10px;
+    width:120px;
+    border:1px solid #000;
+    color:#fff;
+    background-color:#000;
+    }
+    li>ul{
+    display:none;
+    position:absolute;
+    top:0px;
+    left:120px;
+    }
+    
+    li:hover>ul{
+    display:block;
+    }
+            
+    li > ul >li{
+    float:left;
+    }        
+   
+</style>
+</head>
+<body>
+    <body>
+        <header>
+            <nav>
+            <ul>
+            <li><a href="#">Inicio</a></li>
+            <li><a href="#">Quén somos</a>
+                <ul><li><a href="">Historia</a></li>
+                <li><a href="">Prensa</a></li></ul>
+                </li>
+            <li><a href="#">Servizos</a>
+                <ul><li><a href="">Servizo 1</a></li>
+                <li><a href="">Servizo 2</a></li>
+                <li><a href="">Servizo 3</a></li>
+                <li><a href="">Servizo 4</a></li></ul>
+                </li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Contacto</a></li>
+            </ul>
+            </nav>
+        </header>
+        
+        </body>
+        </html>
+</body>
+</html>

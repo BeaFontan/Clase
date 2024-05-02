@@ -1,0 +1,10 @@
+
+		div .verde{ /*Os elementos da clase verde que estaán dentro dun elemento div*/
+			background-color: green;
+			margin: 10px;}
+		
+
+		div p{background-color: blue;} /*Aquí le estoy diciendo que si se encuentra un div, y dentro un p, lo aplique. Una clase tiene más peso que esto.*/
+
+		/*Este estilo aplicase pero a clase verde.*/
+		.verde{background-color: lightgreen;}

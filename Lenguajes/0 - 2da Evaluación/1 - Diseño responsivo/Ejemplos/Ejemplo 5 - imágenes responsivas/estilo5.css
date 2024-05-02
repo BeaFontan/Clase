@@ -1,0 +1,45 @@
+*{box-sizing: border-box;}
+
+.container{
+    margin: 20px auto;
+    width: 100%;
+
+}
+
+
+.container div{
+    float: left;
+    padding: 10px;
+    width: 33.33%;
+}
+
+.peque, .media, .grande{
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    margin: 0px auto;
+}
+
+
+.media, .grande{
+    display: none;
+}
+
+@media screen and (min-width: 576px) {
+    .grande, .peque{
+        display: none;
+    }
+    .media{
+        display: block;
+    }
+}
+
+
+@media screen and (min-width: 992px) {
+    .media, .peque{
+        display: none;
+    }
+    .grande{
+        display: block;
+    }
+}

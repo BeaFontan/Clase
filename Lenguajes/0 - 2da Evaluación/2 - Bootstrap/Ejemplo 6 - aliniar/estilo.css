@@ -1,0 +1,28 @@
+.row div{
+    height: 100px;
+    /* Aquí le doy tamaño a todos */
+}
+
+/* le ponemos la clase al continer */
+.vertical{
+    height: 300px;
+    background-color: rgb(202, 231, 202);
+}
+
+.red{
+    background-color:red;
+
+}
+
+.blue{
+    background-color:blue;
+
+}
+
+.green{
+    background-color: green;
+
+}
+.pink{
+    background-color: rgb(163, 88, 101);
+}

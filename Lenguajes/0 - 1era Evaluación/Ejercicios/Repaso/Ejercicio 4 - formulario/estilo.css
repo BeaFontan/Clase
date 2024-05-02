@@ -1,0 +1,62 @@
+
+
+p{
+    font-style:italic;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+
+label{
+    font-weight: bold;
+
+}
+
+div{
+    margin-left: 10px;
+}
+
+.nombre{
+    margin-left: 60px;
+    width: 250px;
+}
+
+.email{
+    margin-left: 80px;
+    width: 250px;
+}
+
+.numberUnico{
+    margin-left: 70px;
+    width: 30px;
+
+}
+
+.numberVarios{
+    width: 30px;
+
+} 
+
+select{
+    margin-left: 55px;
+    width: 258px;
+    border: 1px solid greenyellow;
+
+}
+
+textarea{
+    margin-left: 60px;
+    width: 280px;
+    height: 100px;
+}
+
+
+.boton{
+    margin-left: 127px;
+    background-color: orange;
+    color:white;
+    height: 30px;
+    border-radius: 5px;
+    border: orange;
+}
+

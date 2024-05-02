@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE productos[
+<!ELEMENT productos (producto+)>
+<!ELEMENT producto EMPTY>
+<!ATTLIST producto cod ID #REQUIRED>
+]>

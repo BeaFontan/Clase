@@ -1,0 +1,53 @@
+.estiloContenedor {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: space-between;
+
+
+
+    max-width: 700px; /* Evita que el contenedor sea más ancho que 1000px */
+    max-height: 2800px;
+
+
+
+}
+
+.estiloContenedor > div {
+    box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.3);
+    width: 300px;
+    height: 500px;
+
+    /* Lo hago flex y luego column */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+
+
+}
+
+.estiloContenedor > div > img {
+    width: 300px;
+    height: 200px;
+}
+
+.estiloContenedor > div > h1{
+
+    text-align: center; 
+
+}
+
+.estiloContenedor > div > p {
+
+    font-size: 20px;
+    padding-left: 10px;
+
+}
+
+.estiloContenedor > div > button {
+    margin: 10px auto; /* Centra el puto botón horizontalmente */
+}
+
+

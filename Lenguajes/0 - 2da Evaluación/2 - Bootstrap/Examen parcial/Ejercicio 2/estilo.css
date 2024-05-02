@@ -1,0 +1,120 @@
+.container{
+    display: grid;
+    max-width: 1200px;
+    grid-template-columns: 33.33% 33.33% 33.33% 33.33%;
+    grid-template-rows: 100px 100px 100px 100px;
+    
+
+}
+
+.amarillo {
+    background-color: yellow;
+    text-align: center;
+}
+
+
+.rojo{
+    background-color: red;
+}
+
+
+.azul{
+    background-color: blue;
+}
+
+.verde{
+    background-color: green;
+}
+
+
+
+/* Tamaño pequeño */
+@media screen and (max-width: 576px){
+    
+.amarillo{
+    grid-row: 1/1;
+    grid-column: 1/4;
+}
+.rojo{
+    grid-row: 2/2;
+    grid-column: 1/4;
+}
+
+.azul{
+    grid-row: 3/3;
+    grid-column: 1/4;
+}
+
+.verde{
+    grid-row: 4/4;
+    grid-column: 1/4;
+}
+
+}
+
+
+/* Tamaño mediano */
+@media screen and (min-width: 576px) and (max-width: 992px){
+    .container{
+        display: grid;
+        grid-template-columns: 33.33% 33.33% 33.33% 33.33%;
+        grid-template-rows: 100px 100px 100px 100px;
+    }
+
+    .amarillo{
+        grid-row: 1/1;
+        grid-column: 1/4;
+        color: green;
+        background-color: orange;
+        text-align: center;
+    }
+    .rojo{
+        grid-row: 2/2;
+        grid-column: 1/2;
+    }
+    
+    .azul{
+        grid-row: 2/2;
+        grid-column: 2/4;
+    }
+    
+    .verde{
+        grid-row: 3/3;
+        grid-column: 1/4;
+    }
+    
+    }
+
+
+    /* Tamaño grande */
+    @media screen and (min-width: 992px){
+        .container{
+            display: grid;
+            max-width: 1200px;
+            grid-template-columns: 33.33% 33.33% 33.33%;
+            grid-template-rows: 100px 100px;
+        }
+    
+        .amarillo{
+            grid-row: 1/1;
+            grid-column: 1/4;
+            color: green;
+            background-color: orange;
+            text-align: center;
+        }
+        .rojo{
+            grid-row: 2/2;
+            grid-column: 1/2;
+        }
+        
+        .azul{
+            grid-row: 2/2;
+            grid-column: 2/2;
+        }
+        
+        .verde{
+            grid-row: 2/2;
+            grid-column: 3/3;
+        }
+        
+        }

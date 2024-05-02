@@ -1,0 +1,43 @@
+
+.flotarLista{
+ 
+float: left; /*Le pongo float a la izquierda para que se pongan unos al lado de los otros*/
+
+}
+
+a:link{
+	color:white;
+	background-color: black;
+	text-decoration: none;
+	text-align: center;
+	padding: 10px;
+	border: 1px solid black;
+
+}
+
+a:visited{
+	color:blue;
+	background-color: black;
+	text-decoration: none;
+	text-align: center;
+	padding: 10px;
+	border: 1px solid black;
+}
+
+a:hover{
+	background-color: white;
+	color: black;
+	text-decoration: none;
+	text-align: center;
+	padding: 10px;
+	border: 1px solid black;
+}
+
+a:active {
+  color: yellow;
+  background-color: transparent;
+  text-decoration: none;
+  text-align: center;
+	padding: 10px;
+	border: 1px solid black;
+}

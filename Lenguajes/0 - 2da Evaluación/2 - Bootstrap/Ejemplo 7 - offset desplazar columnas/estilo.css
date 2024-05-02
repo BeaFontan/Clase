@@ -1,0 +1,13 @@
+.row div h3{
+    border: 3px solid black;
+}
+
+.red{
+    background-color:red;
+    height: 100px;
+}
+
+.blue{
+    background-color:blue;
+    height: 100px;
+}

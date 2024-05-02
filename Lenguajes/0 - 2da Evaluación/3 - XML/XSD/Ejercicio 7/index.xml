@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<musicos xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="def.xsd">
+
+    <musico>
+
+        <apodo>El cura pelirrojillo (Antonio Vivaldi)</apodo>
+        <fechaNacimiento>4 de marzo de 1678</fechaNacimiento>
+
+    </musico>
+
+    <musico>
+
+        <nombre>Johann Sebastian Bach (El viejo peluca)</nombre>
+        <fechaNacimiento>21 de marzo de 16854</fechaNacimiento>
+
+    </musico>
+
+</musicos>

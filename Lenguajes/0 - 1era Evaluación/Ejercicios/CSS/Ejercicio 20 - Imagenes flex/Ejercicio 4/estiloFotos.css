@@ -1,0 +1,28 @@
+.claseFotos{
+
+    margin:auto;
+
+    width: 800px;
+
+    margin-top: 30px;
+
+    display: flex;
+
+    flex-direction: colu;
+
+    flex-wrap: wrap;
+
+    justify-content: space-around;
+
+    align-items: flex-start;
+
+
+}
+
+.claseFotos > img{
+    border: 4px solid black;
+
+    margin-top: 30px;
+    width: 200px;
+ 
+}

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="pelicula">
+
+        <xs:complexType>
+
+            <xs:attribute name="titulo" type="xs:string" use="required"></xs:attribute>
+
+            <xs:Attribute name=""></xs:anyAttribute>
+
+        </xs:complexType>
+
+
+    </xs:element>
+
+
+</xs:schema>

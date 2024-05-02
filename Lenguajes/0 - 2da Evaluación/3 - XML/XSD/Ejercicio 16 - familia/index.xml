@@ -1,0 +1,105 @@
+<<<<<<< HEAD
+<?xml version="1.0" encoding="UTF-8"?>
+<familias xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="familias.xsd">
+    <familia codigo="P01-07">
+        <padres>
+            <padre>
+                <nombre>Antonio</nombre>
+                <apellido>Pérez</apellido>
+                <apellido>Castro</apellido>
+                <dni>32.234.345-D</dni>
+                <edad>35</edad>
+            </padre>
+            <padre>
+                <nombre>Luis</nombre>
+                <apellido>Ramos</apellido>
+                <apellido>López</apellido>
+                <dni>32.556.767-B</dni>
+                <edad>38</edad>
+            </padre>
+        </padres>
+        <hijos>
+
+            <hijo pos="2">
+                <nombre>Clara</nombre>
+                <dni>44.556.767-B</dni>
+                <edad>5</edad>
+            </hijo>
+
+            <hija pos="1">
+                <nombre>Jorge</nombre>
+                <dni>44.556.768-B</dni>
+                <edad>8</edad>
+            </hija>
+        </hijos>
+    </familia>
+
+    <familia codigo="P01-02">
+        <padres>
+            <madre>
+                <nombre>Laura</nombre>
+                <apellido>Porto</apellido>
+                <apellido>Abelleira</apellido>
+                <dni>32.222.333-L</dni>
+            </madre>
+        </padres>
+
+        <hijos>
+            <hija pos="1">
+            <nombre>Carmen</nombre>
+            <edad>2</edad>
+            </hija>
+        </hijos>
+    </familia>
+
+    <familia codigo="P01-04">
+        <padres>
+            <madre>
+                <nombre>Rosa</nombre>
+                <apellido>González</apellido>
+                <apellido>Pombo</apellido>
+                <dni>33.456.765-D</dni>
+                <edad>27</edad>
+            </madre>
+            <padre>
+                <nombre>Manuel</nombre>
+                <apellido>Solmo</apellido>
+                <apellido>Hermida</apellido>
+                <dni>34.846.112-L</dni>
+            </padre>
+        </padres>
+        <hijos>
+            <hija pos="1">
+            <nombre>Julieta</nombre>
+            <edad>2</edad>
+            </hija>
+        </hijos>
+    </familia>
+
+</familias>
+=======
+<?xml version="1.0" encoding="UTF-8" ?>
+<shiporder xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:noNamespaceSchemaLocation="familias.xsd"
+           orderid="123">
+    <orderperson>John Doe</orderperson>
+    <shipto>
+        <name>Receiver Name</name>
+        <address>123 Street Name</address>
+        <city>City</city>
+        <country>Country</country>
+    </shipto>
+    <item>
+        <title>Some Product</title>
+        <note>Optional note</note>
+        <quantity>2</quantity>
+        <price>10.99</price>
+    </item>
+    <!-- You can have multiple <item> elements -->
+    <item>
+        <title>Another Product</title>
+        <quantity>1</quantity>
+        <price>20.50</price>
+    </item>
+</shiporder>
+>>>>>>> refs/remotes/origin/main

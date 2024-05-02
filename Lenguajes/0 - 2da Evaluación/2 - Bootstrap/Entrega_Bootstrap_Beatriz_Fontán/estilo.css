@@ -1,0 +1,163 @@
+*{margin: 0; padding: 0; box-sizing: border-box;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;}
+    
+
+body{background-image: url(Multimedia/log2.avif);}
+
+
+
+/* Estilo para navegador */
+
+.nav-link {
+    color:  rgb(240, 167, 155) !important;
+}
+
+
+
+/* Estilo para foto y vídeo */
+
+.fondoBlanco{
+    background-color: white;
+}
+
+.fotosPrimeras{
+    background-color: white;
+}
+
+video{
+    margin-top: 30px;
+    margin-bottom: 30px;
+    background-color: rgb(240, 167, 155,);
+    height: 450px;
+    width: 500px;
+    border: 1px solid rgb(240, 167, 155);
+}
+
+.fotosPrimeras img{
+    border: 1px solid rgb(240, 167, 155);
+    margin: auto;
+    width: 300px;
+    height: 200px;
+}
+
+
+
+/* Estilo para títulos */
+
+.tituloSeccion{
+    height: 50px;
+    background-color: rgb(240, 167, 155);
+    color:rgb(255, 255, 255);
+    margin-top: 10px;
+    font-size: 30px;
+    margin-bottom: 20px;
+}
+
+
+
+/* Estilo primera sección */
+
+.cuadriculaSeccion div{
+    border: 1px solid rgb(240, 167, 155);
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.imagenSeccion img{
+    border: 1px solid rgb(240, 167, 155);
+}
+
+.imagenSeccion p{
+    padding-top: 10px;
+    text-align: justify;
+}
+
+.imagenSeccion h1{
+    color: rgb(240, 167, 155);
+} 
+
+
+
+/* Estilo formulario */
+
+label{
+   color: rgb(240, 167, 155);
+}
+
+input[type=text], 
+input[type=email], 
+textarea, 
+select {
+    border: 1px solid rgb(240, 167, 155);
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#espacioBoton{
+    margin-top: 10px;
+}
+
+input[type=text]:focus, 
+input[type=email]:focus,
+select:focus {
+    border: 1px solid rgb(240, 167, 155);
+    border-radius: 4px;
+    box-shadow: 0 0 5px rgb(240, 167, 155); 
+} 
+
+#mensajeFormulario{
+    border: 1px solid rgb(240, 167, 155);
+}
+
+#mensajeFormulario:focus {
+    border: 1px solid rgb(240, 167, 155);
+    border-radius: 4px;
+    box-shadow: 0 0 5px rgb(240, 167, 155); 
+    box-sizing: border-box; 
+}
+
+
+
+/* Botón */
+
+.btn-primary[type=submit]{
+    width: 100%;
+    background-color: rgb(240, 167, 155);
+    border: 1px solid rgb(255, 255, 255);
+    margin-bottom: 30px;
+}
+
+.btn-primary:hover[type=submit]{
+    width: 100%;
+    background-color: rgb(240, 167, 155);
+    border: 1px solid rgb(255, 255, 255);
+}
+
+.btn-primary:visited[type=submit]{
+    width: 100%;
+    background-color: rgb(240, 167, 155);
+    border: 1px solid rgb(255, 255, 255);
+}
+.btn-primary:active[type=submit]{
+    width: 100%;
+    background-color: rgb(240, 167, 155);
+    border: 1px solid rgb(255, 255, 255);
+} 
+
+
+
+/* Estilo para redes */
+
+.redes{
+    height: 150px;
+    background-color:  rgb(240, 167, 155);
+}
+
+.redes a{
+    padding-right: 10px;
+}
+
+.redes img{
+    width: 80px;
+    height: 80px;
+}  

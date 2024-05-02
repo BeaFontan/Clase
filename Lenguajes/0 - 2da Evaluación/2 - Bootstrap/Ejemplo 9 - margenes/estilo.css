@@ -1,0 +1,17 @@
+.row div{
+    height: 100px;
+    /* Aquí le doy tamaño a todos */
+}
+
+.container{background-color: lemonchiffon;}
+
+
+.red{background-color:red;}
+
+.blue{background-color:blue;}
+
+.green{background-color: green;}
+
+.yellow{background-color:yellow;}
+
+.black{background-color:black}

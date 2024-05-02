@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="sistemaSolar">
+
+        <xs:complexType>
+
+            <xs:sequence>
+
+                <xs:element name="cuerpo" minOccurs="1" maxOccurs="unbounded">
+
+                    <xs:complexType>
+
+                        <xs:sequence>
+                            
+                            <xs:element name="planeta" type="xs:string" minOccurs="0" maxOccurs="1"></xs:element>
+                            <xs:element name="satelite" type="xs:string" minOccurs="0" maxOccurs="1"></xs:element>
+                            <xs:element name="asteroide" type="xs:string" minOccurs="0" maxOccurs="1"></xs:element>
+
+                        </xs:sequence>
+
+                    </xs:complexType>
+
+                </xs:element>
+            </xs:sequence>
+
+        </xs:complexType>
+
+
+    </xs:element>
+
+</xs:schema>

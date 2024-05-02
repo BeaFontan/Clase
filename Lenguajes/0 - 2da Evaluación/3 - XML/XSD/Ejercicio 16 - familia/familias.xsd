@@ -1,0 +1,125 @@
+<<<<<<< HEAD
+<?xml version="1.0"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+
+    <xs:element name="familias">
+ 
+        <xs:complexType>
+
+            <xs:sequence>
+                <xs:element name="familia" minOccurs="0" maxOccurs="unbounded">
+                    <!-- Defino los elementos de familia -->
+                    <xs:complexType>
+                        <xs:sequence>
+                            <xs:element name="padres">
+                                <xs:complexType>
+                                    <xs:sequence>
+                                        <xs:element name="padre" minOccurs="0" maxOccurs="2">
+                                            <xs:complexType>
+                                                <xs:sequence>
+                                                    <xs:element name="nombre" type="xs:string" minOccurs="1" maxOccurs="1"></xs:element>
+                                                    <xs:element name="apellido" type="xs:string" minOccurs="1" maxOccurs="2"></xs:element>
+                                                    <xs:element name="dni" minOccurs="1" maxOccurs="1">
+                                                        <xs:simpleType>
+                                                            <xs:restriction base="xs:string">
+                                                                <xs:pattern value="\d{2}\.\d{3}\.\d{3}\-[A-Za-z]"></xs:pattern>
+                                                            </xs:restriction>
+                                                        </xs:simpleType>
+                                                    </xs:element>
+                                                    <xs:element name="edad" type="xs:int" minOccurs="1" maxOccurs="1"></xs:element>
+                                                </xs:sequence>
+                                            </xs:complexType>
+                                        </xs:element>
+                                            
+
+                                        <xs:element name="madre" type="xs:string" minOccurs="0" maxOccurs="2"></xs:element>
+
+                                    </xs:sequence>
+                                </xs:complexType>
+                            </xs:element>
+
+                            <xs:element name="hijos" type="datos_hijos"></xs:element>
+
+                            
+                        </xs:sequence>
+
+
+
+                        <!-- Defino el atributo de familia -->
+                        <xs:attribute name="codigo">
+                            <xs:simpleType>
+                                <xs:restriction base="xs:string">
+                                <xs:pattern value="[A-Z]\d{2}\-\d{2}"/>
+                                </xs:restriction>
+                            </xs:simpleType>
+                        </xs:attribute>
+
+                    </xs:complexType> 
+                    
+                </xs:element>
+
+            </xs:sequence>
+
+        </xs:complexType>
+
+    </xs:element>
+
+
+
+    
+=======
+<?xml version="1.0" encoding="UTF-8" ?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+<!-- definition of simple elements -->
+<xs:element name="orderperson" type="xs:string"/>
+<xs:element name="name" type="xs:string"/>
+<xs:element name="address" type="xs:string"/>
+<xs:element name="city" type="xs:string"/>
+<xs:element name="country" type="xs:string"/>
+<xs:element name="title" type="xs:string"/>
+<xs:element name="note" type="xs:string"/>
+<xs:element name="quantity" type="xs:positiveInteger"/>
+<xs:element name="price" type="xs:decimal"/>
+
+
+<!-- definition of attributes -->
+<xs:attribute name="orderid" type="xs:string"/>
+
+<!-- definition of complex elements -->
+<xs:element name="shipto">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element ref="name"/>
+      <xs:element ref="address"/>
+      <xs:element ref="city"/>
+      <xs:element ref="country"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+<xs:element name="item">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element ref="title"/>
+      <xs:element ref="note" minOccurs="0"/>
+      <xs:element ref="quantity"/>
+      <xs:element ref="price"/>
+    </xs:sequence>
+  </xs:complexType>
+</xs:element>
+
+<xs:element name="shiporder">
+  <xs:complexType>
+    <xs:sequence>
+      <xs:element ref="orderperson"/>
+      <xs:element ref="shipto"/>
+      <xs:element ref="item" maxOccurs="unbounded"/>
+    </xs:sequence>
+    <xs:attribute ref="orderid" use="required"/>
+  </xs:complexType>
+</xs:element>
+
+>>>>>>> refs/remotes/origin/main
+</xs:schema>

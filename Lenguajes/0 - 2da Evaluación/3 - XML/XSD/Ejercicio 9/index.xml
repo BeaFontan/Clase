@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<sistemaSolar xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="def.xsd">
+
+    <cuerpo>
+        <planeta>Tierra</planeta>
+    </cuerpo>
+
+    <cuerpo>
+        <satelite>Luna</satelite>
+    </cuerpo>
+
+    <cuerpo>
+        <asteroide>Ceres</asteroide>
+    </cuerpo>
+
+</sistemaSolar>

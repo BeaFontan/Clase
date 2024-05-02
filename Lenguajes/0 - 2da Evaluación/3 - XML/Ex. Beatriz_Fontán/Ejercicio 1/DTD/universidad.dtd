@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE universidad[
+<!ELEMENT universidad (campus+)>
+<!ELEMENT campus (edificio+)>
+<!ELEMENT edificio (habitacion+)>
+<!ELEMENT campus EMPTY>
+<!ELEMENT edificio EMPTY>
+<!ELEMENT habitacion EMPTY>
+<!ATTLIST campus codigo (USC|UDV|UDC) #REQUIRED>
+<!ATTLIST edificio nombre NMTOKEN #REQUIRED>
+<!ATTLIST edificio departamento NMTOKEN #REQUIRED>
+<!ATTLIST habitacion numero CDATA #REQUIRED>
+<!ATTLIST habitacion capcidad CDATA #REQUIRED>
+]>

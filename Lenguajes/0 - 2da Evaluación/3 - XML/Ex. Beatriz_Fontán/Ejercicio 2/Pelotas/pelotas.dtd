@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pelotas[
+<!ELEMENT pelotas (pelota+)>
+<!ELEMENT pelota EMPTY>
+<!ATTLIST pelota color (azul |verde| laranxa) #REQUIRED>
+]>

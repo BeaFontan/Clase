@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE universidad "universidad.dtd">
+    <campus codigo="USC">
+        <edificio nombre="edif1" departamento="apr1">
+            <habitacion numero="2" capacidad= "4"></habitacion>
+            <habitacion numero="23" capacidad= "6"></habitacion>
+        </edificio>
+        <edificio nombre="edif2" departamento="apr6">
+            <habitacion numero="6" capacidad= "4"></habitacion>
+            <habitacion numero="7" capacidad= "2"></habitacion>
+        </edificio>
+    </campus>
+
+    <campus codigo="UDV">
+        <edificio nombre="edif3" departamento="apr8">
+            <habitacion numero="2" capacidad= "4"></habitacion>
+        </edificio>
+
+        <edificio nombre="edif4" departamento="apr5">
+            <habitacion numero="30" capacidad= "2"></habitacion>
+            <habitacion numero="27" capacidad= "5"></habitacion>
+        </edificio>
+    </campus>
+
+</universidad>

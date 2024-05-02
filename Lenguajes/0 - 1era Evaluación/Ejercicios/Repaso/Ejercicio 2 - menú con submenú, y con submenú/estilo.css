@@ -1,0 +1,90 @@
+body{
+    background-color: powderblue;
+}
+
+header{
+    border-bottom: 1px solid blue;
+
+    font-weight: bold;
+    font-size: 30px;
+
+    height: 100px;
+    width: 95%;
+
+    display: flex;
+    justify-content: center;
+    align-items: end;
+    margin:auto;
+
+}
+
+.general a{
+    text-decoration: none;
+    color: rgb(0, 0, 248);
+}
+
+/* Lista general */
+
+.general{
+    list-style: none;
+
+    display: flex;
+    flex-direction: row;
+
+    width: 80%;
+    height: 30px;
+
+
+}
+
+.general li{
+    background-color: rgb(255, 255, 255);
+
+    margin-right: 5px;
+    margin-top: 3px;
+    text-align: center;
+    padding-top: 2px;
+
+    border: 1px solid white;
+    border-radius: 5px;
+
+    width: 100px;
+
+}
+
+.general li a:hover{
+    background-color: greenyellow; 
+
+}
+
+
+
+/* Primer desplegable */
+
+
+.desplegable{
+    display: none;
+
+    position: relative;
+   
+    background-color: aquamarine;
+}
+
+.desplegable li:hover ul{
+    position: relative;
+    display: flex;
+    background-color: rgb(255, 255, 255);
+
+    margin-right: 5px;
+    margin-top: 3px;
+    text-align: center;
+    padding-top: 2px;
+
+    border: 1px solid white;
+    border-radius: 5px;
+
+    width: 100px;
+
+}
+
+

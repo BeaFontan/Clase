@@ -1,0 +1,582 @@
+body{
+  background-color: bisque;
+}
+
+.contenedores {
+    display: flex;
+    flex-direction: column;
+
+  }
+  
+  .contenedores > div {
+
+
+    width: 100px;
+    line-height: 75px;
+
+    border: 1px solid black;
+    background-color: white;
+
+    margin: 5px;
+
+    text-align: center;
+    font-size: 10px;
+  }
+
+
+
+  /* ____________________________________________________________________________________________ */
+
+
+  .contenedores2 {
+    display: flex;
+    flex-direction: row;
+  }
+  
+  .contenedores2 > div {
+
+    width: 100px;
+    line-height: 75px;
+
+    border: 1px solid black;
+    background-color: white;
+
+    margin: 5px;
+
+    text-align: center;
+    font-size: 10px;
+  }
+
+
+  /* ____________________________________________________________________________________________ */
+
+
+  .contenedores3 {
+    display: flex;
+    flex-direction: column-reverse;
+  }
+  
+  .contenedores3 > div {
+
+    width: 100px;
+    line-height: 75px;
+
+    border: 1px solid black;
+    background-color: white;
+
+    margin: 5px;
+
+    text-align: center;
+    font-size: 10px;
+  }
+
+
+/* ____________________________________________________________________________________________ */
+
+
+.contenedores3 {
+  display: flex;
+  flex-direction: column-reverse;
+}
+
+.contenedores3 > div {
+
+  width: 100px;
+  line-height: 75px;
+
+  border: 1px solid black;
+  background-color: white;
+
+  margin: 5px;
+
+  text-align: center;
+  font-size: 10px;
+}
+
+
+  /* ____________________________________________________________________________________________ */
+
+
+.contenedores5 {
+  display: flex;
+
+  /* Con esto pongo las cajas al revés: */
+  flex-direction: row-reverse;
+
+  /* Con esto sítuo las cajas a la izquierda */
+  justify-content: flex-left; 
+
+  /* Con esto le doy color al fondo del contenedor de las cajas */
+  background-color: darkgray;
+  
+}
+
+.contenedores5 > div {
+
+  width: 100px;
+  line-height: 75px;
+
+  border: 1px solid black;
+  background-color: white;
+
+  margin: 5px;
+
+  text-align: center;
+  font-size: 10px;
+}
+
+
+  /* ____________________________________________________________________________________________ */
+
+
+.contenedores6 {
+  display: flex;
+
+  /* Con esto pongo las cajas al revés: */
+  flex-direction: row-reverse;
+
+  /* Con esto sítuo las cajas a la izquierda */
+  justify-content: flex-left; 
+
+  /* Con esto le doy color al fondo del contenedor de las cajas */
+  background-color: darkgray;
+  
+}
+
+.contenedores6 > div {
+
+  width: 100px;
+  line-height: 75px;
+
+  border: 1px solid black;
+  background-color: white;
+
+  margin: 5px;
+
+  text-align: center;
+  font-size: 10px;
+}
+
+
+
+/* ____________________________________________________________________________________________ */
+
+
+.contenedores7 {
+  display: flex;
+
+  /* Con esto le digo que no redimensione al mover la ventana, se quedan igual */
+  flex-wrap: wrap;
+
+
+  /* Con esto le doy color al fondo del contenedor de las cajas */
+  background-color: darkgray;
+  
+}
+
+.contenedores7 > div {
+
+  width: 100px;
+  line-height: 75px;
+
+  border: 1px solid black;
+  background-color: white;
+
+  margin: 5px;
+
+  text-align: center;
+  font-size: 10px;
+}
+
+
+/* ____________________________________________________________________________________________ */
+
+
+.contenedores8 {
+  display: flex;
+
+  /* Con esto le digo que no redimensione al mover la ventana, se quedan igual */
+  flex-wrap: wrap;
+
+  /* Con esto le digo que justique al centro el contenido */
+  justify-content: center;
+
+  /* Con esto le doy color al fondo del contenedor de las cajas */
+  background-color: darkgray;
+
+  
+  
+}
+
+.contenedores8 > div {
+
+  width: 100px;
+  line-height: 75px;
+
+  border: 1px solid black;
+  background-color: white;
+
+  margin: 5px;
+
+  text-align: center;
+  font-size: 10px;
+}
+
+
+  /* ____________________________________________________________________________________________ */
+
+
+  .contenedores9 {
+    display: flex;
+
+    /* Con esto le digo que no redimensione al mover la ventana, se quedan igual */
+    flex-wrap: wrap;
+
+    /* Con esto le digo que justique al centro el contenido */
+    justify-content: center;
+
+
+
+    justify-content: space-between;
+
+    /* Con esto le doy color al fondo del contenedor de las cajas */
+    background-color: darkgray;
+
+    
+    
+  }
+  
+  .contenedores9 > div {
+
+    width: 100px;
+    line-height: 75px;
+
+    border: 1px solid black;
+    background-color: white;
+
+    margin: 5px;
+
+    text-align: center;
+    font-size: 10px;
+  }
+
+
+
+/* ____________________________________________________________________________________________ */
+
+
+.contenedores10 {
+  display: flex;
+
+  /* Con esto le digo que no redimensione al mover la ventana, se quedan igual */
+  flex-wrap: wrap;
+
+  /* Con esto le digo que justique al centro el contenido */
+  justify-content: center;
+
+  justify-content: space-around;
+
+  /* Con esto le doy color al fondo del contenedor de las cajas */
+  background-color: darkgray;
+
+  
+  
+}
+
+.contenedores10 > div {
+
+  width: 100px;
+  line-height: 75px;
+
+  border: 1px solid black;
+  background-color: white;
+
+  margin: 5px;
+
+  text-align: center;
+  font-size: 10px;
+}
+
+/* ____________________________________________________________________________________________ */
+
+
+.contenedores11 {
+  display: flex;
+
+  /* Con esto le digo que no redimensione al mover la ventana, se quedan igual */
+  flex-wrap: wrap;
+
+
+  justify-content: right;
+
+
+  /* Con esto le doy color al fondo del contenedor de las cajas */
+  background-color: darkgray;
+
+  
+  
+}
+
+.contenedores11 > div {
+
+  width: 100px;
+  line-height: 75px;
+
+  border: 1px solid black;
+  background-color: white;
+
+  margin: 5px;
+
+  text-align: center;
+  font-size: 10px;
+}
+
+
+/* ____________________________________________________________________________________________ */
+
+
+.contenedores12 {
+  display: flex;
+
+  height: 500px;
+  width: 100%;
+
+  justify-content: space-between;
+  align-items: center;
+
+  background-color: darkgray;
+  
+}
+
+.contenedores12 > div {
+
+  width: 100px;
+  line-height: 75px;
+
+  border: 1px solid black;
+  background-color: white;
+
+  margin: 5px;
+
+  text-align: center;
+  font-size: 10px;
+}
+
+/* ____________________________________________________________________________________________ */
+
+
+.contenedores13 {
+  display: flex;
+
+  height: 500px;
+  width: 100%;
+
+  justify-content: space-between;
+  align-items: end;
+
+  background-color: darkgray;
+  
+}
+
+.contenedores13 > div {
+
+  width: 100px;
+  line-height: 75px;
+
+  border: 1px solid black;
+  background-color: white;
+
+  margin: 5px;
+
+  text-align: center;
+  font-size: 10px;
+}    
+
+/* ____________________________________________________________________________________________ */
+
+
+.contenedores14 {
+  display: flex;
+  height: 400px;
+  width: 100%;
+
+  align-items: center;  
+  align-content: center;
+
+  /* Con esto nunca cambia su tamaño aunque minimices */
+  flex-wrap: wrap;
+  
+
+  background-color: darkgray;
+  
+}
+
+.contenedores14 > div {
+
+  width: 100px;
+  line-height: 75px;
+
+  border: 1px solid black;
+  background-color: white;
+
+  margin: 5px;
+
+  text-align: center;
+  font-size: 10px;
+
+}    
+
+/* ____________________________________________________________________________________________ */
+
+
+.contenedores15 {
+  display: flex;
+  height: 400px;
+  width: 100%;
+
+  flex-wrap: wrap;
+  align-content: space-between;
+  overflow: scroll;
+  
+
+  background-color: darkgray;
+  
+}
+
+.contenedores15 > div {
+
+  width: 100px;
+  line-height: 75px;
+
+  border: 1px solid black;
+  background-color: white;
+
+  margin: 5px;
+
+  text-align: center;
+  font-size: 10px;
+
+}   
+
+
+/* ____________________________________________________________________________________________ */
+
+
+.contenedores16 {
+  display: flex;
+  height: 200px;
+  width: 100%;
+
+  display: flex;
+  
+  /* Con esto le digo que no redimensione al mover la ventana, se quedan igual */
+  flex-wrap: wrap;
+
+  /* Con esto le digo que justique al centro el contenido */
+  justify-content: center;
+
+  align-items: center;
+
+  /* Con esto le doy color al fondo del contenedor de las cajas */
+  background-color: darkgray;
+  
+}
+
+.contenedores16 > div {
+
+  width: 100px;
+  line-height: 75px;
+
+  border: 1px solid black;
+  background-color: white;
+
+  margin: 5px;
+
+  text-align: center;
+  font-size: 10px;
+}   
+
+/* ____________________________________________________________________________________________ */
+
+
+.contenedores17 {
+  display: flex;
+  height: 200px;
+  width: 100%;
+  
+  /* Con esto le digo que no redimensione al mover la ventana, se quedan igual */
+  flex-wrap:wrap;
+
+  /* Con esto le digo que justique al centro el contenido */
+  justify-content: center;
+
+  align-items: center;
+
+
+
+  /* Con esto le doy color al fondo del contenedor de las cajas */
+  background-color: darkgray;
+  
+}
+
+.contenedores17 > div {
+
+  width: 100px;
+  line-height: 75px;
+
+  border: 1px solid black;
+  background-color: white;
+
+  margin: 5px;
+
+  text-align: center;
+  font-size: 10px;
+}   
+
+
+#contenedorIndividual {
+
+  flex-basis: 50%;
+
+}   
+
+
+/* ____________________________________________________________________________________________ */
+
+
+.contenedores18 {
+  display: flex;
+
+  /* Con esto le digo que no redimensione al mover la ventana, se quedan igual */
+  flex-wrap: wrap;
+
+  /* Con esto le digo que justique al centro el contenido */
+  justify-content: center;
+
+  align-items: center;
+
+  /* Con esto le doy color al fondo del contenedor de las cajas */
+  background-color: darkgray;
+  
+}
+
+.contenedores18 > div {
+
+  width: 100px;
+  line-height: 75px;
+
+  border: 1px solid black;
+  background-color: white;
+
+  margin: 5px;
+
+  text-align: center;
+  font-size: 10px;
+}   
+
+
+#contenedorIndividual2 {
+
+  flex-basis: 50%;
+
+}   

@@ -1,0 +1,65 @@
+/* Formato general */
+*{margin:0;
+padding:0;
+
+/* Recalcula los paddings dentro de cajas para que no desborde */
+box-sizing: border-box; 
+}
+
+
+li{
+    list-style-type: none;
+    position: relative;
+    width: 120px;
+    float: left;
+
+}
+
+/* Estilo para los links */
+li a{
+    text-decoration: none;
+    color: white;
+    display: inline-block;
+    background-color: black;
+    padding: 5px 10px;
+    width: 120px;
+    height: 30px;
+    border: 1px solid #000;
+    text-align: center;
+
+}
+
+li a:hover{
+    color:#000;
+    background-color: #fff;
+}
+
+/* Este es todos los ul que estén dentro de un li y que estén dentro de un nav */
+nav li ul{
+    /* con este display ocultas */
+    display: none; 
+
+    /* Con esta posición, le dices que es desde la posición absoluta, por la izquierda 0 px y por la derecha 30 px */
+    position: absolute;
+        left: 0px;
+        top: 30px;
+
+
+}
+
+nav li:hover ul {
+    /* con este display muestras en bloque cuando pases el ratón por encima  */
+    display: inline-flex;
+}
+
+
+
+
+
+
+
+
+
+
+
+
