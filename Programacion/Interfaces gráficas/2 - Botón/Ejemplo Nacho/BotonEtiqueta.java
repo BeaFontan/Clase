@@ -17,14 +17,6 @@ public class BotonEtiqueta extends JFrame{
         addEscoitadoresObxectos( );      
     }
   
-    
-    public static void main(String[] args) {
-        BotonEtiqueta oframe=new BotonEtiqueta();
-        oframe.setSize(250,200);
-        oframe.setVisible(true); 
-        oframe.setTitle("Botón e Etiqueta!");
-    }
-
     public void defineCaracteristicasObxectos(){
         oboton.setBounds(50,40,150,40);  	// pos X, pos Y, ANCHO E ALTO.
         aetiqueta.setBounds(50, 100,150, 40); 
