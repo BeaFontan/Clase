@@ -7,7 +7,7 @@
 use SOCIOS;
 go
 
-create view v_inf_profesor
+create view v_inf_profesor2
 as
 select [numero], [nif], [nss], [nome], [ape1], [ape2], [tipo_via_enderezo], [rua_enderezo], [num_casa_enderezo], [piso_enderezo], [localidade_enderezo], [codpostal_enderezo], [cod_provincia_enderezo], [tel_fixo], [tel_mobil], [salario_mes], [cargo], p.especialidade
 from PROFESORADO p inner join EMPREGADO e on p.num_prof = e.numero;
@@ -226,10 +226,26 @@ drop table OFI_PRUEBA;
 
 --AHORA CON :
 
+--Volvemos a crearla
+select * into dbo.ofi_prueba
+from dbo.oficina;
+go
+--IMPORTANTE: Indicar nombres de esquema si usamos 
+--with schemabinding
+alter view dbo.v_oficinas_este 
+(CODIGO,NOMBRE,ZONA,DIRECTOR,VENTAS_ESPERADAS,VENTAS_ACTUALES)
+WITH SCHEMABINDING
+as
+	select o.oficina, o.CIUDAD, o.region, o.dir, o.objetivo,o.ventas
+	from dbo.ofi_prueba o
+	where region='ESTE';
+go
+
+drop table ofi_prueba;
 
 
-
-
+--No permite borrar y devuelve el mensaje 3729
+--No se puede DROP TABLE 'ofi_prueba' porque se le hace referencia en el objeto 'v_oficinas_este'.
 
 
 
