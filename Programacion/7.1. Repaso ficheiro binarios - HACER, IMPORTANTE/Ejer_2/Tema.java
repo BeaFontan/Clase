@@ -3,7 +3,6 @@ import java.io.Serializable;
 public class Tema implements Serializable{
 
     private static final long serialVersionUID = 1L; 
-    public static int id;
     private String nome;
     private String autor;
     private int ano;
@@ -14,7 +13,6 @@ public class Tema implements Serializable{
         this.autor = autor;
         this.ano = ano;
         this.xenero = xenero;
-        id++;
     }
 
     public static long getSerialversionuid() {
@@ -55,7 +53,7 @@ public class Tema implements Serializable{
 
     @Override
     public String toString() {
-        return "indice=" + id + "nome=" + nome + ", autor=" + autor + ", ano=" + ano + ", xenero=" + xenero;
+        return "título: " + nome + " autor: " + autor + " ano: " + ano + " xenero: " + xenero;
     }
 
 

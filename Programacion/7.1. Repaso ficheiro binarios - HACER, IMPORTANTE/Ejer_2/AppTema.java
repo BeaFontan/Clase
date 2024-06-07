@@ -1,3 +1,4 @@
+import java.io.EOFException;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -38,9 +39,33 @@ public class AppTema {
             }
         }
         else if (file.exists()) {
+            Tema temaLectura;
             try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(file)) ) {
-                Tema temaLectura = (Tema)ois.readObject();//PORQUÉ ME SALTA, NO ME AÑADE EN EL ARRAY
-                arrayTemas.add(temaLectura);
+
+              try {
+
+                while ((temaLectura = (Tema) ois.readObject()) != null) {
+                    
+                    arrayTemas.add(temaLectura);
+
+                    for (Tema tema : arrayTemas) {
+                        System.out.println(tema.toString());
+                    }
+                    
+                }
+
+                ois.close();
+                
+              } catch (EOFException e) {
+                System.out.println("Non hay mais datos");
+              }
+              catch (ClassNotFoundException c){
+                    System.out.println("Tipo e obxecto inválido");
+              }
+              catch(IOException i){
+                System.out.println("Erro lendo o ficheiro");
+              }
+
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -49,6 +74,8 @@ public class AppTema {
             System.out.println("Problema al encontrar el fichero");
         }
 
+
+
         //MENÚ
         System.out.println(menu);
         respuesta = teclado.nextInt();
@@ -56,7 +83,7 @@ public class AppTema {
         while (respuesta!= 5) {
             
             switch (respuesta) {
-                case 1: 
+                case 1: //Ver todos los temas
                 
                     for (Tema tema : arrayTemas) {
                         System.out.println(tema.toString());
@@ -69,14 +96,16 @@ public class AppTema {
                     int ano;
                     Tema tema;
 
+                    teclado.nextLine();
                     System.out.println("Dime o título da canción");
-                    nome = teclado.next();
+                    nome = teclado.nextLine();
                     System.out.println("Dime o autor");
-                    autor = teclado.next();
+                    autor = teclado.nextLine();
                     System.out.println("Dime o ano");
                     ano = teclado.nextInt();
+                    teclado.nextLine();
                     System.out.println("Dime o xenero");
-                    xenero = teclado.next();
+                    xenero = teclado.nextLine();
 
                     tema = new Tema(nome, autor, ano, xenero);
 
@@ -87,9 +116,13 @@ public class AppTema {
                 case 3: //Gardar os temas no ficheiro
                     
                     if (file.exists()) {
-                        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file))) {
+                        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(file,false))) {
                             
-                            oos.writeObject(arrayTemas);
+                            for (Tema tema2 : arrayTemas) {
+                                oos.writeObject(tema2);
+                            }
+
+                            oos.close();
                             System.out.println("Temas gardados");
 
                         } catch (IOException e) {
@@ -105,7 +138,7 @@ public class AppTema {
                 case 4: //Eliminar un tema
 
                     System.out.println("Dime o índice do tema que queres eliminar");
-                    respuesta = teclado.nextInt()-1;
+                    respuesta = teclado.nextInt();
 
                     arrayTemas.remove(respuesta);
                     

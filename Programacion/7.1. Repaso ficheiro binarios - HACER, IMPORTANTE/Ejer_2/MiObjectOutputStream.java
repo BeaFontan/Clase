@@ -10,10 +10,9 @@ public class MiObjectOutputStream extends ObjectOutputStream {
 
     protected MiObjectOutputStream() throws IOException, SecurityException {
         super();
-       
     }
 
-@Override
+    @Override
     protected void writeStreamHeader() throws IOException{
           reset();
     }
