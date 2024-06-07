@@ -47,13 +47,9 @@ public class AppTema {
                 while ((temaLectura = (Tema) ois.readObject()) != null) {
                     
                     arrayTemas.add(temaLectura);
-
-                    for (Tema tema : arrayTemas) {
-                        System.out.println(tema.toString());
-                    }
                     
                 }
-
+ 
                 ois.close();
                 
               } catch (EOFException e) {
