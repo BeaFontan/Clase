@@ -13,7 +13,7 @@ class Elemento extends JFrame{
     public Elemento(){
 
         setSize(300,250);
-        setTitle("Holi");
+        setTitle("Hola que tal");
         addWindowListener(new Escuchador());
         addKeyListener(new EscuchadorTecla());
         addMouseListener(new EscuchadorRaton());

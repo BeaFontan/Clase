@@ -48,4 +48,12 @@ public class BotonEtiqueta extends JFrame{
             i++;
         }
     }
+
+public static void main(String[] args) {
+    BotonEtiqueta boton = new BotonEtiqueta();
+    boton.setVisible(true);
+
 }
+
+}
+
