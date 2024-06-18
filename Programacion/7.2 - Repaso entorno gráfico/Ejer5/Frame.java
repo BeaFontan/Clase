@@ -1,5 +1,6 @@
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
@@ -9,6 +10,7 @@ import java.util.ArrayList;
 public class Frame extends JFrame{
 
 ArrayList<Usuario> arrayUsuarios = new ArrayList<Usuario>();
+boolean activo = false;
 
 JPanel panel = new JPanel();
 JButton boton = new JButton("Novo Usuario");
@@ -46,6 +48,10 @@ private void colocarElementos() {
 
 private void addEscoitadores() {
     addWindowListener(new EscuchadorVentana());
+    textoEmail.addActionListener(new AccionesComponentes());
+    textoPass.addActionListener(new AccionesComponentes());
+    boton.addActionListener(new AccionesComponentes());
+    botonUsuarios.addActionListener(new AccionesComponentes());
 
 }
 
@@ -82,8 +88,7 @@ public class EscuchadorVentana implements WindowListener{
 
     @Override
     public void windowActivated(WindowEvent e) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'windowActivated'");
+        activo=true;
     }
 
     @Override
@@ -99,10 +104,31 @@ public class AccionesComponentes implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == botonUsuarios) {
 
-            
+            String listaUsuariosToString = "";
+
+            for (Usuario usuario : arrayUsuarios) {
+                listaUsuariosToString+=usuario.toString();
+            }
+
+            JOptionPane.showMessageDialog(null, listaUsuariosToString);
+        }
+
+
+        if (e.getSource() == boton) {
+
+
+            if (arrayUsuarios.size() >= 5) {
+                JOptionPane.showMessageDialog(null, "No se pueden introducir más de 5 usuarios");
+            }
+            else{
+                Usuario usu = new Usuario(textoEmail.getText(), textoPass.getText());
+                arrayUsuarios.add(usu);
+            }
 
         }
-    }}
+
+    }
+}
 
  
 
