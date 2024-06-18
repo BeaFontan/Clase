@@ -43,7 +43,7 @@ while (respuesta != 3) {
 
          
             try (FileOutputStream fos = new FileOutputStream(file, true);
-            ObjectOutputStream oos = file.length() == 0 ? new ObjectOutputStream(fos) : new MiObjectOutputStream(fos)) {
+            ObjectOutputStream oos = file.length() == 0 ? new ObjectOutputStream(fos) : new ObjectOutputStream(fos)) {
            oos.writeObject(registroTemperatura);
             } catch (IOException e) {
                 System.out.println(e.getMessage());

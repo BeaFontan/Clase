@@ -134,9 +134,9 @@ public class AppTema {
                 case 4: //Eliminar un tema
 
                     System.out.println("Dime o índice do tema que queres eliminar");
-                    respuesta = teclado.nextInt();
+                    int indice = teclado.nextInt();
 
-                    arrayTemas.remove(respuesta);
+                    arrayTemas.remove(indice);
                     
                     break;   
 
